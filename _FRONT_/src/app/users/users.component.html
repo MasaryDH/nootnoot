@@ -1,14 +1,14 @@
 <table>
-    <thead>
-      <h1>Users</h1>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users" >
-        <td>Gebruikersnaam: <input type="text" value="{{user.username}}"></td>
-        <td>Paswoord: <input type="text" value="{{user.user_password}}"></td>
-        <td><input type="button" value="Bewerk"></td>
-        <td><input type="button" value="Verwijder"></td>
-      </tr>
-    </tbody>
-  </table>
-  
+  <thead>
+    <h1>Gebruikers</h1>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users" id="tr{{user.iduser}}">
+      <td>Gebruiksernaam: <input class="username{{user.iduser}}" [value]="user.username"></td>
+      <td>Paswoord: <input [value]="user.user_password"></td>
+      <button class="update{{user.iduser}}" (click)="updateRequest(user.iduser)">Bewerk</button>
+      <button class="save{{user.iduser}}" (click)="updateSave(user.iduser)" style="display: none">Opslaan</button>
+      <input type="button" value="Delete" (click)="deleteRequest(user.iduser)">
+    </tr>
+  </tbody>
+</table>

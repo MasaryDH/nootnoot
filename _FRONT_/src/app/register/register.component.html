@@ -1,34 +1,40 @@
 <h1>Register</h1>
-
-<form action="register.component.ts" method="post"> 
-  <ul>
-    <li>
-        <label for="user_firstname">Voornaam</label>
-        <input type="text" placeholder="Voornaam" name="user_firstname" required>
-    </li>
-
-    <li>
-        <label for="user_lastname">Achternaam</label>
-        <input type="text" placeholder="Achternaam" name="user_lastname" required>
-    </li>
-
-    <li>
-        <label for="username">Gebruikersnaam</label>
-        <input type="text" placeholder="Gebruikersnaam" name="username" required> 
-    </li>
-
-    <li>
-        <label for="user_email">E-mail</label>
-        <input type="email" placeholder="E-mail" name="user_email" required> 
-    </li>
-
-    <li>
-        <label for="user_password">Paswoord</label>
-        <input type="password" placeholder="Paswoord" name="user_password" required>
-    </li>
-
-    <li>
-        <input type="submit" value="Aanmelden" name="submit">
-    </li>
-  </ul>
-</form>
+  <form #personForm="ngForm"(ngSubmit)="onSubmit(personForm.value)">
+    <ul>
+      <li>
+          <label for="user_firstname">Voornaam *</label>
+          <input type="text" placeholder="Voornaam" name="user_firstname" [(ngModel)]="user_firstname" required>
+      </li>
+      <li>
+          <label for="user_lastname">Achternaam *</label>
+          <input type="text" placeholder="Achternaam" name="user_lastname" [(ngModel)]="user_lastname" required>
+      </li>
+      <li>
+          <label for="username">Gebruiksernaam *</label>
+          <input type="text" placeholder="Gebruikersnaam" name="username" [(ngModel)]="username" required>
+      </li>
+      <li>
+          <label for="user_email">E-mail *</label>
+          <input type="email" placeholder="E-mail" name="user_email" [(ngModel)]="user_email" required>
+      </li>
+      <li>
+          <label for="user_password">Paswoord *</label>
+          <input type="password" placeholder="Paswoord" name="user_password" [(ngModel)]="user_password" required>
+      </li>
+      <!-- <li hidden>
+          <label for="admin_idadminRights">Admin</label>
+          <input type="text" placeholder="Admin" name="admin_idadminRights" [(ngModel)]="admin_idadminRights" value="0" required>
+      </li>
+      <li hidden>
+          <label for="status_idstatus">Status</label>
+          <input type="text" placeholder="Status" name="status_idstatus" [(ngModel)]="status_idstatus" value="1" required>
+      </li> -->
+      <!-- <li>
+          <label for="user_passwordCheck">Herhaal Paswoord *</label>
+          <input type="password" placeholder="Paswoord" id="email" [(ngModel)]="user_passwordCheck" required>
+      </li> -->
+      <li>
+          <input type="submit" value="Registreren">
+      </li>
+    </ul>
+  </form>
