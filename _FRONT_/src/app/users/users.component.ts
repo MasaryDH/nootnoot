@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent {
 
-  constructor() { }
+  GET_SERVER_URL = "http://localhost/nootnoot/users";
+  users: any;
 
-  ngOnInit() {
+  constructor(private http: HttpClient){
+    this.getRequest();
+  }
+
+  getRequest(){
+    this.http.get(this.GET_SERVER_URL).subscribe((result) => {
+      console.log(JSON.stringify(result));
+      this.users = result;
+
+    });
+    
   }
 
 }
