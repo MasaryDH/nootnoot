@@ -1,13 +1,13 @@
 <table>
   <thead>
-    <h1>Gebruikers</h1>
+    <h1>Users</h1>
   </thead>
   <tbody>
     <tr *ngFor="let user of users" id="tr{{user.iduser}}">
-      <td>Gebruiksernaam: <input class="username{{user.iduser}}" [value]="user.username"></td>
-      <td>Paswoord: <input [value]="user.user_password"></td>
-      <button class="update{{user.iduser}}" (click)="updateRequest(user.iduser)">Bewerk</button>
-      <button class="save{{user.iduser}}" (click)="updateSave(user.iduser)" style="display: none">Opslaan</button>
+      <td>Gebruiksernaam: <input class="username{{user.iduser}}" [value]="user.username" readonly="true"></td>
+      <td>Paswoord: <input class="password{{user.iduser}}" [value]="user.user_password" readonly="true"></td>
+      <button class="update{{user.iduser}}" (click)="updateRequest(user.iduser)">Update</button>
+      <button class="save{{user.iduser}}" (click)="updateSave(user.iduser)" style="display: none">Save</button>
       <input type="button" value="Delete" (click)="deleteRequest(user.iduser)">
     </tr>
   </tbody>

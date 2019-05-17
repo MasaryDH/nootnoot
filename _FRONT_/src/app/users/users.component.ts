@@ -57,6 +57,10 @@ export class UsersComponent {
     // show save button
     let myContainerSave = <HTMLElement> document.querySelector(".save"+id);
     myContainerSave.style.display = '';
+
+    // make it possible to edit inputfields
+    (document.querySelector(".username"+id) as HTMLInputElement).readOnly = false;
+    (document.querySelector(".password"+id) as HTMLInputElement).readOnly = false;
   }
 
   updateSave(id){
@@ -79,7 +83,11 @@ export class UsersComponent {
     // put call (headers = send as json, responseType = give response as text)
     this.http.put(this.PUT_SERVER_URL+id, data, {headers: headers, responseType: 'text'})
     .subscribe((resultPut) => {
-      console.log(JSON.stringify(resultPut))
+      console.log(JSON.stringify(resultPut));
+
+      //make it possible to readonly inputfields
+      (document.querySelector(".username"+id) as HTMLInputElement).readOnly = true;
+      (document.querySelector(".password"+id) as HTMLInputElement).readOnly = true;
     });
   }
 
