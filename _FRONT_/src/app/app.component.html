@@ -4,10 +4,23 @@
       Welcome to {{ title }}!
     </h1>
     <img width="300" alt="pingu" src="assets/img/pingu.jpg">
-  </div>
+</div>
+
   
+<!-- table all users -->
+<!-- <users></users>
+<register></register> -->
+
+
+<nav>
+  <ul>
+    <li><a class="home" routerLink="/home">Home</a></li>
+    <li><a class="login" routerLink="/gebruikers">Gebruikers</a></li>
+    <li><a class="register" routerLink="/registreren">Registreren</a></li>
+  </ul>
+</nav>
+
+<!-- routes -->
+<div class="container">
   <router-outlet></router-outlet>
-  
-  <!-- table all users -->
-  <users></users>
-  <register></register>
+</div>
