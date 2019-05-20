@@ -1,0 +1,16 @@
+<h1>Inloggen</h1>
+  <form>
+    <ul>
+      <li>
+          <label for="user_email">E-mail *</label>
+          <input type="email" placeholder="E-mail" name="user_email" id="email" [(ngModel)]="user_email" required>
+      </li>
+      <li>
+          <label for="user_password">Paswoord *</label>
+          <input type="password" placeholder="Paswoord" name="user_password" id="paswoord" [(ngModel)]="user_password" required>
+      </li>
+      <li>
+          <input type="submit" value="Inloggen">
+      </li>
+    </ul>
+  </form>
