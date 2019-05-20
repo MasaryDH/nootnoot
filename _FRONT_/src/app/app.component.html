@@ -1,20 +1,12 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-    <h1>
-      Welcome to {{ title }}!
-    </h1>
-    <img width="300" alt="pingu" src="assets/img/pingu.jpg">
-</div>
-
 <nav>
-  <ul class="unlist">
-    <li><a class="home" routerLink="/home">Home</a></li>
-    <li><a class="login" routerLink="/gebruikers">Gebruikers</a></li>
-    <li><a class="register" routerLink="/registreren">Registreren</a></li>
-  </ul>
+  <div class="container">
+    <a id="title"><h1>{{ title }}</h1></a>
+    <ul class="unlist">
+      <li><a class="home" routerLink="/home">Home</a></li>
+      <li><a class="login" routerLink="/gebruikers">Gebruikers</a></li>
+      <li><a class="register" routerLink="/registreren">Registreren</a></li>
+    </ul>
+  </div>
 </nav>
 
-<!-- routes -->
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>

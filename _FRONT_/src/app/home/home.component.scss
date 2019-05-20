@@ -1,0 +1,11 @@
+@import '../../variables.scss';
+
+.imgContainer {
+    width: 15%;
+
+    img {
+        width: 100%;
+        border: 10px solid $c_blue;
+        border-radius: 2%;
+    }
+}

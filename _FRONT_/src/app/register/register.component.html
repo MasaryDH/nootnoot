@@ -1,6 +1,6 @@
 <h1>Registreren</h1>
   <form #personForm="ngForm" (ngSubmit)="onSubmit()" id="form">
-    <ul style="list-style: none">
+    <ul class="unlist">
       <li>
           <label for="user_firstname">Voornaam *</label>
           <input type="text" placeholder="Voornaam" name="user_firstname" id="voornaam" [(ngModel)]="user_firstname" required>
