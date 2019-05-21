@@ -1,32 +1,38 @@
-<h1>Registreren</h1>
-  <form #personForm="ngForm" (ngSubmit)="onSubmit(personForm.value)" id="form">
-    <ul class="unlist">
-      <li>
-          <label for="user_firstname">Voornaam *</label>
-          <input type="text" placeholder="Voornaam" name="user_firstname" id="voornaam" [(ngModel)]="user_firstname" required>
-      </li>
-      <li>
-          <label for="user_lastname">Achternaam *</label>
-          <input type="text" placeholder="Achternaam" name="user_lastname" id="achternaam" [(ngModel)]="user_lastname" required>
-      </li>
-      <li>
-          <label for="username">Gebruiksernaam *</label>
-          <input type="text" placeholder="Gebruikersnaam" name="username" id="username" [(ngModel)]="username" required>
-      </li>
-      <li>
-          <label for="user_email">E-mail *</label>
-          <input type="email" placeholder="E-mail" name="user_email" id="email" [(ngModel)]="user_email" required>
-      </li>
-      <li>
-          <label for="user_password">Paswoord *</label>
-          <input type="password" placeholder="Paswoord" name="user_password" id="paswoord" [(ngModel)]="user_password" required>
-      </li>
-      <li>
-          <label for="user_passwordCheck">Herhaal Paswoord *</label>
-          <input type="password" placeholder="Paswoord" name="user_passwordCheck" id="paswoordcheck" [(ngModel)]="user_passwordCheck" required>
-      </li>
-      <li>
-          <input type="submit" value="Registreer" [hidden]="!personForm.form.valid">
-      </li>
-    </ul>
-  </form>
+<!-- <h1>Registreren</h1> -->
+<form #personForm="ngForm" (ngSubmit)="onSubmit(personForm.value)" id="form">
+    <div class="imageContainer">
+        <img width="300" alt="pingu" src="assets/img/pingu.jpg">
+    </div>
+    <div class="formContainer">
+        <ul class="unlist naamVoornaam">
+            <li class="inputVoornaam">
+                <input type="text" placeholder="Voornaam" name="user_firstname" id="voornaam" [(ngModel)]="user_firstname" required>
+            </li>
+            <li class="inputAchternaam">
+                <input type="text" placeholder="Achternaam" name="user_lastname" id="achternaam" [(ngModel)]="user_lastname" required>
+            </li>
+        </ul>
+        <ul class="registratieVelden">
+            <li>
+                <input type="text" placeholder="Gebruikersnaam" name="username" id="username" [(ngModel)]="username" required>
+            </li>
+            <li>
+                <input type="email" placeholder="E-mail" name="user_email" id="email" [(ngModel)]="user_email" required>
+            </li>
+            <li>
+                <input type="password" placeholder="Paswoord" name="user_password" id="paswoord" [(ngModel)]="user_password" required>
+            </li>
+            <li>
+                <input type="password" placeholder="Paswoord" name="user_passwordCheck" id="paswoordcheck" [(ngModel)]="user_passwordCheck" required>
+            </li>
+            <li>
+                <input type="submit" value="Account Aanmaken" [hidden]="!personForm.form.valid">
+            </li>
+        </ul>
+    </div>
+</form>
+
+<div class="links">
+<a href="/home">Aanmelden</a>
+<a>Paswoord vergeten?</a>
+</div>

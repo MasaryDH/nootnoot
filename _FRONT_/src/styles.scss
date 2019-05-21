@@ -9,11 +9,21 @@
 
 /* general styles */
 
-html, body {
+*{
     font: 100 100%/1.4  Arial, Helvetica, sans-serif;
-    background: #eee;
 }
 
+html, body {
+    background: #eee;
+    height: 100%;
+}
+
+register{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126

@@ -1,1 +1,98 @@
 @import '../../variables.scss';
+
+h1{
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    font-size: .8rem;
+
+    li{
+        margin-top: 15px;
+    }
+
+    .imageContainer{
+        margin-right: 5%;
+        border: 13px solid $c_blue;
+        border-radius: 20px;
+        background: $c_blue;
+        width: 15%;
+        margin-top: -48px;
+    }
+
+    .formContainer{
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+    }
+
+    [alt="pingu"]{
+        border-radius: 10px;
+        margin-bottom: -4px;
+        width: 100%;
+    }
+}
+
+
+
+.naamVoornaam{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    li{
+        display: flex;
+        flex-direction: row;
+    }
+
+    input{
+        width: 200%;
+        padding: 15px 0;
+        border: .5px solid $c_almostblack;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .inputVoornaam, .inputAchternaam{
+        width: 45%;
+    }
+}
+
+.registratieVelden{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    input{
+        width: 100%;
+        padding: 15px 0;
+        border: .5px solid $c_almostblack;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    [type=submit]{
+        background: $c_green;
+        color: white;
+        border: none;
+    }
+}
+
+.links{
+    text-align: right;
+    position: fixed;
+    bottom: 32px;
+    right: 60px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: underline;
+}
