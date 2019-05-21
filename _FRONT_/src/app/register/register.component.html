@@ -1,5 +1,5 @@
 <h1>Registreren</h1>
-  <form #personForm="ngForm" (ngSubmit)="onSubmit()" id="form">
+  <form #personForm="ngForm" (ngSubmit)="onSubmit(personForm.value)" id="form">
     <ul class="unlist">
       <li>
           <label for="user_firstname">Voornaam *</label>
