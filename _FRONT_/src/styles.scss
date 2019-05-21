@@ -18,12 +18,15 @@ html, body {
     height: 100%;
 }
 
-register{
+register, app-home{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80%;
 }
+
+app-home{ flex-direction: column; }
+
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126

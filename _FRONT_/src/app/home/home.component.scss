@@ -1,11 +1,23 @@
 @import '../../variables.scss';
 
-.imgContainer {
+.imageContainer{
+    border: 13px solid $c_blue;
+    border-radius: 20px;
+    background: $c_blue;
     width: 15%;
-
-    img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    [alt="pingu"]{
+        border-radius: 10px;
+        margin-bottom: -4px;
         width: 100%;
-        border: 10px solid $c_blue;
-        border-radius: 2%;
     }
 }
+
+
+
+login{
+    width: 25%;
+}
+

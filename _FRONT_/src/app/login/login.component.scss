@@ -1,1 +1,29 @@
 @import '../../variables.scss';
+
+input{
+    width: 100%;
+    padding: 15px 0;
+    border: .5px solid $c_gray;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+form{
+    margin-top: 5%;
+}
+
+.knopAanmelden{
+    border: none;
+    cursor: pointer;
+    background: $c_green;
+    color: white;
+    &:hover{
+        background: $c_orange;
+        transition: background .23s ease-in-out; 
+    }
+}
+
+.loginInput{
+    width: 100%;
+}
