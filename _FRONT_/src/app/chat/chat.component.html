@@ -1,4 +1,4 @@
-<div class="links">
+<div class="logout">
   <a routerLink="/home">Uitloggen</a>
 </div>
 
@@ -27,3 +27,12 @@
       </ng-container>
   </table>
 </div>
+
+<div id="chatScreen">
+  <ng-container  *ngFor="let i of [].constructor(20)">
+    <p>Dit is een test bericht</p><br>
+  </ng-container>
+</div>
+<div id="emoticonBar"></div>
+<textarea></textarea>
+<button id="verzendChat">Verzenden</button>

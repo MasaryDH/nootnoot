@@ -29,10 +29,12 @@ export class ChatComponent {
     });
   }
 
+  // hide | show online table
   OnlineTable(){
        let elem = document.getElementById("tableOnline");
        let hide = elem.style.display =="none";
 
+       // change arrow
        let arrow = document.getElementById('arrowOnline');
        arrow.innerHTML = '&#9656;';
        if (hide) {
@@ -44,10 +46,13 @@ export class ChatComponent {
          arrow.innerHTML = '&#9656;';
       }
   }
+
+  // hide | show offline table
   OfflineTable(){
        var elem = document.getElementById("tableOffline");
        var hide = elem.style.display =="none";
 
+       // change arrow
        let arrow = document.getElementById('arrowOffline');
        arrow.innerHTML = '&#9656;';
        if (hide) {
