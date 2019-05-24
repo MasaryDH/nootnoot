@@ -38,24 +38,25 @@ switch($request_method){
             $json_response = json_encode($response);
             echo $json_response;
             break;
-
-        } else {
+        }else {
             echo 'ERROR<br>';
             break;
         }
 
     case "POST":
         if($_SERVER["REQUEST_URI"] == '/nootnoot/users'){
+            // convert JSON to object
             $_POST = json_decode(file_get_contents('php://input'));
-            
+            var_dump($_POST);
+
             $sql = "INSERT INTO user SET username = '".$_POST->username."',
-                                         user_password = '".$_POST->user_password."',
-                                         admin_idadminRights = 0 ,
-                                         user_email = '".$_POST->user_email."',
-                                         user_firstname = '".$_POST->user_firstname."',
-                                         user_lastname = '".$_POST->user_lastname."',
-                                         registratiedatum = NOW(),
-                                         status_idstatus = 1";
+                                          user_password = '".$_POST->user_password."',
+                                          admin_idadminRights = 0 ,
+                                          user_email = '".$_POST->user_email."',
+                                          user_firstname = '".$_POST->user_firstname."',
+                                          user_lastname = '".$_POST->user_lastname."',
+                                          registratiedatum = NOW(),
+                                          status_idstatus = 1";
             $result = $conn->query($sql);
 
             $sql2 = "SELECT * FROM user WHERE username = '".$_POST->username."'";
@@ -67,6 +68,24 @@ switch($request_method){
             }
             $json_response = json_encode($response);
             echo 'Nieuwe user aangemaakt:'.$_POST->username;
+            break;
+        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/loginuser'){
+            // convert JSON to object
+            $_POST = json_decode(file_get_contents('php://input'));
+
+            // checking if user is in database
+            $sql = "SELECT * FROM user WHERE user_email = '".$_POST->user_email."' AND user_password = '".$_POST->user_password."'";
+            $result = $conn->query($sql);
+
+            // checking if user is in database
+            if($result->num_rows == 1){
+                $sqlOnline = "UPDATE user SET status_idstatus = 1 WHERE user_email= '".$_POST->user_email."'";
+                $conn->query($sqlOnline);
+                $response = json_encode(true);
+            } else{ 
+                $response = json_encode(false);
+            }
+            echo $response;
             break;
         } else {
             echo 'Mislukt';
@@ -86,6 +105,7 @@ switch($request_method){
 
     case "PUT":
         if($_SERVER["REQUEST_URI"] == '/nootnoot/user/'. $id){
+             // convert JSON to object
             $_PUT = json_decode(file_get_contents('php://input'));
             var_dump($_PUT->username);
 

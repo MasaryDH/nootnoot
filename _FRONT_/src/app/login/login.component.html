@@ -1,5 +1,5 @@
 <!-- <h1>Inloggen</h1> -->
-  <form class="loginForm">
+  <form class="loginForm" #loginForm="ngForm" (ngSubmit)="onSubmitLogin(loginForm.value)" id="loginform">
     <ul class="unlist loginInput">
       <li>
           <input type="email" placeholder="E-mail" name="user_email" id="email" [(ngModel)]="user_email" required>
