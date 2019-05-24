@@ -21,20 +21,21 @@ nav {
             display: flex;
             width: 49.8%;
             font-weight: 700;
-                font-size: 2rem;
+            font-size: 2rem;
         }
 
         ul {
             display: flex;
+            width: 100%;
+            justify-content: flex-end;
     
             li {
                 display: inline-block;
-                 margin: 0 7%;
+                padding: 0 10px;
 
-                 .passwordReset{
-                    width: 300px;
-                    display: inline-block;
-                 }
+                &:last-of-type{
+                    padding-right: 0;
+                }
             }
         }
 
