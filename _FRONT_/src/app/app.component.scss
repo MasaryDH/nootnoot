@@ -19,7 +19,7 @@ nav {
 
         a#title {
             display: flex;
-            width: 81%;
+            width: 49.8%;
             font-weight: 700;
                 font-size: 2rem;
         }
@@ -30,8 +30,14 @@ nav {
             li {
                 display: inline-block;
                  margin: 0 7%;
+
+                 .passwordReset{
+                    width: 300px;
+                    display: inline-block;
+                 }
             }
         }
+
     }
 }
 
