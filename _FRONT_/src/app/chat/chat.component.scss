@@ -85,6 +85,14 @@ textarea {
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
+
+  .name{
+    font-weight: bold;
+  }
+
+  .bericht{
+    padding-left: 10px;
+  }
 }
 
 #status{

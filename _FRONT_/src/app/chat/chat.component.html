@@ -29,9 +29,16 @@
 </div>
 
 <div id="chatScreen">
-  <ng-container  *ngFor="let i of [].constructor(20)">
-    <p>Dit is een test bericht</p><br>
-  </ng-container>
+  <ng-container  *ngFor="let i of [].constructor(10)">
+  <ng-container *ngFor="let user of users; let i=index">
+    <p *ngIf="i<1" class="name">😈👑🍷 {{user.username}} says:</p>
+    </ng-container>
+    <p class="bericht">Dit is een test bericht</p><br>
+  <ng-container *ngFor="let user of users">
+      <p *ngIf="user.username == 'Pingu'" class="name">🐧🔊 {{user.username}} 🐧🔊 says:</p>
+      </ng-container>
+      <p class="bericht">NOOT NOOT !!! {{currentdate}}</p><br>
+    </ng-container>
 </div>
 <div id="emoticonBar"></div>
 <textarea></textarea>
