@@ -109,7 +109,7 @@ switch($request_method){
             $_PUT = json_decode(file_get_contents('php://input'));
             var_dump($_PUT->username);
 
-            $sql = "UPDATE user SET username = '".$_PUT->username."' WHERE iduser = $id";
+            $sql = "UPDATE user SET username = '".$_PUT->username."', user_password= '".$_PUT->password."', status_idstatus = '".$_PUT->status."' WHERE iduser = $id";
             $result = $conn->query($sql);
             echo 'Speler is geüpdatet naar: '.$_PUT->username;
             break;
