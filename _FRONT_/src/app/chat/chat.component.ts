@@ -29,4 +29,35 @@ export class ChatComponent {
     });
   }
 
+  OnlineTable(){
+       let elem = document.getElementById("tableOnline");
+       let hide = elem.style.display =="none";
+
+       let arrow = document.getElementById('arrowOnline');
+       arrow.innerHTML = '&#9656;';
+       if (hide) {
+           elem.style.display="block";
+           arrow.innerHTML = '&#9662;';
+      } 
+      else {
+         elem.style.display="none";
+         arrow.innerHTML = '&#9656;';
+      }
+  }
+  OfflineTable(){
+       var elem = document.getElementById("tableOffline");
+       var hide = elem.style.display =="none";
+
+       let arrow = document.getElementById('arrowOffline');
+       arrow.innerHTML = '&#9656;';
+       if (hide) {
+           elem.style.display="block";
+           arrow.innerHTML = '&#9662;';
+      } 
+      else {
+         elem.style.display="none";
+         arrow.innerHTML = '&#9656;';
+      }
+  }
+
 }

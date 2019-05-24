@@ -1,13 +1,12 @@
+<h1>Gebruikers</h1>
 
-  <h1>Gebruikers</h1>
+<div class="links">
+  <a routerLink="/home">Uitloggen</a>
+</div>
 
-  <div class="links">
-      <a routerLink="/home">Uitloggen</a>
-  </div>
-
-  <table>
-    <thead>
-      <td class="statusTitel">Online</td>
+<div id="status">
+  <a class="statusTitel arrow right" (click)="OnlineTable()">Online <i id="arrowOnline">&#9662;</i></a>
+  <table id="tableOnline" style="display: block;"> 
       <ng-container *ngFor="let user of users">
         <tr *ngIf="user.status_idstatus == 1">
           <td *ngIf="user.status_idstatus == 1" id="user{{user.iduser}}">
@@ -16,12 +15,17 @@
           </td>
         </tr>
       </ng-container>
-      <td class="statusTitel">Offline</td>
+  </table>
+
+  <a class="statusTitel" (click)="OfflineTable()">Offline <i id="arrowOffline">&#9662;</i></a>
+  <table id="tableOffline" style="display: block;">
       <ng-container *ngFor="let user of users">
-        <tr *ngIf="user.status_idstatus == 0">
+        <tr *ngIf="user.status_idstatus == 0" >
           <td id="user{{user.iduser}}">
             <span class="dot"  id="offline"></span>
             <p class="{{user.username}}">{{ user.username }}</p>
           </td>
         </tr>
       </ng-container>
+  </table>
+</div>
