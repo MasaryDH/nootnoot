@@ -1,9 +1,23 @@
 @import '../../variables.scss';
 
+.links {
+  font-size: .8rem;
+  text-align: left;
+  position: fixed;
+  bottom: 32px;
+  left: 32px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: underline;
+}
+
 #status{
   display: flex;
   flex-direction: column;
-  margin: 10px 30px;
+  padding: 10px 30px;
+  width: 14%;
+  height: 86.8%;
+  background: darkgray;
 
   .statusTitel{
     display: flex;
