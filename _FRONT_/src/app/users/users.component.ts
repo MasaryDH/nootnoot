@@ -61,12 +61,20 @@ export class UsersComponent {
     // make it possible to edit inputfields
     (document.querySelector(".username"+id) as HTMLInputElement).readOnly = false;
     (document.querySelector(".password"+id) as HTMLInputElement).readOnly = false;
+    (document.querySelector(".status"+id) as HTMLInputElement).readOnly = false;
+
   }
 
   updateSave(id){
     // get username+id
     let myContainerName = <HTMLInputElement> document.querySelector(".username"+id);
     let username = myContainerName.value;
+     // get password+id
+     let myContainerPassword = <HTMLInputElement> document.querySelector(".password"+id);
+     let password = myContainerPassword.value;
+      // get status+id
+      let myContainerStatus = <HTMLInputElement> document.querySelector(".status"+id);
+      let status = myContainerStatus.value;
 
     // show update button
     let myContainerUpdate = <HTMLElement> document.querySelector(".update"+id);
@@ -76,7 +84,7 @@ export class UsersComponent {
     myContainerSave.style.display = 'none';
 
     // create json
-    let data = {username:username};
+    let data = {username:username, password:password, status:status};
     // send as json
     let headers = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -88,6 +96,7 @@ export class UsersComponent {
       //make it possible to readonly inputfields
       (document.querySelector(".username"+id) as HTMLInputElement).readOnly = true;
       (document.querySelector(".password"+id) as HTMLInputElement).readOnly = true;
+      (document.querySelector(".status"+id) as HTMLInputElement).readOnly = true;
     });
   }
 

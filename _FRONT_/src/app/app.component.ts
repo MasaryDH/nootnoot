@@ -18,7 +18,7 @@ export class AppComponent {
 
   getRequest(){
     this.http.get(this.GET_SERVER_URL).subscribe((result) => {
-      console.log(JSON.stringify(result));
+      // console.log(JSON.stringify(result));
       this.users = result;
     });
     

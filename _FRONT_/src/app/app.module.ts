@@ -20,7 +20,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     HomeComponent,
     LoginComponent,
     ChatComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
   ],
   imports: [
     BrowserModule,

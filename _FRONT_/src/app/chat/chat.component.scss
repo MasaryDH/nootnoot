@@ -1,0 +1,39 @@
+@import '../../variables.scss';
+
+table{
+    margin: 10px 30px;
+
+    .statusTitel{
+        display: flex;
+        padding: 20px 0 10px 0;
+        font-weight: bold;
+    }
+    
+    td{
+        display: flex;
+    }
+    
+    .dot {
+        height: 10px;
+        width: 10px;
+        margin: 7px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 15px;
+      }
+    
+      
+    #online{
+        background-color: $c_green;
+        box-shadow: 0px 0px 4px 1px green;
+      }
+    
+    #offline{
+        background-color: gray;
+        box-shadow: 0px 0px 4px 2px #666;
+      }
+}
+
+
+
+ 

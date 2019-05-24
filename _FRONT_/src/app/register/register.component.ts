@@ -25,11 +25,12 @@ export class RegisterComponent {
       .subscribe((status)=> {
         console.log(JSON.stringify(status));
 
+        alert("Registratie Gelukt, Welkom "+person.user_firstname+" "+person.user_lastname+"");
         let myContainerForm = <HTMLFormElement> document.getElementById('form');
         myContainerForm.reset();
       });
     } else{
-      alert("Password doesn't match!");
+      alert("Paswoord is niet hetzelfde");
     }
    
   }

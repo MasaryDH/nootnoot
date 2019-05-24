@@ -1,3 +1,27 @@
-<p>
-  chat works!
-</p>
+
+  <h1>Gebruikers</h1>
+
+  <div class="links">
+      <a routerLink="/home">Uitloggen</a>
+  </div>
+
+  <table>
+    <thead>
+      <td class="statusTitel">Online</td>
+      <ng-container *ngFor="let user of users">
+        <tr *ngIf="user.status_idstatus == 1">
+          <td *ngIf="user.status_idstatus == 1" id="user{{user.iduser}}">
+                <span class="dot"  id="online"></span>
+                <p class="{{user.username}}">{{ user.username }}</p>
+          </td>
+        </tr>
+      </ng-container>
+      <td class="statusTitel">Offline</td>
+      <ng-container *ngFor="let user of users">
+        <tr *ngIf="user.status_idstatus == 0">
+          <td id="user{{user.iduser}}">
+            <span class="dot"  id="offline"></span>
+            <p class="{{user.username}}">{{ user.username }}</p>
+          </td>
+        </tr>
+      </ng-container>
