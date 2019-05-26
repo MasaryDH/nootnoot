@@ -29,7 +29,7 @@ export class UsersComponent {
     // get call + responseType = give response as text
     this.http.get(this.GET_SERVER_URL, {responseType: 'json'})
     .subscribe((result) => {
-      console.log(JSON.stringify(result))
+      //console.log(JSON.stringify(result))
 
       // put data in to variable for html-useage
       this.users = result;

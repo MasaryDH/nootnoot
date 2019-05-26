@@ -43,14 +43,17 @@ switch($request_method){
             break;
         }
 
+
     case "POST":
+        //REGISTER
         if($_SERVER["REQUEST_URI"] == '/nootnoot/users'){
             // convert JSON to object
             $_POST = json_decode(file_get_contents('php://input'));
-            var_dump($_POST);
+
+            $hash = hash("md5", $_POST->user_password);
 
             $sql = "INSERT INTO user SET username = '".$_POST->username."',
-                                          user_password = '".$_POST->user_password."',
+                                          user_password = '".$hash."',
                                           admin_idadminRights = 0 ,
                                           user_email = '".$_POST->user_email."',
                                           user_firstname = '".$_POST->user_firstname."',
@@ -69,12 +72,16 @@ switch($request_method){
             $json_response = json_encode($response);
             echo 'Nieuwe user aangemaakt:'.$_POST->username;
             break;
+
+        //LOGIN
         } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/loginuser'){
             // convert JSON to object
             $_POST = json_decode(file_get_contents('php://input'));
 
+            $hash = hash("md5", $_POST->user_password);
+
             // checking if user is in database
-            $sql = "SELECT * FROM user WHERE user_email = '".$_POST->user_email."' AND user_password = '".$_POST->user_password."'";
+            $sql = "SELECT * FROM user WHERE user_email = '".$_POST->user_email."' AND user_password = '".$hash."'";
             $result = $conn->query($sql);
 
             // checking if user is in database

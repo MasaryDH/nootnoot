@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class ChatComponent {
   GET_SERVER_URL = "http://localhost/nootnoot/users";
   users: any;
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private _authService: AuthService){
     // get data when refreshed
     this.getRequest();
   }
@@ -22,7 +23,7 @@ export class ChatComponent {
     // get call + responseType = give response as text
     this.http.get(this.GET_SERVER_URL, {responseType: 'json'})
     .subscribe((result) => {
-      console.log(JSON.stringify(result))
+      //console.log(JSON.stringify(result))
 
       // put data in to variable for html-useage
       this.users = result;
@@ -63,6 +64,10 @@ export class ChatComponent {
          elem.style.display="none";
          arrow.innerHTML = '&#9656;';
       }
+  }
+
+  logout() {
+    this._authService.logout();
   }
 
 }

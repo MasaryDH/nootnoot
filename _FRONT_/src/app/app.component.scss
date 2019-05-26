@@ -36,6 +36,11 @@ nav {
                 &:last-of-type{
                     padding-right: 0;
                 }
+
+                .active-link {
+                    color: $c_blue;
+                    text-decoration: underline;
+                }
             }
         }
 
