@@ -30,7 +30,7 @@ export class RegisterComponent {
         alert("Registratie gelukt, Welkom "+person.user_firstname+" "+person.user_lastname+"");
 
         //create token, login user & redirect to chat
-        this.login(person);
+        this.login(person.user_email);
         this.router.navigate(['/chat'])
 
         //empty form

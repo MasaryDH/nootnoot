@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 
+
 export class AuthService {
   constructor(private router: Router) { }
 
@@ -23,7 +24,8 @@ export class AuthService {
 
     //create token on login
     login(user) {
-        localStorage.setItem('token', JSON.stringify(user));
+        let objToken = { user_email : user}
+        localStorage.setItem('token', JSON.stringify(objToken));
     }
 
     //clear local storage

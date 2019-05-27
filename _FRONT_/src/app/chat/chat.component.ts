@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth.service';
 export class ChatComponent {
 
   GET_SERVER_URL = "http://localhost/nootnoot/users";
+  LOGOUT_SERVER_URL = "http://localhost/nootnoot/logoutuser";
   users: any;
 
   constructor(private http: HttpClient, private authService: AuthService){
@@ -24,7 +25,7 @@ export class ChatComponent {
     .subscribe((result) => {
       //console.log(JSON.stringify(result))
 
-      // put data in to variable for html-useage
+      // put data in to variable for html-usage
       this.users = result;
     });
   }
@@ -66,7 +67,15 @@ export class ChatComponent {
   }
 
   logout() {
-    this.authService.logout();
+    let token = localStorage.getItem('token');
+    this.http.post(this.LOGOUT_SERVER_URL, token)
+    .subscribe((status)=> {
+      if(status == true) {
+        this.authService.logout();
+      } else {
+        alert("uitloggen mislukt");
+      }
+    
+    });
   }
-
 }

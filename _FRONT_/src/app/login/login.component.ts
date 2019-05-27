@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent {
 
-  POST_SERVER_URL = "http://localhost/nootnoot/loginuser";
+  LOGIN_SERVER_URL = "http://localhost/nootnoot/loginuser";
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) { 
     if(this.authService.isAuthenticated() == true){
@@ -20,7 +20,7 @@ export class LoginComponent {
     // ----- POST -----
     onSubmitLogin(login){
       // Post Call
-      this.http.post(this.POST_SERVER_URL, login)
+      this.http.post(this.LOGIN_SERVER_URL, login)
       .subscribe((status)=> {
         console.log(JSON.stringify(status));
 
