@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent {
 
-  POST_SERVER_URL = "http://localhost/nootnoot/loginuser"
+  POST_SERVER_URL = "http://localhost/nootnoot/loginuser";
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) { 
     if(this.authService.isAuthenticated() == true){
@@ -22,11 +22,11 @@ export class LoginComponent {
       // Post Call
       this.http.post(this.POST_SERVER_URL, login)
       .subscribe((status)=> {
-        //console.log(JSON.stringify(status));
+        console.log(JSON.stringify(status));
 
          // Check if a person exists or not
         if (status == true){
-          this.login(login);
+          this.login(login.user_email);
           //alert ("Aangemeld")
           this.router.navigate(['/chat'])
           // let myContainerForm = <HTMLFormElement> document.getElementById('loginform');

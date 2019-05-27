@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 
-
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -13,7 +12,7 @@ export class ChatComponent {
   GET_SERVER_URL = "http://localhost/nootnoot/users";
   users: any;
 
-  constructor(private http: HttpClient, private _authService: AuthService){
+  constructor(private http: HttpClient, private authService: AuthService){
     // get data when refreshed
     this.getRequest();
   }
@@ -67,7 +66,7 @@ export class ChatComponent {
   }
 
   logout() {
-    this._authService.logout();
+    this.authService.logout();
   }
 
 }
