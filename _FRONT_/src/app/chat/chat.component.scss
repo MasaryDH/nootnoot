@@ -8,13 +8,19 @@
   left: 32px;
   display: flex;
   flex-direction: column;
-  text-decoration: underline;
+  border: 1px solid white;
+  border-radius: 10px;
 
-  a{
-    border: 1px solid white;
-    border-radius: 10px;
+  a{ 
     padding: 10px 15px;
     color: white;
+  }
+
+  &:hover, a:hover{
+    background: white;
+    color: black;
+    transition: background .23s ease-in-out; 
+    border-radius: 10px;
   }
 }
 
@@ -83,7 +89,6 @@ textarea {
   border: 1px solid black;
   background: white;
   overflow-y: scroll;
-  display: flex;
   flex-direction: column;
 
   .name{
