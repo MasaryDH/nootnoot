@@ -27,10 +27,8 @@ export class LoginComponent {
          // Check if a person exists or not
         if (status == true){
           this.login(login.user_email);
-          //alert ("Aangemeld")
+          //redirect to chat if user exists
           this.router.navigate(['/chat'])
-          // let myContainerForm = <HTMLFormElement> document.getElementById('loginform');
-          // myContainerForm.reset();
         }else{
           alert ("Gebruiker niet gevonden")
         }
