@@ -75,11 +75,10 @@ switch($request_method){
 
             $hash = hash("md5", $_POST->user_password);
 
-            // checking if user is in database
+            // check if user is in database
             $sql = "SELECT * FROM user WHERE user_email = '".$_POST->user_email."' AND user_password = '".$hash."'";
             $result = $conn->query($sql);
 
-            // checking if user is in database
             if($result->num_rows == 1){
 
                 //update status to online
@@ -101,12 +100,11 @@ switch($request_method){
             // convert JSON to object
             $_POST = json_decode(file_get_contents('php://input'));
 
-            // checking if user is in database
-            $sql = "";
-            $result = $conn->query($sql);
-
-            // checking if user is in database
-            if($result->num_rows == 1){
+            // update user status
+            $sql = "UPDATE user SET status_idstatus = 0 WHERE user_email = '".$_POST->user_email."'";
+     
+            // check if user is updated
+            if($conn->query($sql)){
                 $response = json_encode(true);
             } else{ 
                 $response = json_encode(false);
