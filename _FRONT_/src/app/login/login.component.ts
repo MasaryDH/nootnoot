@@ -22,7 +22,7 @@ export class LoginComponent {
       // Post Call
       this.http.post(this.LOGIN_SERVER_URL, login)
       .subscribe((status)=> {
-        console.log(JSON.stringify(status));
+        console.log(status);
 
          // Check if a person exists or not
         if (status == true){
