@@ -7,7 +7,7 @@
               <span *ngIf="user.iduser ==  idtoken" class="dot"  id="onlineBlue"></span>
               <span *ngIf="user.iduser !=  idtoken" class="dot"  id="online"></span>
               <p class="{{user.username}}">{{ user.username }}</p>
-              <span *ngIf="user.iduser ==  idtoken" class="fa fa-edit"></span>
+              <a (click)="openModalUserSettings()"><span *ngIf="user.iduser ==  idtoken" class="fa fa-edit"></span></a>
               <a (click)="openModalUsers()"><span *ngIf="user.iduser ==  idtoken && user.admin_idadminRights == 1" class="fa fa-cog"></span></a>
           </td>
         </tr>
@@ -44,6 +44,13 @@
     <div class="modal-content">
       <span class="close" (click)="closeModalUsers()">&times;</span>
      <users></users>
+    </div>
+</div>
+
+<div id="modalUserSettings" class="modal" style="display: none">
+    <div class="modal-content">
+      <span class="close" (click)="closeModalUserSettings()">&times;</span>
+     <user-settings></user-settings>
     </div>
 </div>
 

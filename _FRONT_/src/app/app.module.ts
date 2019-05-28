@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { ChatComponent } from './chat/chat.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { AuthGuard } from './guards/auth-guard.service';
+import { UserSettingsComponent } from './user-settings/user-settings.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { AuthGuard } from './guards/auth-guard.service';
     LoginComponent,
     ChatComponent,
     PasswordResetComponent,
+    UserSettingsComponent,
   ],
   imports: [
     BrowserModule,

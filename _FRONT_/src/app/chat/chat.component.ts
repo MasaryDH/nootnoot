@@ -91,4 +91,14 @@ export class ChatComponent {
     let modal = document.getElementById("modalUsers");
     modal.style.display = "none";
   }
+
+  openModalUserSettings(){
+    let modal = document.getElementById("modalUserSettings");
+    modal.style.display = "block";
+  }
+
+  closeModalUserSettings(){
+    let modal = document.getElementById("modalUserSettings");
+    modal.style.display = "none";
+  }
 }
