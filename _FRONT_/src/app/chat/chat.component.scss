@@ -142,8 +142,8 @@ textarea {
       }
 
     #onlineBlue{
-      background-color: $c_blue;
-      box-shadow: 0px 0px 4px 1px blue;
+      background-color: $c_itsmeblue;
+      box-shadow: 0px 0px 4px 1px $c_itsmeblue;
     }
     
     #offline{
