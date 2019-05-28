@@ -57,26 +57,31 @@ switch($request_method){
                                          admin_idadminRights = 0 , user_email = '".$_POST->user_email."',
                                          user_firstname = '".$_POST->user_firstname."', user_lastname = '".$_POST->user_lastname."',
                                          registratiedatum = NOW(), status_idstatus = 1";
-            $conn->query($sql);
 
             //get iduser
             $iduser = "SELECT iduser FROM user WHERE user_email = '".$_POST->user_email."'";
-            $idresult = $conn->query($iduser);
-
-            //create empty response object
-            $response = new stdClass();
-
-            //add iduser to object
-            if($idrow = $idresult->fetch_assoc()){
-                $iduser = $idrow['iduser'];
-                $response->iduser = $iduser;
-            }
 
             //log loginTime user
             $sql2 = "INSERT INTO status_logging SET user_iduser = '".$iduser."', loginTime = NOW()";
 
             //Check if data is inserted
-            if($conn->query($sql2)){
+            if($conn->query($sql)){
+
+                //get iduser
+                $idresult = $conn->query($iduser);
+
+                //create empty response object
+                $response = new stdClass();
+
+                //add iduser to object
+                if($idrow = $idresult->fetch_assoc()){
+                    $iduser = $idrow['iduser'];
+                    $response->iduser = $iduser;
+                }
+
+                //update loginTime user
+                $conn->query($sql2);
+
                 //add status to object
                 $response->status = true;
             } else {
@@ -115,6 +120,7 @@ switch($request_method){
                 $sqlLoginTime = "INSERT INTO status_logging (user_iduser, loginTime)
                                VALUES ((SELECT iduser FROM user WHERE user_email = '".$_POST->user_email."'), NOW())";
                 $conn->query($sqlLoginTime);
+
                 //add status to object
                 $response->status = true;
             } else{ 
@@ -132,16 +138,25 @@ switch($request_method){
 
             // update user status
             $sql = "UPDATE user SET status_idstatus = 0 WHERE user_email = '".$_POST->user_email."'";
+
+            // update logoutTime in logger
+            $sqlLogoutTime = "UPDATE status_logging SET logoutTime = NOW() WHERE loginTime = (
+                SELECT MAX(loginTime)
+                FROM (SELECT * FROM status_logging) AS logginTable
+                WHERE logginTable.user_iduser = '".$_POST->iduser."' 
+                )";
      
             // check if user is updated
             if($conn->query($sql)){
                 $response = json_encode(true);
+
+                // update logoutTime in logger
+                $conn->query($sqlLogoutTime);
             } else{ 
                 $response = json_encode(false);
             }
             echo $response;
             break;
-
         } else {
             echo 'Mislukt';
             break;
