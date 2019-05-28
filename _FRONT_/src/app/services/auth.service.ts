@@ -23,8 +23,9 @@ export class AuthService {
     }
 
     //create token on login
-    login(user) {
-        let objToken = { user_email : user}
+    login(user, id) {
+        let objToken = { user_email : user, iduser : id }
+        console.log(objToken);
         localStorage.setItem('token', JSON.stringify(objToken));
     }
 

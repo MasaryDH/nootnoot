@@ -39,7 +39,7 @@ switch($request_method){
             echo $json_response;
             break;
         }else {
-            echo 'ERROR<br>';
+            echo 'ERROR';
             break;
         }
 
@@ -50,7 +50,6 @@ switch($request_method){
 
             // convert JSON to object
             $_POST = json_decode(file_get_contents('php://input'));
-
             $hash = hash("md5", $_POST->user_password); //decode password
 
             //make new user
@@ -60,27 +59,54 @@ switch($request_method){
                                          registratiedatum = NOW(), status_idstatus = 1";
             $conn->query($sql);
 
-            //log loginTime user
-            $sql2 = "INSERT INTO status_logging SET user_iduser = '".$conn->insert_id."', loginTime = NOW()";
-            $conn->query($sql2); 
+            //get iduser
+            $iduser = "SELECT iduser FROM user WHERE user_email = '".$_POST->user_email."'";
+            $idresult = $conn->query($iduser);
 
-            //Send username to front
-            echo $_POST->username;
+            //create empty response object
+            $response = new stdClass();
+
+            //add iduser to object
+            if($idrow = $idresult->fetch_assoc()){
+                $iduser = $idrow['iduser'];
+                $response->iduser = $iduser;
+            }
+
+            //log loginTime user
+            $sql2 = "INSERT INTO status_logging SET user_iduser = '".$iduser."', loginTime = NOW()";
+
+            //Check if data is inserted
+            if($conn->query($sql2)){
+                //add status to object
+                $response->status = true;
+            } else {
+                $response->status = false;
+            }
+
+            //Send data to front
+            echo json_encode($response);
             break;
 
         //------ LOGIN ------
         } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/loginuser'){
             // convert JSON to object
             $_POST = json_decode(file_get_contents('php://input'));
-
-            $hash = hash("md5", $_POST->user_password);
+            $hash = hash("md5", $_POST->user_password); //decode password
 
             // check if user is in database
             $sql = "SELECT * FROM user WHERE user_email = '".$_POST->user_email."' AND user_password = '".$hash."'";
             $result = $conn->query($sql);
 
-            if($result->num_rows == 1){
+            //create empty response object
+            $response = new stdClass();
 
+            //fetch iduser & add to object
+            if($row = $result->fetch_assoc()){
+                $iduser = $row['iduser'];
+                $response->iduser = $iduser;
+            }
+
+            if($result->num_rows == 1){
                 //update status to online
                 $sqlOnline = "UPDATE user SET status_idstatus = 1 WHERE user_email= '".$_POST->user_email."'";
                 $conn->query($sqlOnline);
@@ -89,12 +115,16 @@ switch($request_method){
                 $sqlLoginTime = "INSERT INTO status_logging (user_iduser, loginTime)
                                VALUES ((SELECT iduser FROM user WHERE user_email = '".$_POST->user_email."'), NOW())";
                 $conn->query($sqlLoginTime);
-                $response = json_encode(true);
+                //add status to object
+                $response->status = true;
             } else{ 
-                $response = json_encode(false);
+                //add status to object
+                $response->status = false;
             }
-            echo $response;
+            //Send data to front
+            echo json_encode($response);
             break;
+
         //------ LOGUIT ------
         } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/logoutuser'){
             // convert JSON to object

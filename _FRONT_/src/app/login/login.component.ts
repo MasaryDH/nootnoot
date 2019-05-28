@@ -22,22 +22,23 @@ export class LoginComponent {
       // Post Call
       this.http.post(this.LOGIN_SERVER_URL, login)
       .subscribe((status)=> {
-        console.log(status);
+        //get iduser from status
+        let iduser = status['iduser'];
 
-         // Check if a person exists or not
-        if (status == true){
-          this.login(login.user_email);
+        // If person exists status = true
+        if (status['status'] == true){
+          this.login(login.user_email, iduser);
           //redirect to chat if user exists
           this.router.navigate(['/chat'])
-        }else{
+        } else {
           alert ("Gebruiker niet gevonden")
         }
       });
   }
 
-  //check if token is created
-  login(login) {
-    this.authService.login(login);
+  //create token
+  login(login, iduser) {
+    this.authService.login(login, iduser);
   }
 }
 

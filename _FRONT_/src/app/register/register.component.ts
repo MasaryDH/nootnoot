@@ -23,27 +23,38 @@ export class RegisterComponent {
     // Check if password matches
     if (person.user_password == person.user_passwordCheck){
       // post call + responseType = give response as text
-      this.http.post(this.POST_SERVER_URL, person, {responseType: 'text'})
+      this.http.post(this.POST_SERVER_URL, person)
       .subscribe((status)=> {
-        console.log(JSON.stringify(status));
+        //get iduser from status
+        let iduser = status['iduser'];
+        console.log(iduser);
+        console.log(status);
 
-        alert("Registratie gelukt, Welkom "+person.user_firstname+" "+person.user_lastname+"");
+        // If person exists status = true
+        if (status['status'] == true){
+          this.login(person.user_email, iduser);
 
-        //create token, login user & redirect to chat
-        this.login(person.user_email);
-        this.router.navigate(['/chat'])
+          //welcome msg
+          alert("Registratie gelukt, welkom "+person.user_firstname+" "+person.user_lastname+"");
+         
+          //redirect to chat if user exists
+          this.router.navigate(['/chat'])
+        } else {
+          alert ("Gebruiker kan niet worden aangemaakt.")
+        }
 
         //empty form
         // let myContainerForm = <HTMLFormElement> document.getElementById('form');
         // myContainerForm.reset();
       });
-    } else{
+
+    } else {
       alert("Paswoord is niet hetzelfde");
     }
   }
 
-  //check if token is created
-  login(login) {
-    this.authService.login(login);
+  //create token
+  login(login, iduser) {
+    this.authService.login(login, iduser);
   }
 }
