@@ -7,6 +7,7 @@
               <span *ngIf="user.iduser ==  idtoken" class="dot"  id="onlineBlue"></span>
               <span *ngIf="user.iduser !=  idtoken" class="dot"  id="online"></span>
               <p class="{{user.username}}">{{ user.username }}</p>
+              <span *ngIf="user.iduser ==  idtoken" class="fa fa-edit"></span>
           </td>
         </tr>
       </ng-container>
