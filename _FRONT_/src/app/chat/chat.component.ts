@@ -12,6 +12,7 @@ export class ChatComponent {
   GET_SERVER_URL = "http://localhost/nootnoot/users";
   LOGOUT_SERVER_URL = "http://localhost/nootnoot/logoutuser";
   users: any;
+  idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
 
   constructor(private http: HttpClient, private authService: AuthService){
     // get data when refreshed
@@ -24,11 +25,12 @@ export class ChatComponent {
     this.http.get(this.GET_SERVER_URL, {responseType: 'json'})
     .subscribe((result) => {
       //console.log(JSON.stringify(result))
-
       // put data in to variable for html-usage
       this.users = result;
     });
   }
+  
+  
 
   // hide | show online table
   OnlineTable(){

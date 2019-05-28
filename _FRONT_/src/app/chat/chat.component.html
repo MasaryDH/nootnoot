@@ -4,8 +4,9 @@
       <ng-container *ngFor="let user of users">
         <tr *ngIf="user.status_idstatus == 1">
           <td *ngIf="user.status_idstatus == 1" id="user{{user.iduser}}">
-                <span class="dot"  id="online"></span>
-                <p class="{{user.username}}">{{ user.username }}</p>
+              <span *ngIf="user.iduser ==  idtoken" class="dot"  id="onlineBlue"></span>
+              <span *ngIf="user.iduser !=  idtoken" class="dot"  id="online"></span>
+              <p class="{{user.username}}">{{ user.username }}</p>
           </td>
         </tr>
       </ng-container>
