@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'user-settings',
@@ -13,6 +14,7 @@ export class UserSettingsComponent{
   GET_SERVER_URL = "http://localhost/nootnoot/users";
   DELETE_SERVER_URL = "http://localhost/nootnoot/user/";
   PUT_SERVER_URL = "http://localhost/nootnoot/user/";
+  LOGOUT_SERVER_URL = "http://localhost/nootnoot/logoutuser";
   users: any;
   request = new XMLHttpRequest();
   id;
@@ -21,7 +23,7 @@ export class UserSettingsComponent{
   idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
   
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private authService: AuthService){
     // get data when refreshed
     this.getRequest();
   }
@@ -39,7 +41,7 @@ export class UserSettingsComponent{
   }
 
   // ----- DELETE -----
-  deleteRequest(id){
+  deleteUser(id){
     // delete call + responseType = give response as text
     this.http.delete(this.DELETE_SERVER_URL+id, {responseType: 'text'})
     .subscribe((resultDelete) => {
@@ -47,46 +49,54 @@ export class UserSettingsComponent{
 
       // remove deleted user from table
       document.getElementById("tr"+id).remove();
+
+      // remove user
+      let token = localStorage.getItem('token');
+      this.http.post(this.LOGOUT_SERVER_URL, token)
+      .subscribe((status)=> {
+        if(status == true) {
+          this.authService.logout();
+        } else {
+          alert("uitloggen mislukt");
+        }
+      });
+
     });
   }
 
   // ----- PUT -----
-  updateRequest(id){
+  updateUser(id){
     // hide update button
-    let myContainerUpdate = <HTMLElement> document.querySelector(".update"+id);
+    let myContainerUpdate = <HTMLElement> document.querySelector(".updateUser"+id);
     myContainerUpdate.style.display = 'none';
 
     // show save button
-    let myContainerSave = <HTMLElement> document.querySelector(".save"+id);
+    let myContainerSave = <HTMLElement> document.querySelector(".saveUser"+id);
     myContainerSave.style.display = '';
 
     // make it possible to edit inputfields
-    (document.querySelector(".username"+id) as HTMLInputElement).readOnly = false;
-    (document.querySelector(".password"+id) as HTMLInputElement).readOnly = false;
-    (document.querySelector(".status"+id) as HTMLInputElement).readOnly = false;
+    (document.querySelector(".usernameUser"+id) as HTMLInputElement).readOnly = false;
+    (document.querySelector(".passwordUser"+id) as HTMLInputElement).readOnly = false;
 
   }
 
-  updateSave(id){
+  updateSaveUser(id){
     // get username+id
-    let myContainerName = <HTMLInputElement> document.querySelector(".username"+id);
+    let myContainerName = <HTMLInputElement> document.querySelector(".usernameUser"+id);
     let username = myContainerName.value;
      // get password+id
-     let myContainerPassword = <HTMLInputElement> document.querySelector(".password"+id);
+     let myContainerPassword = <HTMLInputElement> document.querySelector(".passwordUser"+id);
      let password = myContainerPassword.value;
-      // get status+id
-      let myContainerStatus = <HTMLInputElement> document.querySelector(".status"+id);
-      let status = myContainerStatus.value;
 
     // show update button
-    let myContainerUpdate = <HTMLElement> document.querySelector(".update"+id);
+    let myContainerUpdate = <HTMLElement> document.querySelector(".updateUser"+id);
     myContainerUpdate.style.display = '';
      // hide save button
-    let myContainerSave = <HTMLElement> document.querySelector(".save"+id);
+    let myContainerSave = <HTMLElement> document.querySelector(".saveUser"+id);
     myContainerSave.style.display = 'none';
 
     // create json
-    let data = {username:username, password:password, status:status};
+    let data = {username:username, password:password};
     // send as json
     let headers = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -96,9 +106,8 @@ export class UserSettingsComponent{
       console.log(JSON.stringify(resultPut));
 
       //make it possible to readonly inputfields
-      (document.querySelector(".username"+id) as HTMLInputElement).readOnly = true;
-      (document.querySelector(".password"+id) as HTMLInputElement).readOnly = true;
-      (document.querySelector(".status"+id) as HTMLInputElement).readOnly = true;
+      (document.querySelector(".usernameUser"+id) as HTMLInputElement).readOnly = true;
+      (document.querySelector(".passwordUser"+id) as HTMLInputElement).readOnly = true;
     });
   }
 

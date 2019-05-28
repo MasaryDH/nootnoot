@@ -1,16 +1,16 @@
-<table class="usersTable">
+<table class="userTable">
     <thead>
       <!-- <h1>Gebruikers</h1> -->
     </thead>
     <tbody>
       <tr *ngFor="let user of users" id="tr{{user.iduser}}">
         <ng-container *ngIf="user.iduser == idtoken">
-          <td>Gebruiksernaam: <input class="username{{user.iduser}}" [value]="user.username" readonly="true"></td>
-          <td>Paswoord: <input class="password{{user.iduser}}" [value]="user.user_password" readonly="true"></td>
-          <td>Status: <input class="status{{user.iduser}}" [value]="user.status_idstatus" readonly="true"></td>
-          <button class="update{{user.iduser}}" (click)="updateRequest(user.iduser)">Update</button>
-          <button class="save{{user.iduser}}" (click)="updateSave(user.iduser)" style="display: none">Save</button>
-          <input type="button" value="Delete" (click)="deleteRequest(user.iduser)">
+          <h1>{{user.username}}<span class="fa fa-edit"></span></h1>
+          <td>Gebruiksernaam<input class="usernameUser{{user.iduser}}" [value]="user.username" readonly="true"></td>
+          <td>Paswoord<input class="passwordUser{{user.iduser}}" [value]="user.user_password" readonly="true"></td>
+          <button class="updateUser{{user.iduser}}" (click)="updateUser(user.iduser)">Update</button>
+          <button class="saveUser{{user.iduser}}" (click)="updateSaveUser(user.iduser)" style="display: none">Opslaan</button>
+          <input type="button" value="Account Verwijderen" (click)="deleteUser(user.iduser)">
       </ng-container>
       </tr>
     </tbody>
