@@ -12,6 +12,7 @@ export class ChatComponent {
   GET_SERVER_URL = "http://localhost/nootnoot/users";
   LOGOUT_SERVER_URL = "http://localhost/nootnoot/logoutuser";
   users: any;
+  // token id
   idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
 
   constructor(private http: HttpClient, private authService: AuthService){
@@ -79,5 +80,15 @@ export class ChatComponent {
       }
     
     });
+  }
+
+  openModalUsers(){
+    let modal = document.getElementById("modalUsers");
+    modal.style.display = "block";
+  }
+
+  closeModalUsers(){
+    let modal = document.getElementById("modalUsers");
+    modal.style.display = "none";
   }
 }

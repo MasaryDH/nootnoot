@@ -8,6 +8,7 @@
               <span *ngIf="user.iduser !=  idtoken" class="dot"  id="online"></span>
               <p class="{{user.username}}">{{ user.username }}</p>
               <span *ngIf="user.iduser ==  idtoken" class="fa fa-edit"></span>
+              <a (click)="openModalUsers()"><span *ngIf="user.iduser ==  idtoken && user.admin_idadminRights == 1" class="fa fa-cog"></span></a>
           </td>
         </tr>
       </ng-container>
@@ -38,6 +39,14 @@
       <p class="bericht">NOOT NOOT !!!</p><br>
     </ng-container>
 </div>
+
+<div id="modalUsers" class="modal" style="display: none">
+    <div class="modal-content">
+      <span class="close" (click)="closeModalUsers()">&times;</span>
+     <users></users>
+    </div>
+</div>
+
 <div id="emoticonBar"></div>
 <textarea></textarea>
 <button id="verzendChat">Verzenden</button>

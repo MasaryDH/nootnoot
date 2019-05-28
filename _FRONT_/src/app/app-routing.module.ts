@@ -10,7 +10,7 @@ import { AuthGuard } from './guards/auth-guard.service';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },    // app navigates automatically to home
   { path: 'home', component: HomeComponent },
-  { path: 'registreren', component: RegisterComponent, canActivate: [AuthGuard] },
+  { path: 'registreren', component: RegisterComponent },
   { path: 'gebruikers', component: UsersComponent, canActivate: [AuthGuard] },
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
   { path: 'paswoord-reset', component: PasswordResetComponent },
