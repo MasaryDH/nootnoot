@@ -12,6 +12,15 @@ $request_method = $_SERVER["REQUEST_METHOD"];
 
 $id = substr($request_uri, strrpos($request_uri,'/') +1);
 
+$profilePicture = array("pingu.jpg","pingu_bril.jpg","pingu_classic.jpg","pingu_clown.jpg","pingu_dany.jpg",
+                        "pingu_duivel.jpg","pingu_engel.jpg","pingu_frankenstein.jpg","pingu_hippie.jpg",
+                        "pingu_inez.jpg","pingu_kat.jpg","pingu_luigi.jpg","pingu_mario.jpg","pingu_marshmello.jpg",
+                        "pingu_negatief.jpg","pingu_negatief.jpg","pingu_nightking.jpg","pingu_pooh.jpg",
+                        "pingu_punk.jpg","pingu_sam.jpg","pingu_shrek.jpg","pingu_unicorn.jpg","pingu_vampier.jpg",
+                        "pingu_zomer.jpg","pingu_harrypotter.jpg");
+
+$randomProfilePicture = $profilePicture[array_rand($profilePicture)];
+
 switch($request_method){
     case "GET":
         if($_SERVER["REQUEST_URI"] == '/nootnoot/users'){
@@ -56,7 +65,7 @@ switch($request_method){
             $sql = "INSERT INTO user SET username = '".$_POST->username."', user_password = '".$hash."',
                                          admin_idadminRights = 0 , user_email = '".$_POST->user_email."',
                                          user_firstname = '".$_POST->user_firstname."', user_lastname = '".$_POST->user_lastname."',
-                                         registratiedatum = NOW(), status_idstatus = 1";
+                                         registratiedatum = NOW(), status_idstatus = 1, user_profilepic = '$randomProfilePicture'";
 
             //get iduser
             $iduser = "SELECT iduser FROM user WHERE user_email = '".$_POST->user_email."'";
@@ -179,7 +188,9 @@ switch($request_method){
             $_PUT = json_decode(file_get_contents('php://input'));
             var_dump($_PUT->username);
 
-            $sql = "UPDATE user SET username = '".$_PUT->username."', user_password= '".$_PUT->password."' WHERE iduser = $id";
+            $sql = "UPDATE user SET username = '".$_PUT->username."', user_email= '".$_PUT->user_email."', 
+                                    user_firstname= '".$_PUT->user_firstname."', user_lastname= '".$_PUT->user_lastname."', 
+                                    user_password= IF(user_password = '','".$_PUT->user_password."', user_password) WHERE iduser = $id";
             $result = $conn->query($sql);
             echo 'Speler is geüpdatet naar: '.$_PUT->username;
             break;

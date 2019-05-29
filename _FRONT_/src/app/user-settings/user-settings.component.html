@@ -1,17 +1,61 @@
-<table class="userTable">
-    <thead>
-      <!-- <h1>Gebruikers</h1> -->
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users" id="tr{{user.iduser}}">
-        <ng-container *ngIf="user.iduser == idtoken">
-          <h1>{{user.username}}<span class="fa fa-edit"></span></h1>
-          <td>Gebruiksernaam<input class="usernameUser{{user.iduser}}" [value]="user.username" readonly="true"></td>
-          <td>Paswoord<input class="passwordUser{{user.iduser}}" [value]="user.user_password" readonly="true"></td>
-          <button class="updateUser{{user.iduser}}" (click)="updateUser(user.iduser)">Update</button>
-          <button class="saveUser{{user.iduser}}" (click)="updateSaveUser(user.iduser)" style="display: none">Opslaan</button>
-          <input type="button" value="Account Verwijderen" (click)="deleteUser(user.iduser)">
-      </ng-container>
-      </tr>
-    </tbody>
-  </table>
+<div class="userTable">
+
+      <form id="userSettingsForm"> 
+        <ul *ngFor="let user of users" id="tr{{user.iduser}}">
+          <ng-container *ngIf="user.iduser == idtoken">
+            <div>
+              <!-- username -->
+              <li>
+                  <h1>{{user.username}}<span class="fa fa-edit"></span></h1>
+              </li>
+            </div>
+
+            <!-- profile picture & user data -->
+            <div class="userContainer">
+              <!-- profile picture -->
+              <div class="two_column">
+                <li>
+                  <div class="imageContainer">
+                    <img alt="profile picture" src="assets/pingu_profile_pictures/{{user.user_profilepic}}">
+                  </div>
+                  <input type="file" name="profile_picture" id="imgUpload" (change)="imgUpload($event)">
+                </li>
+              </div>
+              <!-- user data -->
+              <div class="two_column">
+                <li>
+                  <p>Gebruiksernaam</p><input type="text" class="usernameUser{{user.iduser}}" [value]="user.username" readonly="true">
+                </li>
+                <li>
+                  <p>E-mailadres</p><input type="email" class="emailUser{{user.iduser}}" [value]="user.user_email" readonly="true">
+                </li>
+                <li id="flex_row">
+                  <div class="two_column">
+                    <p>Voornaam</p><input type="text" class="firstnameUser{{user.iduser}}" [value]="user.user_firstname" readonly="true">
+                  </div>
+                  <div class="two_column">
+                    <p>Achternaam</p><input type="text" class="lastnameUser{{user.iduser}}" [value]="user.user_lastname" readonly="true">
+                  </div>
+                </li>
+                <li>
+                  <p>Wachtwoord</p><input type="password" class="passwordUser{{user.iduser}}" readonly="true">
+                </li>
+                <li>
+                  <p>Wachtwoord herhalen</p><input type="password" class="passwordCheckUser{{user.iduser}}" readonly="true">
+                </li>
+              </div>
+            </div>
+            <!-- buttons -->
+            <div class="buttonContainer">
+              <li id="flex_row">
+                <button class="updateUser{{user.iduser}}" (click)="updateUser(user.iduser)">Update</button>
+                <button class="saveUser{{user.iduser}}" (click)="updateSaveUser(user.iduser)" style="display: none">Opslaan</button>
+                <input type="button" value="Account Verwijderen" (click)="deleteUser(user.iduser)">
+              </li>
+            </div>
+            
+          </ng-container>
+        </ul>            
+      </form>
+
+</div>

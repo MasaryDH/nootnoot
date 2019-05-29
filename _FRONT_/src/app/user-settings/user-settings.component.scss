@@ -5,73 +5,116 @@
     justify-content: center;
     padding: 20px;
 
-    tr{
-        display: flex;
-        flex-direction: column;
+    #userSettingsForm {
 
-        h1{
-            margin-bottom: 30px;
-            font-weight: bold;
-            font-size: 20px;
-
-            span{
-                font-size: 15px;
-                padding: 6px 0 6px 6px;
+        ul {
+    
+            h1 {
+                margin-bottom: 30px;
+                font-weight: bold;
+                font-size: 20px;
+    
+                span {
+                    font-size: 15px;
+                    padding: 6px 0 6px 6px;
+                }
             }
-        }
 
-        td{
-            display: flex;
-            justify-content: space-between;
-            flex-direction: column;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+            .userContainer {
+                display: flex;
+                justify-content: space-between;
 
-        button{
-            margin-top: 30px;
-            font-size: .8rem;
-            border-radius: 10px;
-            padding: 10px 15px;
-            color: white;
-            background: green;
-            border: 1px solid green;
-            cursor: pointer;
+                .two_column {
+                    width: 48%;
 
-            &:hover{
-                background: white;
-                color: green;
-                transition: background .23s ease-in-out; 
-                border-radius: 10px;
+                    li {
+                        width: 100%;
+                    }
+                }
             }
-        }
+    
+            li {
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+                text-align: center;
 
-        input{
-            padding: 5px 0;
-            width: 100%;
-            border: 0.4px solid #909090;
-            border-radius: 10px;
-            text-align: center;
-            margin-top: 10px;
-        }
+                .imageContainer {
+                    border: 13px solid #00A0E0;
+                    border-radius: 20px;
+                    background: #00A0E0;
+                    width: 80%;
+                    margin: 0px 0 10px;
 
-        input[type="button"]{
-            margin-top: 15px;
-            font-size: .8rem;
-            border-radius: 10px;
-            padding: 10px 15px;
-            color: white;
-            background: red;
-            border: 1px solid red;
-            cursor: pointer;
+                    img {
+                        width: 100%;
+                        border-radius: 10px;
+                    }
+                }
 
-            &:hover{
-                background: white;
-                color: red;
-                transition: background .23s ease-in-out; 
-                border-radius: 10px;
+                #imgUpload {
+                    border: none;
+                }
+    
+                input {
+                    padding: 5px 0;
+                    width: 100%;
+                    border: 0.4px solid #909090;
+                    border-radius: 10px;
+                    text-align: center;
+                    margin-top: 10px;
+                } 
+
                 
+            } //end li
+            
+            .buttonContainer { 
+                margin-top: 3rem; 
+
+                button {
+                    width: 100%;
+                    margin: 0 1rem 0 0;
+                    font-size: .8rem;
+                    border-radius: 10px;
+                    padding: 10px 15px;
+                    color: white;
+                    background: green;
+                    border: 1px solid green;
+                    cursor: pointer;
+        
+                    &:hover{
+                        background: white;
+                        color: green;
+                        transition: background .23s ease-in-out; 
+                        border-radius: 10px;
+                    }
+                }
+
+                input[type="button"]{
+                    width: 100%;
+                    margin: 0 0 0 1rem;
+                    font-size: .8rem;
+                    border-radius: 10px;
+                    padding: 10px 15px;
+                    color: white;
+                    background: red;
+                    border: 1px solid red;
+                    cursor: pointer;
+        
+                    &:hover{
+                        background: white;
+                        color: red;
+                        transition: background .23s ease-in-out; 
+                        border-radius: 10px;
+                        
+                    }
+                }
+            }  //end buttonContainer
+
+            #flex_row {
+                flex-direction: row;
             }
-        }
-    }
+      
+        } //end ul
+    } //end form
 }
