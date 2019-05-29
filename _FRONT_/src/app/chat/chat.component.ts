@@ -7,17 +7,23 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent {
+export class ChatComponent{
 
   GET_SERVER_URL = "http://localhost/nootnoot/users";
   LOGOUT_SERVER_URL = "http://localhost/nootnoot/logoutuser";
   users: any;
   // token id
   idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
+  interval;
+  test = 'true';
 
   constructor(private http: HttpClient, private authService: AuthService){
     // get data when refreshed
     this.getRequest();
+    // if loggin in auto reload status-list
+    if (this.test == 'true'){
+    this.routerOnActivate();
+    };
   }
 
   // ----- GET -----
@@ -30,8 +36,13 @@ export class ChatComponent {
       this.users = result;
     });
   }
-  
-  
+
+  //Auto reload login list to check if someone new logged in
+  routerOnActivate() {
+    this.interval = setInterval(() => {
+        this.getRequest()
+    }, 10000);
+  }
 
   // hide | show online table
   OnlineTable(){
@@ -74,11 +85,14 @@ export class ChatComponent {
     this.http.post(this.LOGOUT_SERVER_URL, token)
     .subscribe((status)=> {
       if(status == true) {
+         // set auto reload status-list off
+        this.test = 'false';
+        clearInterval(this.interval);
+        
         this.authService.logout();
       } else {
         alert("uitloggen mislukt");
       }
-    
     });
   }
 
