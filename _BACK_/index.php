@@ -186,13 +186,13 @@ switch($request_method){
         if($_SERVER["REQUEST_URI"] == '/nootnoot/user/'. $id){
              // convert JSON to object
             $_PUT = json_decode(file_get_contents('php://input'));
-            var_dump($_PUT->username);
+            $hash = hash("md5", $_PUT->user_password); //decode password
 
             $sql = "UPDATE user SET username = '".$_PUT->username."', user_email= '".$_PUT->user_email."', 
                                     user_firstname= '".$_PUT->user_firstname."', user_lastname= '".$_PUT->user_lastname."', 
-                                    user_password= IF(user_password = '','".$_PUT->user_password."', user_password) WHERE iduser = $id";
+                                    user_password= IF('".$_PUT->user_password."' = '', user_password, '".$hash."') WHERE iduser = $id";
             $result = $conn->query($sql);
-            echo 'Speler is geüpdatet naar: '.$_PUT->username;
+            echo 'Speler is geüpdatet';
             break;
         } else {
             echo 'Kan speler niet updaten';

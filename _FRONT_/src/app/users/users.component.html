@@ -1,14 +1,25 @@
 <table class="usersTable">
   <thead>
-    <!-- <h1>Gebruikers</h1> -->
+    Gebruikers instellingen<span class="fa fa-cog"></span>
   </thead>
-  <tbody>
-    <tr *ngFor="let user of users" id="tr{{user.iduser}}">
-      <td>Gebruiksernaam: <input class="username{{user.iduser}}" [value]="user.username" readonly="true"></td>
-      <td>Paswoord: <input class="password{{user.iduser}}" [value]="user.user_password" readonly="true"></td>
-      <button class="update{{user.iduser}}" (click)="updateRequest(user.iduser)">Update</button>
-      <button class="save{{user.iduser}}" (click)="updateSave(user.iduser)" style="display: none">Save</button>
-      <input type="button" value="Delete" (click)="deleteRequest(user.iduser)">
+  <tbody *ngFor="let user of users" id="tr{{user.iduser}}">
+    <tr>
+      <a (click)="openData(user.iduser)">{{user.username}}<i id="arrow{{user.iduser}}">&#9656;</i></a>
     </tr>
+      <div id="userData{{user.iduser}}" style="display: none;">
+        <tr>
+          <td>Gebruiksernaam: <input class="username{{user.iduser}}" [value]="user.username" readonly="true"></td>
+          <td>E-mailadres: <input type="email" class="email{{user.iduser}}" [value]="user.user_email" readonly="true"></td>
+          <td>Voornaam: <input type="text" class="firstname{{user.iduser}}" [value]="user.user_firstname" readonly="true"></td>
+          <td>Achternaam: <input type="text" class="lastname{{user.iduser}}" [value]="user.user_lastname" readonly="true"></td>
+        </tr>
+        <tr>
+          <td>Paswoord: <input type="password" class="password{{user.iduser}}" readonly="true"></td>
+          <td>Paswoord herhalen: <input type="password" class="passwordCheck{{user.iduser}}" readonly="true"></td>
+        </tr>
+        <button class="update{{user.iduser}}" (click)="updateRequest(user.iduser)">Update</button>
+        <button class="save{{user.iduser}}" (click)="updateSave(user.iduser)" style="display: none">Save</button>
+        <input type="button" value="Delete" (click)="deleteRequest(user.iduser)">
+      </div>
   </tbody>
 </table>

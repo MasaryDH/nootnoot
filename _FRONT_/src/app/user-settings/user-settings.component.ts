@@ -129,6 +129,8 @@ export class UserSettingsComponent{
         (document.querySelector(".emailUser"+id) as HTMLInputElement).readOnly = true;
         (document.querySelector(".firstnameUser"+id) as HTMLInputElement).readOnly = true;
         (document.querySelector(".lastnameUser"+id) as HTMLInputElement).readOnly = true;
+        (document.querySelector(".passwordUser"+id) as HTMLInputElement).readOnly = true;
+        (document.querySelector(".passwordCheckUser"+id) as HTMLInputElement).readOnly = true;
       });
     } else {
       alert("Paswoord komt niet overeen");
@@ -144,12 +146,12 @@ export class UserSettingsComponent{
 
     reader.readAsDataURL(this.selectedFile);
 
-    // const img = new FormData();
-    // img.append('image', this.selectedFile, this.selectedFile.name);
+    const img = new FormData();
+    img.append('image', this.selectedFile, this.selectedFile.name);
 
-    // this.http.post('http://localhost/nootnoot/imgupload', img)
-    // .subscribe((result) => {
-    //   console.log(result);
-    // });
+    this.http.post('http://localhost/nootnoot/imgupload', img)
+    .subscribe((result) => {
+      console.log(result);
+    });
   }
 }

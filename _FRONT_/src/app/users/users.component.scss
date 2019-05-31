@@ -2,6 +2,72 @@
 
 .usersTable{
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding: 20px;
+
+    thead {
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 20px;  
+        text-align: center;
+
+        span {
+            font-size: 15px;
+            padding: 6px 0 6px 6px;
+        }
+    }
+
+    tbody {
+        a {
+            cursor: pointer;
+            font-weight: 600;
+            display: block;
+        }
+
+        tr {
+            display: flex;
+            margin-bottom: 10px;
+
+            td {
+                margin-right: 10px;
+                width: 20%;
+
+                &:last-of-type {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        button {
+            color: white;
+            background: green;
+            border: 1px solid green;
+            border-radius: 10px;
+            margin: 0 15px 15px 0;
+            padding: 5px 15px;
+            cursor: pointer;
+
+            &:hover {
+                background: white;
+                color: green;
+                transition: background .23s ease-in-out; 
+            }
+        }
+
+        input[type="button"] {
+            color: white;
+            background: red;
+            border: 1px solid red;
+            border-radius: 10px;
+            padding: 5px 15px;
+            cursor: pointer;
+
+            &:hover {
+                background: white;
+                color: red;
+                transition: background .23s ease-in-out; 
+            }
+        }
+    }
+
 }
