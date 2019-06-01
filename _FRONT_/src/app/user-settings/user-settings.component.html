@@ -1,3 +1,12 @@
+<form (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="avatar">Avatar</label>
+    <input type="file" id="avatar" (change)="onFileChange($event)" #fileInput>
+    <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">clear file</button>
+  </div>
+  <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
+</form>
+
 <div class="userTable">
 
       <form id="userSettingsForm"> 
@@ -18,7 +27,7 @@
                   <div class="imageContainer">
                     <img alt="profile picture" src="assets/pingu_profile_pictures/{{user.user_profilepic}}">
                   </div>
-                  <input type="file" name="profile_picture" id="imgUpload" (change)="imgUpload($event)">
+                  <input type="file" name="profile_picture" id="profile_picture" (change)="imgUpload($event, user.iduser)">
                 </li>
               </div>
               <!-- user data -->

@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
+import { Observable } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'user-settings',
   templateUrl: './user-settings.component.html',
-  styleUrls: ['./user-settings.component.scss']
+  styleUrls: ['./user-settings.component.scss'],
+  providers: [FormBuilder]
 })
-export class UserSettingsComponent{
+
+export class UserSettingsComponent {
 
   title = 'NootNoot';
 
@@ -15,20 +19,26 @@ export class UserSettingsComponent{
   DELETE_SERVER_URL = "http://localhost/nootnoot/user/";
   PUT_SERVER_URL = "http://localhost/nootnoot/user/";
   LOGOUT_SERVER_URL = "http://localhost/nootnoot/logoutuser";
+  UPLOAD_SERVER_URL = "http://localhost/nootnoot/imgupload";
   users: any;
   request = new XMLHttpRequest();
   id;
   name;
   selectedFile = null;
+  
+  form: FormGroup;
+  uploadResponse;
+  loading: boolean = false;
 
   // token id
   idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
-  
 
-  constructor(private http: HttpClient, private authService: AuthService){
+  
+  constructor(private http: HttpClient, private authService: AuthService, private fb: FormBuilder){
     // get data when refreshed
     this.getRequest();
   }
+
 
   // ----- GET -----
   getRequest(){
@@ -137,21 +147,19 @@ export class UserSettingsComponent{
     }
   }
 
-  imgUpload(event){
-    console.log(event);
-    this.selectedFile = event.target.files[0];
+  imgUpload(event, id){
+    if(event.target.files.length > 0){
+      const img = event.target.files[0];
+      this.form.get('image').setValue(img);
 
-    
-    let reader = new FileReader();
+      const formData = new FormData();
+      formData.append('image', img.value)
 
-    reader.readAsDataURL(this.selectedFile);
-
-    const img = new FormData();
-    img.append('image', this.selectedFile, this.selectedFile.name);
-
-    this.http.post('http://localhost/nootnoot/imgupload', img)
-    .subscribe((result) => {
-      console.log(result);
-    });
+      this.http.post(this.UPLOAD_SERVER_URL+id, formData, {responseType: 'text'})
+      .subscribe((result) => {
+          console.log(result);
+          console.log(this.UPLOAD_SERVER_URL+id);
+      });
+    }
   }
 }

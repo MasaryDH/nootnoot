@@ -166,6 +166,7 @@ switch($request_method){
             }
             echo $response;
             break;
+
         } else {
             echo 'Mislukt';
             break;
@@ -184,7 +185,7 @@ switch($request_method){
 
     case "PUT":
         if($_SERVER["REQUEST_URI"] == '/nootnoot/user/'. $id){
-             // convert JSON to object
+            // convert JSON to object
             $_PUT = json_decode(file_get_contents('php://input'));
             $hash = hash("md5", $_PUT->user_password); //decode password
 
@@ -194,9 +195,12 @@ switch($request_method){
             $result = $conn->query($sql);
             echo 'Speler is geüpdatet';
             break;
+            
         } else {
             echo 'Kan speler niet updaten';
             break;
         }
+
+
 }
 ?>

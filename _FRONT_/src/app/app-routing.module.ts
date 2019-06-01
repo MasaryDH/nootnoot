@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },    // app navigates automatically to home
   { path: 'home', component: HomeComponent },
   { path: 'registreren', component: RegisterComponent },
-  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
+  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] }, //chat route protected
   { path: 'paswoord-reset', component: PasswordResetComponent },
   { path: '**', redirectTo: '/home' },    // app navigates automatically to home if user visits invalid url
 ];

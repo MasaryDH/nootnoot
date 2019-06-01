@@ -13,6 +13,7 @@ export class LoginComponent {
   LOGIN_SERVER_URL = "http://localhost/nootnoot/loginuser";
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) { 
+    //if user is logged in, redirect to chat
     if(this.authService.isAuthenticated() == true){
       this.router.navigate(['/chat']);
     };
