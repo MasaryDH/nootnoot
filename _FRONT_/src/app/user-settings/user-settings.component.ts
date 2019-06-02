@@ -20,19 +20,34 @@ export class UserSettingsComponent {
   PUT_SERVER_URL = "http://localhost/nootnoot/user/";
   LOGOUT_SERVER_URL = "http://localhost/nootnoot/logoutuser";
   UPLOAD_SERVER_URL = "http://localhost/nootnoot/imgupload";
-  users: any;
+  IMAGE_SERVER_URL = "http://localhost/nootnoot/imgchange/";
+
+  users;
   request = new XMLHttpRequest();
   id;
   name;
   selectedFile = null;
+  pingu_profile_picture;
   
   form: FormGroup;
-  uploadResponse;
-  loading: boolean = false;
 
   // token id
   idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
 
+  pingu_profile_pic = [
+    { key: "pingu", value:"Pingu" }, { key: "bril", value:"Nerdy-pingu" },
+    { key: "strikje", value:"Fancy-pingu" }, { key: "clown", value:"Clown-pingu" },
+    { key: "dany", value:"Daenerys-pingu" }, { key: "duivel", value:"Duivel-pingu" },
+    { key: "engel", value:"Engel-pingu" }, { key: "frankenstein", value:"Frankenstein-pingu" },
+    { key: "hippie", value:"Hippie-pingu" }, { key: "meisje", value:"Meisje-pingu" },
+    { key: "jongen", value:"Jongen-pingu" }, { key: "kat", value:"Kat-pingu" },
+    { key: "mario", value:"Mario-pingu" }, { key: "luigi", value:"Luigi-pingu" },
+    { key: "marshmello", value:"Marshmello-pingu" }, { key: "negatief", value:"Negatief-pingu" }, 
+    { key: "nightking", value:"Night King-pingu" }, { key: "pooh", value:"Winnie the Pooh-pingu" }, 
+    { key: "punk", value:"Punk-pingu" }, { key: "shrek", value:"Shrek-pingu" }, 
+    { key: "eenhoorn", value:"Eenhoorn-pingu" }, { key: "vampier", value:"Vampier-pingu" }, 
+    { key: "zomer", value:"Zomer-pingu" }, 
+  ]
   
   constructor(private http: HttpClient, private authService: AuthService, private fb: FormBuilder){
     // get data when refreshed
@@ -69,7 +84,7 @@ export class UserSettingsComponent {
         if(status == true) {
           this.authService.logout();
         } else {
-          alert("uitloggen mislukt");
+          alert("Uitloggen mislukt");
         }
       });
 
@@ -130,17 +145,22 @@ export class UserSettingsComponent {
       let headers = new HttpHeaders({'Content-Type': 'application/json'});
 
       // put call (headers = send as json, responseType = give response as text)
-      this.http.put(this.PUT_SERVER_URL+id, data, {headers: headers, responseType: 'text'})
+      this.http.put(this.PUT_SERVER_URL+id, data)
         .subscribe((resultPut) => {
-        console.log(JSON.stringify(resultPut));
+        //console.log(JSON.stringify(resultPut));
 
-        //make it possible to readonly inputfields
-        (document.querySelector(".usernameUser"+id) as HTMLInputElement).readOnly = true;
-        (document.querySelector(".emailUser"+id) as HTMLInputElement).readOnly = true;
-        (document.querySelector(".firstnameUser"+id) as HTMLInputElement).readOnly = true;
-        (document.querySelector(".lastnameUser"+id) as HTMLInputElement).readOnly = true;
-        (document.querySelector(".passwordUser"+id) as HTMLInputElement).readOnly = true;
-        (document.querySelector(".passwordCheckUser"+id) as HTMLInputElement).readOnly = true;
+        if(resultPut == true){
+          //make it possible to readonly inputfields
+          (document.querySelector(".usernameUser"+id) as HTMLInputElement).readOnly = true;
+          (document.querySelector(".emailUser"+id) as HTMLInputElement).readOnly = true;
+          (document.querySelector(".firstnameUser"+id) as HTMLInputElement).readOnly = true;
+          (document.querySelector(".lastnameUser"+id) as HTMLInputElement).readOnly = true;
+          (document.querySelector(".passwordUser"+id) as HTMLInputElement).readOnly = true;
+          (document.querySelector(".passwordCheckUser"+id) as HTMLInputElement).readOnly = true;
+        } else {
+          alert('Er is een probleem opgetreden bij het updaten');
+        }
+        
       });
     } else {
       alert("Paswoord komt niet overeen");
@@ -161,5 +181,24 @@ export class UserSettingsComponent {
           console.log(this.UPLOAD_SERVER_URL+id);
       });
     }
+  }
+
+  pinguPicture(value, id){
+    this.pingu_profile_picture = value + '.jpg';
+    //change image
+    document.querySelector("#profile_picture").setAttribute('src', 'assets/pingu_profile_pictures/'+this.pingu_profile_picture);
+
+    let data = { user_profilepic:this.pingu_profile_picture }
+
+    //update image in database
+    this.http.put(this.IMAGE_SERVER_URL+id, data)
+    .subscribe((result) => {
+      if(result == true){
+        console.log(result);
+      } else {
+        console.log(result);
+      }
+      
+    });
   }
 }

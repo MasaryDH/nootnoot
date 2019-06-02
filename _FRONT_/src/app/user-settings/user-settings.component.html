@@ -1,14 +1,4 @@
-<form (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="avatar">Avatar</label>
-    <input type="file" id="avatar" (change)="onFileChange($event)" #fileInput>
-    <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">clear file</button>
-  </div>
-  <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
-</form>
-
 <div class="userTable">
-
       <form id="userSettingsForm"> 
         <ul *ngFor="let user of users" id="tr{{user.iduser}}">
           <ng-container *ngIf="user.iduser == idtoken">
@@ -25,9 +15,13 @@
               <div class="two_column">
                 <li>
                   <div class="imageContainer">
-                    <img alt="profile picture" src="assets/pingu_profile_pictures/{{user.user_profilepic}}">
+                    <img id="profile_picture" alt="profile picture" src="assets/pingu_profile_pictures/{{user.user_profilepic}}">
                   </div>
-                  <input type="file" name="profile_picture" id="profile_picture" (change)="imgUpload($event, user.iduser)">
+                  <input type="file" name="profile_picture" id="upload_picture" (change)="imgUpload($event, user.iduser)">
+                  <select id="select_pingu" (change)="pinguPicture($event.target.value, user.iduser)">
+                    <option value="0">Selecteer een pingu-profielfoto...</option>
+                    <option *ngFor="let pingu of pingu_profile_pic" [value]="pingu.key">{{ pingu.value }}</option>
+                  </select>
                 </li>
               </div>
               <!-- user data -->
