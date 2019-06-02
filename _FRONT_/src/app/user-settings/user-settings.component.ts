@@ -141,8 +141,6 @@ export class UserSettingsComponent {
 
       // create json
       let data = { username:username, user_email:email, user_firstname:firstname, user_lastname:lastname, user_password:password };
-      // send as json
-      let headers = new HttpHeaders({'Content-Type': 'application/json'});
 
       // put call (headers = send as json, responseType = give response as text)
       this.http.put(this.PUT_SERVER_URL+id, data)
