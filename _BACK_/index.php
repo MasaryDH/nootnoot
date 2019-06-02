@@ -12,12 +12,12 @@ $request_method = $_SERVER["REQUEST_METHOD"];
 
 $id = substr($request_uri, strrpos($request_uri,'/') +1);
 
-$profilePicture = array("pingu.jpg","pingu_bril.jpg","pingu_classic.jpg","pingu_clown.jpg","pingu_dany.jpg",
-                        "pingu_duivel.jpg","pingu_engel.jpg","pingu_frankenstein.jpg","pingu_hippie.jpg",
-                        "pingu_inez.jpg","pingu_kat.jpg","pingu_luigi.jpg","pingu_mario.jpg","pingu_marshmello.jpg",
-                        "pingu_negatief.jpg","pingu_negatief.jpg","pingu_nightking.jpg","pingu_pooh.jpg",
-                        "pingu_punk.jpg","pingu_sam.jpg","pingu_shrek.jpg","pingu_unicorn.jpg","pingu_vampier.jpg",
-                        "pingu_zomer.jpg","pingu_harrypotter.jpg");
+$profilePicture = array("pingu.jpg","bril.jpg","strikje.jpg","clown.jpg","dany.jpg",
+                        "duivel.jpg","engel.jpg","frankenstein.jpg","hippie.jpg",
+                        "meisje.jpg","kat.jpg","luigi.jpg","mario.jpg","marshmello.jpg",
+                        "negatief.jpg","negatief.jpg","nightking.jpg","pooh.jpg",
+                        "punk.jpg","jongen.jpg","shrek.jpg","eenhoorn.jpg","vampier.jpg",
+                        "zomer.jpg","harrypotter.jpg");
 
 $randomProfilePicture = $profilePicture[array_rand($profilePicture)];
 
@@ -192,10 +192,29 @@ switch($request_method){
             $sql = "UPDATE user SET username = '".$_PUT->username."', user_email= '".$_PUT->user_email."', 
                                     user_firstname= '".$_PUT->user_firstname."', user_lastname= '".$_PUT->user_lastname."', 
                                     user_password= IF('".$_PUT->user_password."' = '', user_password, '".$hash."') WHERE iduser = $id";
-            $result = $conn->query($sql);
-            echo 'Speler is geüpdatet';
+            
+            if($conn->query($sql)){
+                $response = json_encode(true);
+            } else {
+                $response = json_encode(false);
+            }
+            echo $response;
             break;
             
+        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/imgchange/'. $id) {
+            // convert JSON to object
+            $_PUT = json_decode(file_get_contents('php://input'));
+
+            $sql = "UPDATE user SET user_profilepic = '".$_PUT->user_profilepic."' WHERE iduser = $id";
+
+            if($conn->query($sql)){
+                $response = json_encode(true);
+            } else {
+                $response = json_encode(false);
+            }
+            echo $response;
+            break;
+
         } else {
             echo 'Kan speler niet updaten';
             break;

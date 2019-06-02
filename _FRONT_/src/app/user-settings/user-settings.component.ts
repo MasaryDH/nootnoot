@@ -194,9 +194,9 @@ export class UserSettingsComponent {
     this.http.put(this.IMAGE_SERVER_URL+id, data)
     .subscribe((result) => {
       if(result == true){
-        console.log(result);
+        alert('Profielfoto aangepast');
       } else {
-        console.log(result);
+        alert('Kan profielfoto niet aanpassen');
       }
       
     });
