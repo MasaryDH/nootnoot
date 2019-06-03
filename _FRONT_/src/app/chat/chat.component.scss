@@ -186,12 +186,24 @@ textarea {
     border: 1px solid #888;
     width: 80%;
 
+    @media screen and (max-width: $small) {
+      paddding: 0;
+      width: 100vw;
+      height: auto;
+    }
+
     // The Close Button
     .close {
       color: #aaaaaa;
       float: right;
       font-size: 28px;
       font-weight: bold;
+
+      @media screen and (max-width: $small) {
+        float: none;
+        position: absolute;
+        right: 10px;
+      }
     }
 
     .close:hover,
@@ -225,6 +237,12 @@ textarea {
     padding: 30px;
     border: 1px solid #888;
     width: 50%;
+
+    @media screen and (max-width: $small) {
+      paddding: 0;
+      width: 100vw;
+      height: auto;
+    }
     
     // The Close Button
     .close {
@@ -232,6 +250,12 @@ textarea {
       float: right;
       font-size: 28px;
       font-weight: bold;
+
+      @media screen and (max-width: $small) {
+        float: none;
+        position: absolute;
+        right: 10px;
+      }
     }
 
     .close:hover,
