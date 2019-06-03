@@ -32,7 +32,7 @@ export class PasswordResetComponent{
         this.router.navigate(['/home'])
 
         // test password-reset-mail link
-        window.open("https://wdev.be/samd/test.php?voornaam="+status['voornaam']+"&achternaam="+status['achternaam']+"&email="+status['email']+"&paswoord="+status['paswoord']+"")
+        window.location.replace("https://wdev.be/samd/test.php?voornaam="+status['voornaam']+"&achternaam="+status['achternaam']+"&email="+status['email']+"&paswoord="+status['paswoord']+"");
       } else {
         alert ("E-mailadres niet gevonden")
       }

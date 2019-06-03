@@ -17,7 +17,6 @@
                   <div class="imageContainer">
                     <img id="profile_picture" alt="profile picture" src="assets/pingu_profile_pictures/{{user.user_profilepic}}">
                   </div>
-                  <input type="file" name="profile_picture" id="upload_picture" (change)="imgUpload($event, user.iduser)">
                   <select id="select_pingu" (change)="pinguPicture($event.target.value, user.iduser)">
                     <option value="0">Selecteer een pingu-profielfoto...</option>
                     <option *ngFor="let pingu of pingu_profile_pic" [value]="pingu.key">{{ pingu.value }}</option>

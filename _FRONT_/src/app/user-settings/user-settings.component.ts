@@ -28,8 +28,6 @@ export class UserSettingsComponent {
   name;
   selectedFile = null;
   pingu_profile_picture;
-  
-  form: FormGroup;
 
   // token id
   idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
@@ -46,14 +44,13 @@ export class UserSettingsComponent {
     { key: "nightking", value:"Night King-pingu" }, { key: "pooh", value:"Winnie the Pooh-pingu" }, 
     { key: "punk", value:"Punk-pingu" }, { key: "shrek", value:"Shrek-pingu" }, 
     { key: "eenhoorn", value:"Eenhoorn-pingu" }, { key: "vampier", value:"Vampier-pingu" }, 
-    { key: "zomer", value:"Zomer-pingu" }, 
+    { key: "zomer", value:"Zomer-pingu" }, { key: "harrypotter", value:"Harry Potter-pingu" },
   ]
   
   constructor(private http: HttpClient, private authService: AuthService, private fb: FormBuilder){
     // get data when refreshed
     this.getRequest();
   }
-
 
   // ----- GET -----
   getRequest(){
@@ -162,22 +159,6 @@ export class UserSettingsComponent {
       });
     } else {
       alert("Paswoord komt niet overeen");
-    }
-  }
-
-  imgUpload(event, id){
-    if(event.target.files.length > 0){
-      const img = event.target.files[0];
-      this.form.get('image').setValue(img);
-
-      const formData = new FormData();
-      formData.append('image', img.value)
-
-      this.http.post(this.UPLOAD_SERVER_URL+id, formData, {responseType: 'text'})
-      .subscribe((result) => {
-          console.log(result);
-          console.log(this.UPLOAD_SERVER_URL+id);
-      });
     }
   }
 
