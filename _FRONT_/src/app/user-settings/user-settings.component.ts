@@ -152,6 +152,12 @@ export class UserSettingsComponent {
           (document.querySelector(".lastnameUser"+id) as HTMLInputElement).readOnly = true;
           (document.querySelector(".passwordUser"+id) as HTMLInputElement).readOnly = true;
           (document.querySelector(".passwordCheckUser"+id) as HTMLInputElement).readOnly = true;
+
+          //clear password fields
+          (document.querySelector(".passwordUser"+id) as HTMLInputElement).value = '';
+          (document.querySelector(".passwordCheckUser"+id) as HTMLInputElement).value = '';
+
+          alert('Account geüpdatet');
         } else {
           alert('Er is een probleem opgetreden bij het updaten');
         }
