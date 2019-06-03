@@ -167,6 +167,69 @@ switch($request_method){
             echo $response;
             break;
 
+        //------ RESET PASWOORD ------
+        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/resetuser'){
+            // convert JSON to object
+            $_POST = json_decode(file_get_contents('php://input'));
+            $POSTemail = json_encode($_POST->user_email);
+
+            // check if user is in database
+            $sql = "SELECT * FROM user WHERE user_email = ".$POSTemail;
+            $result = $conn->query($sql);
+
+            //create empty response object
+            $response = new stdClass();
+
+            //fetch iduser & add to object
+            if($row = $result->fetch_assoc()){
+                $firstname = $row['user_firstname'];
+                $lastname = $row['user_lastname'];
+                $email = $row['user_email'];
+
+                // create randomized hash password
+                $n=15;
+                function getRandomPass($n) {
+                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    $randomString = '';
+
+                    for ($i = 0; $i < $n; $i++) {
+                        $index = rand(0, strlen($characters) - 1);
+                        $randomString .= $characters[$index];
+                    }
+                    return $randomString;
+                }
+                $pass = getRandomPass($n);
+                $randomHashPass = hash("md5", $pass);
+
+                // check values
+                // echo $randomHashPass;
+                // echo $firstname;
+                // echo $lastname;
+                // echo $email;
+                // echo $pass;
+            }
+
+            if($result->num_rows == 1){
+                // update with randomised password
+                $sqlPassReset = 'UPDATE user SET user_password = "'.$randomHashPass.'" WHERE user_email= '.$POSTemail;
+                $conn->query($sqlPassReset);
+
+                //add status to object
+                $response->status = true;
+
+                //send response value to front
+                $response->email = $email;
+                $response->voornaam = $firstname;
+                $response->achternaam = $lastname;
+                $response->paswoord = $pass;
+            } else{ 
+                //add status to object
+                $response->status = false;
+            }
+            // Send data to front
+            echo json_encode($response);
+            break;
+
         } else {
             echo 'Mislukt';
             break;
@@ -219,7 +282,5 @@ switch($request_method){
             echo 'Kan speler niet updaten';
             break;
         }
-
-
 }
 ?>
