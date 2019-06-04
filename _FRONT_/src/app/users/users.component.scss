@@ -5,12 +5,19 @@
     flex-direction: column;
     justify-content: center;
 
+    @media screen and(max-width: $small){
+        padding: 2rem;
+    }
+
     thead {
         margin-bottom: 20px;
         font-weight: bold;
         font-size: 20px;  
         text-align: center;
-
+        
+        @media screen and(max-width: $small){
+            margin-bottom: 30px;
+        }
         span {
             font-size: 15px;
             padding: 6px 0 6px 6px;
@@ -28,12 +35,32 @@
             display: flex;
             margin-bottom: 10px;
 
+            @media screen and(max-width: $small){
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 10px;
+            }
+
             td {
                 margin-right: 10px;
                 width: 20%;
 
                 &:last-of-type {
                     margin-right: 0;
+                }
+
+                @media screen and(max-width: $small) {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-right: 0;
+                    margin-bottom: 10px;
+                    width: 100%;
+                }
+
+                input {
+                    @media screen and(max-width: $small) {
+                        width: 45%;
+                    }
                 }
             }
         }

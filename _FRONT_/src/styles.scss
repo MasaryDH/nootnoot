@@ -22,14 +22,16 @@ html, body {
     height: 100%;
 }
 
-register, app-home{
+register, app-home {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80%;
 }
 
-app-home{ flex-direction: column; }
+app-home { flex-direction: column; }
+
+app-chat { display: flex; }
 
 
 /* http://meyerweb.com/eric/tools/css/reset/ 

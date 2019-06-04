@@ -1,5 +1,14 @@
 @import '../../variables.scss';
 
+.chatContainer {
+  padding: 2rem 2rem 0 2rem;
+  width: 100%;
+
+  @media screen and(max-width: $small){
+    padding: 4rem 1rem 0 1rem;
+  }
+}
+
 .logout {
   font-size: .8rem;
   text-align: left;
@@ -27,25 +36,30 @@
 textarea {
   font-size: 1rem;
   text-align: left;
-  position: fixed;
-  bottom: 31px;
-  left: 308px;
-  width: 75%;
-  height: 10%;
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  height: 10vh;
+  width: 96.75%;
   display: flex;
   padding: 15px 20px;
   border-radius: 0 0 10px 10px;
   border: 1px solid black;
   resize: none;
+
+  @media screen and(max-width: $small) {
+    width: 87.63%;
+    height: 6vh;
+  }
 }
 
-#verzendChat{
+#verzendChat {
   font-size: .8rem;
   font-weight: bold;
   text-align: left;
-  position: fixed;
-  bottom: 43px;
-  left: 1386px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
   display: flex;
   flex-direction: column;
   border: 1px solid black;
@@ -54,44 +68,78 @@ textarea {
   padding: 5px 20px;
   cursor: pointer;
 
-    &:hover{
+    &:hover {
       background: black;
       color: white;
       transition: background .23s ease-in-out; 
     }
+
+  @media screen and (max-width: $small) {
+    display: none;
+  }
+}
+
+#mobileSend {
+  font-size: .8rem;
+  font-weight: bold;
+  text-align: left;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  background: #f3f3f3;
+  border-radius: 10px;
+  padding: 5px 20px;
+  cursor: pointer;
+
+  &:hover {
+    background: black;
+    color: white;
+    transition: background .23s ease-in-out; 
+  }
+
+  @media screen and (min-width: $tablet_portrait){
+    display: none;
+  }
 }
 
 #emoticonBar{
+  position: relative;
   font-size: .8rem;
   text-align: left;
-  position: fixed;
-  bottom: 122px;
-  left: 308px;
-  width: 75%;
-  height: 2%;
+  height: 15vh;
   display: flex;
   padding: 15px 20px;
   border-radius: 10px;
   border: 1px solid black;
   background: #f3f3f3;
+  margin-top: 2rem;
+
+  @media screen and(max-width: $small) {
+    height: 10vh;
+    margin-top: 1rem;
+  }
 }
 
 #chatScreen{
   font-size: .8rem;
   text-align: left;
-  position: fixed;
-  top: 110px;
-  left: 308px;
-  width: 75%;
-  height: 57%;
+  height: 52vh;
   display: flex;
   padding: 15px 20px;
   border: 1px solid black;
   background: white;
   overflow-y: scroll;
   flex-direction: column;
+  z-index: 400;
 
-  .name{
+  @media screen and(max-width: $small) {
+    
+  }
+
+  .name {
     font-weight: bold;
   }
 
@@ -100,13 +148,34 @@ textarea {
   }
 }
 
+#hamburgermenu {
+  position: absolute;
+  left: 4%;
+  top: 14%;
+  color: #000;
+  font-size: 2rem;
+  z-index: 502;
+
+  @media screen and(min-width: $tablet_portrait) {
+    display: none;
+  }
+}
+
 #status{
   display: flex;
   flex-direction: column;
   padding: 10px 30px;
   width: 14%;
-  height: 86.8%;
+  min-height: 86vh;
   background: #202020;
+  z-index: 501;
+
+  @media screen and(max-width: $small) {
+    width: 31%;
+    display: none;
+    padding-top: 40px;
+    position: fixed;
+  }
 
   .statusTitel{
     display: flex;
@@ -177,6 +246,11 @@ textarea {
   background-color: rgb(0,0,0); // Fallback color
   background-color: rgba(0,0,0,0.4); // Black w/ opacity
   animation: animateModal .5s;
+  z-index: 999;
+
+  @media screen and (max-width: $small) {
+    padding-top: 0;
+  }
 
   // Modal Content
   .modal-content {
@@ -187,9 +261,9 @@ textarea {
     width: 80%;
 
     @media screen and (max-width: $small) {
-      paddding: 0;
+      padding: 0;
       width: 100vw;
-      height: auto;
+      min-height: 100vh;
     }
 
     // The Close Button
@@ -229,6 +303,11 @@ textarea {
   background-color: rgb(0,0,0); // Fallback color
   background-color: rgba(0,0,0,0.4); // Black w/ opacity
   animation: animateModal .5s;
+  z-index: 999;
+
+  @media screen and (max-width: $small) {
+    padding-top: 0;
+  }
 
   // Modal Content
   .modal-content {
@@ -239,7 +318,7 @@ textarea {
     width: 50%;
 
     @media screen and (max-width: $small) {
-      paddding: 0;
+      padding: 0;
       width: 100vw;
       height: auto;
     }

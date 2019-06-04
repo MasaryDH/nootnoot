@@ -64,8 +64,8 @@ export class ChatComponent{
 
   // hide | show offline table
   OfflineTable(){
-       var elem = document.getElementById("tableOffline");
-       var hide = elem.style.display =="none";
+       let elem = document.getElementById("tableOffline");
+       let hide = elem.style.display =="none";
 
        // change arrow
        let arrow = document.getElementById('arrowOffline');
@@ -78,6 +78,24 @@ export class ChatComponent{
          elem.style.display="none";
          arrow.innerHTML = '&#9656;';
       }
+  }
+
+  //mobile
+  openStatusTable(){
+    let elem = document.getElementById("status");
+    let color = document.getElementById("hamburgermenu");
+    let icon = document.getElementById("icon");
+    let show = elem.style.display =="block";
+
+    if(show){
+      elem.style.display = "none";
+      color.style.color = '#000';
+      icon.className = "far fa-user-circle";
+    } else {
+      elem.style.display = "block";
+      color.style.color = '#999';
+      icon.className = "fas fa-user-circle";
+    }
   }
 
   logout() {
