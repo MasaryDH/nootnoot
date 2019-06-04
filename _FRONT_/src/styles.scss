@@ -20,6 +20,7 @@
 html, body {
     background: #eee;
     height: 100%;
+    overflow-y: hidden;
 }
 
 register, app-home {
@@ -31,7 +32,10 @@ register, app-home {
 
 app-home { flex-direction: column; }
 
-app-chat { display: flex; }
+app-chat { 
+    display: flex; 
+    min-height: 100vh;
+}
 
 
 /* http://meyerweb.com/eric/tools/css/reset/ 

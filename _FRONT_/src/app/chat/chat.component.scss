@@ -149,12 +149,16 @@ textarea {
 }
 
 #hamburgermenu {
-  position: absolute;
-  left: 4%;
-  top: 14%;
-  color: #000;
-  font-size: 2rem;
-  z-index: 502;
+  position: relative;
+
+  span {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    color: #000;
+    font-size: 2rem;
+    z-index: 502;
+  }
 
   @media screen and(min-width: $tablet_portrait) {
     display: none;

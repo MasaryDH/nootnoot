@@ -83,17 +83,16 @@ export class ChatComponent{
   //mobile
   openStatusTable(){
     let elem = document.getElementById("status");
-    let color = document.getElementById("hamburgermenu");
     let icon = document.getElementById("icon");
     let show = elem.style.display =="block";
 
     if(show){
       elem.style.display = "none";
-      color.style.color = '#000';
+      icon.style.color = '#000';
       icon.className = "far fa-user-circle";
     } else {
       elem.style.display = "block";
-      color.style.color = '#999';
+      icon.style.color = '#999';
       icon.className = "fas fa-user-circle";
     }
   }
