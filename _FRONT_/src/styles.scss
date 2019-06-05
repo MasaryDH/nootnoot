@@ -21,7 +21,7 @@ html, body {
     background: #eee;
     height: 100%;
 
-    @media screen and(min-width: $tablet_portrait) {
+    @media screen and(min-width: $tablet_landscape) {
         overflow-y: hidden;
     }
 }
@@ -38,6 +38,10 @@ app-home { flex-direction: column; }
 app-chat { 
     display: flex; 
     min-height: 100vh;
+
+    @media screen and(min-width: $sm_portrait) {
+        min-height: unset;
+    }
 }
 
 

@@ -1,72 +1,59 @@
 <a id="hamburgermenu" (click)="openStatusTable()">
-  <span id="icon" class="far fa-user-circle"></span>
-</a>
-
-<div id="status">
-    <a class="statusTitel arrow right" (click)="OnlineTable()">Online <i id="arrowOnline">&#9662;</i></a>
-    <table id="tableOnline" style="display: block;"> 
-        <ng-container *ngFor="let user of users">
-          <tr *ngIf="user.status_idstatus == 1">
-            <td *ngIf="user.status_idstatus == 1" id="user{{user.iduser}}">
-                <span *ngIf="user.iduser ==  idtoken" class="dot"  id="onlineBlue"></span>
-                <span *ngIf="user.iduser !=  idtoken" class="dot"  id="online"></span>
+    <span id="icon" class="far fa-user-circle"></span>
+  </a>
+  
+  <a id="logoutIcon" (click)="logout()" routerLink="/home">
+    <span id="icon" class="fas fa-power-off"></span>
+  </a>
+  
+  <div id="status">
+      <a class="statusTitel arrow right" (click)="OnlineTable()">Online <i id="arrowOnline">&#9662;</i></a>
+      <table id="tableOnline" style="display: block;"> 
+          <ng-container *ngFor="let user of users">
+            <tr *ngIf="user.status_idstatus == 1">
+              <td *ngIf="user.status_idstatus == 1" id="user{{user.iduser}}">
+                  <span *ngIf="user.iduser ==  idtoken" class="dot"  id="onlineBlue"></span>
+                  <span *ngIf="user.iduser !=  idtoken" class="dot"  id="online"></span>
+                  <p class="{{user.username}}">{{ user.username }}</p>
+                  <a (click)="openModalUserSettings()"><span *ngIf="user.iduser ==  idtoken" class="fa fa-edit"></span></a>
+                  <a (click)="openModalUsers()"><span *ngIf="user.iduser ==  idtoken && user.admin_idadminRights == 1" class="fa fa-cog"></span></a>
+              </td>
+            </tr>
+          </ng-container>
+      </table>
+  
+      <a class="statusTitel" (click)="OfflineTable()">Offline <i id="arrowOffline">&#9662;</i></a>
+      <table id="tableOffline" style="display: block;">
+          <ng-container *ngFor="let user of users">
+            <tr *ngIf="user.status_idstatus == 0" >
+              <td id="user{{user.iduser}}">
+                <span class="dot"  id="offline"></span>
                 <p class="{{user.username}}">{{ user.username }}</p>
-                <a (click)="openModalUserSettings()"><span *ngIf="user.iduser ==  idtoken" class="fa fa-edit"></span></a>
-                <a (click)="openModalUsers()"><span *ngIf="user.iduser ==  idtoken && user.admin_idadminRights == 1" class="fa fa-cog"></span></a>
-            </td>
-          </tr>
-        </ng-container>
-    </table>
-
-    <a class="statusTitel" (click)="OfflineTable()">Offline <i id="arrowOffline">&#9662;</i></a>
-    <table id="tableOffline" style="display: block;">
-        <ng-container *ngFor="let user of users">
-          <tr *ngIf="user.status_idstatus == 0" >
-            <td id="user{{user.iduser}}">
-              <span class="dot"  id="offline"></span>
-              <p class="{{user.username}}">{{ user.username }}</p>
-            </td>
-          </tr>
-        </ng-container>
-    </table>
-</div>
-
-<div class="chatContainer">
-  <div id="chatScreen">
-    <ng-container  *ngFor="let i of [].constructor(10)">
-    <ng-container *ngFor="let user of users; let i=index">
-      <p *ngIf="i<1" class="name">😈👑🍷 {{user.username}} says:</p>
-      </ng-container>
-      <p class="bericht">Dit is een test bericht</p><br>
-    <ng-container *ngFor="let user of users">
-        <p *ngIf="user.username == 'Pingu'" class="name">🐧🔊 {{user.username}} 🐧🔊 says:</p>
-        </ng-container>
-        <p class="bericht">NOOT NOOT !!!</p><br>
-      </ng-container>
+              </td>
+            </tr>
+          </ng-container>
+      </table>
+  
+      <div class="logout">
+        <a routerLink="/home" (click)="logout()">Uitloggen</a>
+      </div>
   </div>
-
-  <div id="emoticonBar">
-    <textarea></textarea>
-    <button id="verzendChat">Verzenden</button>
-    <button id="mobileSend"><span class="fas fa-paper-plane"></span></button>
+  
+  <div class="chatContainer">
+    <chat-message></chat-message>
   </div>
+  
+  <div id="modalUsers" class="modalAdmin" style="display: none">
+      <div class="modal-content">
+        <span class="close" (click)="closeModalUsers()">&times;</span>
+       <users></users>
+      </div>
+  </div>
+  
+  <div id="modalUserSettings" class="modalSettings" style="display: none">
+      <div class="modal-content">
+        <span class="close" (click)="closeModalUserSettings()">&times;</span>
+       <user-settings></user-settings>
+      </div>
+  </div>  
 
-</div>
-
-<div id="modalUsers" class="modalAdmin" style="display: none">
-    <div class="modal-content">
-      <span class="close" (click)="closeModalUsers()">&times;</span>
-     <users></users>
-    </div>
-</div>
-
-<div id="modalUserSettings" class="modalSettings" style="display: none">
-    <div class="modal-content">
-      <span class="close" (click)="closeModalUserSettings()">&times;</span>
-     <user-settings></user-settings>
-    </div>
-</div>
-
-<div class="logout">
-  <a routerLink="/home" (click)="logout()">Uitloggen</a>
-</div>

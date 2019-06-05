@@ -1,0 +1,11 @@
+<div id="chatScreen">
+    <li class="bericht" *ngFor = "let msg of messages">{{msg|json}}</li>
+</div>
+
+<div class="sendContainer">
+  <div id="emoticonBar">
+    <textarea #chatMessage></textarea>
+    <button id="verzendChat" (click)="sendMessage(chatMessage.value)">Verzenden</button>
+    <button id="mobileSend" (click)="sendMessage(chatMessage.value)"><span class="fas fa-paper-plane"></span></button>
+  </div>
+</div>

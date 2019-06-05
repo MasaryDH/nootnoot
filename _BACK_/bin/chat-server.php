@@ -2,7 +2,7 @@
 use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
-use MyApp\Chat;
+use ChatApp\Chat;
 
 require dirname( __DIR__ ) . '/vendor/autoload.php';
 
@@ -17,4 +17,5 @@ $server = IoServer::factory(
 
 $server->run();
 
+// Opstarten server in terminal || ga naar _BACK_  ||  php bin/chat-server.php
 ?>

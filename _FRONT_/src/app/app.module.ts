@@ -13,6 +13,9 @@ import { ChatComponent } from './chat/chat.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { AuthGuard } from './guards/auth-guard.service';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { ChatMessageComponent } from './chat-message/chat-message.component';
+import { ChatService } from './services/chat.service';
+import { SocketService } from './services/socket.service';
 
 
 @NgModule({
@@ -25,6 +28,7 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
     ChatComponent,
     PasswordResetComponent,
     UserSettingsComponent,
+    ChatMessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,7 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
     FormsModule,
     AppRoutingModule,
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, ChatService, SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

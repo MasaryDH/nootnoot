@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
 
-    @media screen and(max-width: $small){
+    @media screen and(max-width: $sm_portrait){
         padding: 2rem;
     }
 
@@ -15,7 +15,7 @@
         font-size: 20px;  
         text-align: center;
         
-        @media screen and(max-width: $small){
+        @media screen and(max-width: $sm_portrait){
             margin-bottom: 30px;
         }
         span {
@@ -35,7 +35,7 @@
             display: flex;
             margin-bottom: 10px;
 
-            @media screen and(max-width: $small){
+            @media screen and(max-width: $sm_portrait){
                 display: flex;
                 flex-direction: column;
                 margin-bottom: 10px;
@@ -49,7 +49,7 @@
                     margin-right: 0;
                 }
 
-                @media screen and(max-width: $small) {
+                @media screen and(max-width: $sm_portrait) {
                     display: flex;
                     justify-content: space-between;
                     margin-right: 0;
@@ -58,7 +58,7 @@
                 }
 
                 input {
-                    @media screen and(max-width: $small) {
+                    @media screen and(max-width: $sm_portrait) {
                         width: 45%;
                     }
                 }
