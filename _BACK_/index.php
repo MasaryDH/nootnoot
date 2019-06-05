@@ -59,13 +59,15 @@ switch($request_method){
 
             // convert JSON to object
             $_POST = json_decode(file_get_contents('php://input'));
-            $hash = hash("md5", $_POST->user_password); //decode password
+            $hash = hash("md5", $_POST->user_password); //encode password
+            $color = "#00A0E0";
 
             //make new user
             $sql = "INSERT INTO user SET username = '".$_POST->username."', user_password = '".$hash."',
                                          admin_idadminRights = 0 , user_email = '".$_POST->user_email."',
                                          user_firstname = '".$_POST->user_firstname."', user_lastname = '".$_POST->user_lastname."',
-                                         registratiedatum = NOW(), status_idstatus = 1, user_profilepic = '$randomProfilePicture'";
+                                         registratiedatum = NOW(), status_idstatus = 1, user_profilepic = '".$randomProfilePicture."',
+                                         user_color = '".$color."'";
 
             //get iduser
             $iduser = "SELECT iduser FROM user WHERE user_email = '".$_POST->user_email."'";
@@ -105,7 +107,7 @@ switch($request_method){
         } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/loginuser'){
             // convert JSON to object
             $_POST = json_decode(file_get_contents('php://input'));
-            $hash = hash("md5", $_POST->user_password); //decode password
+            $hash = hash("md5", $_POST->user_password); //encode password
 
             // check if user is in database
             $sql = "SELECT * FROM user WHERE user_email = '".$_POST->user_email."' AND user_password = '".$hash."'";
@@ -250,9 +252,9 @@ switch($request_method){
         if($_SERVER["REQUEST_URI"] == '/nootnoot/user/'. $id){
             // convert JSON to object
             $_PUT = json_decode(file_get_contents('php://input'));
-            $hash = hash("md5", $_PUT->user_password); //decode password
+            $hash = hash("md5", $_PUT->user_password); //encode password
 
-            $sql = "UPDATE user SET username = '".$_PUT->username."', user_email= '".$_PUT->user_email."', 
+            $sql = "UPDATE user SET username= '".$_PUT->username."', user_email= '".$_PUT->user_email."', 
                                     user_firstname= '".$_PUT->user_firstname."', user_lastname= '".$_PUT->user_lastname."', 
                                     user_password= IF('".$_PUT->user_password."' = '', user_password, '".$hash."') WHERE iduser = $id";
             
@@ -278,8 +280,22 @@ switch($request_method){
             echo $response;
             break;
 
+        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/colorchange/'. $id) {
+            // convert JSON to object
+            $_PUT = json_decode(file_get_contents('php://input'));
+
+            $sql = "UPDATE user SET user_color = '".$_PUT->user_color."' WHERE iduser = $id";
+
+            if($conn->query($sql)){
+                $response = json_encode(true);
+            } else {
+                $response = json_encode(false);
+            }
+            echo $response;
+            break;
+
         } else {
-            echo 'Kan speler niet updaten';
+            echo 'Kan niet updaten';
             break;
         }
 }

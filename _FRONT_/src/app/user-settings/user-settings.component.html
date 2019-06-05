@@ -14,13 +14,16 @@
               <!-- profile picture -->
               <div class="two_column">
                 <li>
-                  <div class="imageContainer">
+                  <div class="imageContainer" [style.background]="user.user_color" [style.border-color]="user.user_color">
                     <img id="profile_picture" alt="profile picture" src="assets/pingu_profile_pictures/{{user.user_profilepic}}">
                   </div>
                   <select id="select_pingu" (change)="pinguPicture($event.target.value, user.iduser)">
                     <option value="0">Selecteer een pingu-profielfoto...</option>
                     <option *ngFor="let pingu of pingu_profile_pic" [value]="pingu.key">{{ pingu.value }}</option>
                   </select>
+                  <div>
+                    <span>Kleur: </span><input type="color" id="myColor" [value]="user.user_color" (change)="setColor(user.iduser)"> 
+                  </div>
                 </li>
               </div>
               <!-- user data -->

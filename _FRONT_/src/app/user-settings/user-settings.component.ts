@@ -22,6 +22,7 @@ export class UserSettingsComponent {
   LOGOUT_SERVER_URL = "http://localhost/nootnoot/logoutuser";
   UPLOAD_SERVER_URL = "http://localhost/nootnoot/imgupload";
   IMAGE_SERVER_URL = "http://localhost/nootnoot/imgchange/";
+  COLOR_SERVER_URL = "http://localhost/nootnoot/colorchange/";
 
   users;
   request = new XMLHttpRequest();
@@ -184,6 +185,29 @@ export class UserSettingsComponent {
         alert('Profielfoto aangepast');
       } else {
         alert('Kan profielfoto niet aanpassen');
+      }
+      
+    });
+  }
+
+  setColor(id){
+    //get selected color
+    let elem = document.querySelector("#myColor") as HTMLInputElement;
+    let color = elem.value;
+
+    //send json
+    let data = { user_color:color }
+
+    //update color in database
+    this.http.put(this.COLOR_SERVER_URL+id, data)
+    .subscribe((result) => {
+      if(result == true){
+        //change border color
+        let border = document.querySelector("#userSettingsForm .imageContainer") as HTMLInputElement;
+        border.style.background = color;
+        border.style.borderColor = color;
+      } else {
+        alert('Kan kleur niet aanpassen');
       }
       
     });

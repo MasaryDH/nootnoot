@@ -44,6 +44,8 @@ export class UsersComponent {
     .subscribe((resultDelete) => {
       console.log(JSON.stringify(resultDelete));
 
+      alert('Gebruiker '+id+' verijwdert');
+
       // remove deleted user from table
       document.getElementById("tr"+id).remove();
     });
@@ -105,7 +107,9 @@ export class UsersComponent {
       // put call (headers = send as json, responseType = give response as text)
       this.http.put(this.PUT_SERVER_URL+id, data, {headers: headers, responseType: 'text'})
         .subscribe((resultPut) => {
-        console.log(JSON.stringify(resultPut));
+        //console.log(JSON.stringify(resultPut));
+
+        alert("Gebruiker "+ id +" geüpdatet");
 
         //make it possible to readonly inputfields
         (document.querySelector(".username"+id) as HTMLInputElement).readOnly = true;
