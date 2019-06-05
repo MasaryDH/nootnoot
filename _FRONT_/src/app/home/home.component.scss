@@ -12,12 +12,44 @@
         border-radius: 10px;
         width: 100%;
     }
+
+    //mobile
+    @media screen and (max-width: $sm_landscape) {
+        width: 45vw;
+    }
+
+    @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
+        width: 30vw;
+        margin-right: 2rem;
+    }
+
+    //tablet
+    @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
+        width: 30vw;
+        margin-right: 2rem;
+    }
+    
 }
 
 
 
-login{
+login {
     width: 25%;
+
+    //mobile
+    @media screen and (max-width: $sm_landscape) {
+        width: 80vw;
+    }
+
+    @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
+        width: 50vw;
+    }
+
+    //tablet
+    @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
+        width: 50vw;
+    }
+
 }
 
 .links {

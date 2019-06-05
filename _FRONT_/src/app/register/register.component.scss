@@ -1,23 +1,23 @@
 @import '../../variables.scss';
 
-h1{
+h1 {
     display: flex;
     justify-content: center;
     margin: 30px;
 }
 
-form{
+form {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
     font-size: .8rem;
 
-    li{
+    li {
         margin-top: 15px;
     }
 
-    .imageContainer{
+    .imageContainer {
         margin-right: 5%;
         border: 13px solid $c_blue;
         border-radius: 20px;
@@ -26,13 +26,13 @@ form{
         margin-top: -48px;
     }
 
-    .formContainer{
+    .formContainer {
         display: flex;
         flex-direction: column;
         width: 50%;
     }
 
-    [alt="pingu"]{
+    [alt="pingu"] {
         border-radius: 10px;
         // margin-bottom: -4px;
         width: 100%;
@@ -41,17 +41,17 @@ form{
 
 
 
-.naamVoornaam{
+.naamVoornaam {
     width: 100%;
     display: flex;
     justify-content: space-between;
 
-    li{
+    li {
         display: flex;
         flex-direction: row;
     }
 
-    input{
+    input {
         width: 200%;
         padding: 15px 0;
         border: .5px solid $c_gray;
@@ -101,4 +101,21 @@ form{
     display: flex;
     flex-direction: column;
     text-decoration: underline;
+
+    //mobile
+    @media screen and (max-width: $sm_landscape) {
+        bottom: 25px;
+        right: 25px;
+    }
+
+    @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
+        position: absolute;
+        right: 20px;
+    }
+
+    //tablet
+    @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
+        position: absolute;
+        right: 20px;
+    }
 }
