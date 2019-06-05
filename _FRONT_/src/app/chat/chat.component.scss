@@ -21,7 +21,16 @@
   border: 1px solid white;
   border-radius: 10px;
 
-  a{ 
+  //mobile
+  @media screen and (max-width: $sm_landscape) {
+    display: none;
+  }
+
+  @media screen and (min-width: 481px) and (max-width: 767px) {
+    display: none;
+  }
+
+  a { 
     padding: 10px 15px;
     color: white;
   }
@@ -46,7 +55,18 @@
     z-index: 502;
   }
 
-  @media screen and (min-width: $tablet_portrait) {
+  //tablet portrait
+  @media (min-width: $tablet_portrait) and (max-width: $tablet_landscape) {
+    display: none;
+  }
+
+  //tablet landscape
+  @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
+    display: none;
+  }
+
+  //desktop - laptop
+  @media screen and (min-width: 1025px) {
     display: none;
   }
 }
@@ -62,30 +82,54 @@
     z-index: 502;
   }
 
-  @media screen and (min-width: $tablet_portrait) {
+  //tablet portrait
+  @media (min-width: $tablet_portrait) and (max-width: $tablet_landscape) {
     display: none;
   }
+
+  //tablet landscape
+  @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
+    display: none;
+  }
+
+  //desktop - laptop
+  @media screen and (min-width: 1025px) {
+    display: none;
+  }
+
 }
 
-#status{
+#status {
   display: flex;
   flex-direction: column;
   padding: 10px 30px;
-  width: 14%;
-  min-height: 86vh;
+  width: 25vw;
+  min-height: 95vh;
   background: #202020;
-  z-index: 501;
+  z-index: 501;  
 
-  @media screen and (max-width: 766px) {
-    width: 45%;
+  //mobile
+  @media screen and (max-width: $sm_landscape) {
     display: none;
-    padding-top: 40px;
+    width: 45vw;
     position: absolute;
+    padding-top: 40px;
   }
 
-  @media screen and (min-width: $tablet_portrait){
-    min-height: 100vh;
+  @media screen and (min-width: 481px) and (max-width: 767px) {
+    display: none;
+    width: 45vw;
+    position: absolute;
+    padding-top: 40px;
   }
+
+  //tablet portrait
+  // @media (min-width: $tablet_portrait) and (max-width: $tablet_landscape) {
+  //   display: none;
+  //   width: 45vw;
+  //   position: absolute;
+  //   padding-top: 40px;
+  // }
 
   .statusTitel{
     display: flex;
@@ -158,8 +202,12 @@
   animation: animateModal .5s;
   z-index: 999;
 
-  @media screen and (max-width: $sm_portrait) {
+  @media screen and (max-width: 767px) {
     padding-top: 0;
+  }
+
+  @media (min-width: $tablet_portrait) and (max-width: $tablet_landscape) {
+    padding-top: 20%;
   }
 
   // Modal Content
@@ -170,7 +218,7 @@
     border: 1px solid #888;
     width: 80%;
 
-    @media screen and (max-width: $sm_portrait) {
+    @media screen and (max-width: 767px) {
       padding: 0;
       width: 100vw;
       min-height: 100vh;
@@ -183,7 +231,7 @@
       font-size: 28px;
       font-weight: bold;
 
-      @media screen and (max-width: $sm_portrait) {
+      @media screen and (max-width: 767px) {
         float: none;
         position: absolute;
         right: 10px;
@@ -215,8 +263,22 @@
   animation: animateModal .5s;
   z-index: 999;
 
-  @media screen and (max-width: $sm_portrait) {
+  //tablet
+  @media screen and (max-width: 767px) {
     padding-top: 0;
+  }
+
+  @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) {
+    padding-top: 20%;
+  }
+
+  @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
+    padding-top: 5.5%;
+  }
+
+  //laptop
+  @media screen and (min-width: 1025px) and (max-width: 1280px) {
+    padding-top: 12%;
   }
 
   // Modal Content
@@ -227,10 +289,14 @@
     border: 1px solid #888;
     width: 50%;
 
-    @media screen and (max-width: $sm_portrait) {
+    @media screen and (max-width: 767px) {
       padding: 0;
       width: 100vw;
       height: auto;
+    }
+
+    @media (min-width: $tablet_portrait) and (max-width: $tablet_landscape) {
+      width: 75vw;
     }
     
     // The Close Button
@@ -240,7 +306,7 @@
       font-size: 28px;
       font-weight: bold;
 
-      @media screen and (max-width: $sm_portrait) {
+      @media screen and (max-width: 767px) {
         float: none;
         position: absolute;
         right: 10px;
