@@ -4,6 +4,8 @@ import { SocketService } from '../services/socket.service'
 import { ChatService } from '../services/chat.service'
 import { AuthService } from '../services/auth.service';
 import { HttpClient } from '@angular/common/http';
+import emoji from '../../assets/emoji.json';
+import { EmojifyModule } from 'angular-emojify';
 // import { userInfo } from 'os';
 
 @Component({
@@ -17,9 +19,17 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
   users: any;
   idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
   messages = [];
+  emojis = emoji;
+  // emoji = this.emojis;
   constructor(private chat: ChatService, private http: HttpClient, private authService: AuthService) {
     // get data when refreshed
     this.getRequest();
+
+    console.log(this.emojis);
+    // let test = this.emoji.filter(item => item.name)[0];
+    // console.log(test.emoji);
+    // console.log(test.shortname);
+    
   }
 
   // ----- GET -----
@@ -65,6 +75,31 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
 
     //clearing textarea after message sent
     elem.value = null;
+  }
+
+  //open smiley emotions
+  openModalSmiley(){
+    let modal = document.getElementById("modalSmiley");
+    modal.style.display = "block";
+  }
+  closeModalSmiley(){
+    let modal = document.getElementById("modalSmiley");
+    modal.style.display = "none";
+  }
+
+  //open smiley emotions
+  openModalNature(){
+    let modal = document.getElementById("modalNature");
+    modal.style.display = "block";
+  }
+  closeModalNature(){
+    let modal = document.getElementById("modalNature");
+    modal.style.display = "none";
+  }
+
+  appendEmoji(emoji){
+    let elem = document.querySelector("#chatMessage") as HTMLInputElement;
+    elem.value += emoji;
   }
 
   ngOnDestroy() {

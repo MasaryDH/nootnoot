@@ -100,6 +100,7 @@ textarea {
   font-size: .8rem;
   text-align: left;
   display: flex;
+  align-items: center;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   border: 1px solid black;
@@ -112,6 +113,11 @@ textarea {
   @media screen and (min-width: $sm_landscape){
     height: 5vh;
   }
+
+  a{
+    margin: 10px 15px;
+  }
+
 }
 
 #chatScreen{
@@ -136,3 +142,85 @@ textarea {
   }
 
 }
+
+// The Modal Settings
+.modalSmiley {
+    display: none; // Hidden by default
+    position: fixed; // Stay in place 
+    z-index: 1; // Sit on top
+    padding-top: 2%; // Location of the box 
+    left: 0;
+    top: 0;
+    width: 100%; // Full width
+    height: 100%; // Full height
+    overflow: auto; // Enable scroll if needed
+    background-color: rgb(0,0,0); // Fallback color
+    background-color: rgba(0,0,0,0.4); // Black w/ opacity
+    animation: animateModal .5s;
+    z-index: 999;
+  
+    //tablet
+    @media screen and (max-width: 767px) {
+      padding-top: 0;
+    }
+  
+    @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) {
+      padding-top: 20%;
+    }
+  
+    @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
+      padding-top: 5.5%;
+    }
+  
+    //laptop
+    @media screen and (min-width: 1025px) and (max-width: 1280px) {
+      padding-top: 12%;
+    }
+  
+    // Modal Content
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 30px;
+      border: 1px solid #888;
+      width: 50%;
+  
+      @media screen and (max-width: 767px) {
+        padding: 0;
+        width: 100vw;
+        height: auto;
+      }
+  
+      @media (min-width: $tablet_portrait) and (max-width: $tablet_landscape) {
+        width: 75vw;
+      }
+      
+      // The Close Button
+      .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+  
+        @media screen and (max-width: 767px) {
+          float: none;
+          position: absolute;
+          right: 10px;
+        }
+      }
+  
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
+  
+  
+  /* Modal animation */
+  @keyframes animateModal {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+  }
