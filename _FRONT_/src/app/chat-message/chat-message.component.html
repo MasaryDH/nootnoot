@@ -1,5 +1,6 @@
 <div id="chatScreen">
-    <li class="bericht" *ngFor = "let msg of messages">{{msg|json}}</li>
+    <!-- <li class="bericht" *ngFor = "let msg of messages">{{msg|json}}</li> -->
+    <div class="bericht" *ngFor = "let msg of messages" [innerHtml]="msg"></div>
 </div>
 
 <div class="sendContainer">
