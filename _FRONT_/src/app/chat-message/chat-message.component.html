@@ -6,7 +6,7 @@
 <div class="sendContainer">
   <div id="emoticonBar"></div>
   <div id="textContainer">
-    <textarea #chatMessage (keyup.enter)="sendMessage(chatMessage.value)" id="chatMessage"></textarea>
+    <textarea #chatMessage (keydown.enter)="sendMessage(chatMessage.value, $event)" id="chatMessage"></textarea>
   </div>
   <button id="verzendChat" (click)="sendMessage(chatMessage.value)">Verzenden</button>
   <button id="mobileSend" (click)="sendMessage(chatMessage.value)"><span class="fas fa-paper-plane"></span></button>

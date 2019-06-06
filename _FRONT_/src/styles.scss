@@ -23,20 +23,15 @@ html, body {
     }
 }
 
-register, app-home {
+
+app-home {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80%;
 
-    //mobile
+    //mobile landscape
     @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
-        height: 90%;
-        align-items: flex-start;
-    }
-
-    //tablet
-    @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
         height: 90%;
         align-items: flex-start;
     }
@@ -45,17 +40,30 @@ register, app-home {
 app-home { 
     flex-direction: column; 
 
+    //mobile landscape
     @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
         position: relative;
         flex-direction: row;
         margin-top: 3rem;
     }
+}
 
-    //tablet
-    @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
+register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+
+    //mobile
+    @media screen and (max-width: $sm_landscape) {
         position: relative;
-        flex-direction: row;
-        margin-top: 3rem;
+        padding-top: 2rem;
+        padding-bottom: 4rem;
+    }
+
+    @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
+        position: relative;
+        height: 100%;
     }
 }
 

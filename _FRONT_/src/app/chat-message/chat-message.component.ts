@@ -34,8 +34,6 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
    
   }
 
- 
-
   ngOnInit() {
     this.chat.messages.subscribe(msg => {
       //get info loggedin user
@@ -53,14 +51,20 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     });
   }
 
-  sendMessage(message: string){
+  sendMessage(message, event){
+    //get value of textarea input
+    let elem = document.querySelector("#chatMessage") as HTMLInputElement;
+
+    event.preventDefault();
     
-    console.log('new message to websocket: '+ message);
-    this.chat.sendMsg(message);
+    //check if textarea is empty
+    if(elem.value != "" && elem.value != null){
+      console.log('new message to websocket: '+ message);
+      this.chat.sendMsg(message);
+    }
 
     //clearing textarea after message sent
-    let elem = document.querySelector("#chatMessage") as HTMLInputElement;
-    elem.value = "";
+    elem.value = null;
   }
 
   ngOnDestroy() {

@@ -21,7 +21,7 @@
                     <option value="0">Selecteer een pingu-profielfoto...</option>
                     <option *ngFor="let pingu of pingu_profile_pic" [value]="pingu.key">{{ pingu.value }}</option>
                   </select>
-                  <div>
+                  <div id="colorContainer">
                     <span>Kleur: </span><input type="color" id="myColor" [value]="user.user_color" (change)="setColor(user.iduser)"> 
                   </div>
                 </li>
