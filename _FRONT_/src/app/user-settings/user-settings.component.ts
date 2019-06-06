@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { CanActivate } from '@angular/router/src/utils/preactivation';
 
 @Component({
   selector: 'user-settings',

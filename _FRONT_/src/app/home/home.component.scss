@@ -18,7 +18,7 @@
         width: 45vw;
     }
 
-    @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
+    @media screen and (min-width: $sm_portrait) and (max-width: 824px) and (orientation: landscape) {
         width: 30vw;
         margin-right: 2rem;
     }
@@ -30,7 +30,7 @@
 
     @media screen and (min-width: $tablet_portrait) and (max-width: 1367px) and (orientation: landscape) {
         width: 25vw;
-        margin-top: 3rem;
+        margin-top: 2rem;
     }
     
 }

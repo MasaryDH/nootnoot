@@ -84,6 +84,11 @@ form {
             width: 50vw;
         }
 
+        //tablet
+        @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) {
+            width: 50vw;
+        }
+
         @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
             width: 50vw;
         }
