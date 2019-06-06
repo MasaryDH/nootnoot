@@ -8,6 +8,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent {
 
   LOGIN_SERVER_URL = "http://localhost/nootnoot/loginuser";

@@ -29,19 +29,12 @@ app-home {
     justify-content: center;
     align-items: center;
     height: 80%;
-
-    //mobile landscape
-    @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
-        height: 90%;
-        align-items: flex-start;
-    }
-}
-
-app-home { 
     flex-direction: column; 
 
     //mobile landscape
-    @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
+    @media screen and (min-width: $sm_portrait) and (max-width: 824px) and (orientation: landscape) {
+        height: 90%;
+        align-items: flex-start;
         position: relative;
         flex-direction: row;
         margin-top: 3rem;
@@ -75,7 +68,7 @@ register {
         padding-bottom: 4rem;
     }
 
-    @media screen and (min-width: $tablet_portrait) and (max-width: 812px) and (orientation: landscape) {
+    @media screen and (min-width: $tablet_portrait) and (max-width: 823px) and (orientation: landscape) {
         position: relative;
         height: 100%;
         padding: 4rem 0 4rem 0;

@@ -13,6 +13,7 @@ import { EmojifyModule } from 'angular-emojify';
   templateUrl: './chat-message.component.html',
   styleUrls: ['./chat-message.component.scss']
 })
+
 export class ChatMessageComponent  implements OnInit, OnDestroy {
 
   GET_SERVER_URL = "http://localhost/nootnoot/users";
@@ -21,6 +22,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
   messages = [];
   emojis = emoji;
   // emoji = this.emojis;
+
   constructor(private chat: ChatService, private http: HttpClient, private authService: AuthService) {
     // get data when refreshed
     this.getRequest();
