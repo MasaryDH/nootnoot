@@ -8,6 +8,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent {
 
   POST_SERVER_URL = "http://localhost/nootnoot/users";

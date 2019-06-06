@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './password-reset.component.html',
   styleUrls: ['./password-reset.component.scss']
 })
+
 export class PasswordResetComponent{
 
   RESET_SERVER_URL = "http://localhost/nootnoot/resetuser";

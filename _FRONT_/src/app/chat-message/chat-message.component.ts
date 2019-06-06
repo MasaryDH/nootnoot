@@ -11,12 +11,14 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './chat-message.component.html',
   styleUrls: ['./chat-message.component.scss']
 })
+
 export class ChatMessageComponent  implements OnInit, OnDestroy {
 
   GET_SERVER_URL = "http://localhost/nootnoot/users";
   users: any;
   idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
   messages = [];
+
   constructor(private chat: ChatService, private http: HttpClient, private authService: AuthService) {
     // get data when refreshed
     this.getRequest();
