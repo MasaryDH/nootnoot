@@ -13,6 +13,28 @@ form {
     flex-direction: row;
     font-size: .8rem;
 
+     //mobile
+     @media screen and (max-width: $sm_landscape) {
+        flex-direction: column;
+        padding-bottom: 3rem;
+        padding-top: 3rem;
+    }
+
+    @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
+        flex-direction: row;
+    }
+
+    //tablet
+    @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) {
+        flex-direction: column;
+    }
+
+    @media screen and (min-width: $tablet_portrait) and (max-width: 1367px) and (orientation: landscape) {
+        flex-direction: row;
+        margin-top: -70px;
+    }
+
+
     li {
         margin-top: 15px;
     }
@@ -24,12 +46,47 @@ form {
         background: $c_blue;
         width: 23%;
         margin-top: -48px;
+
+        //mobile
+        @media screen and (max-width: $sm_landscape) {
+            width: 45vw;
+            margin: 0;
+        }
+
+        //tablet
+        @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) {
+            width: 35vw;
+            margin: 2rem 0 2rem 0;
+        }
+
+        @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape){
+            width: 24vw;
+            margin-right: 5rem;
+        }
+
     }
 
     .formContainer {
         display: flex;
         flex-direction: column;
         width: 50%;
+
+        //mobile
+        @media screen and (max-width: $sm_landscape) {
+            width: 80vw;
+        }
+
+        @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) {
+            width: 80vw;
+        }
+
+        @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
+            width: 50vw;
+        }
+
+        @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
+            width: 50vw;
+        }
     }
 
     [alt="pingu"] {
@@ -93,7 +150,7 @@ form {
     }
 }
 
-.links{
+.links {
     text-align: right;
     position: fixed;
     bottom: 32px;
@@ -117,5 +174,27 @@ form {
     @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
         position: absolute;
         right: 20px;
+    }
+}
+
+#registerLinks {
+    //mobile
+    @media screen and (max-width: $sm_landscape) {
+        position: absolute;
+        bottom: 15px;
+        right: 25px;
+    }
+
+    @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
+        position: absolute;
+        bottom: 15px;
+        right: 25px;
+    }
+
+    //tablet
+    @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
+        position: absolute;
+        bottom: 15px;
+        right: 25px;
     }
 }

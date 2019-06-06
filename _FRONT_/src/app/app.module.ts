@@ -16,7 +16,7 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { ChatService } from './services/chat.service';
 import { SocketService } from './services/socket.service';
-
+import { EmojifyModule } from 'angular-emojify';
 
 @NgModule({
   declarations: [
@@ -35,6 +35,7 @@ import { SocketService } from './services/socket.service';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
+    EmojifyModule
   ],
   providers: [AuthGuard, ChatService, SocketService],
   bootstrap: [AppComponent]

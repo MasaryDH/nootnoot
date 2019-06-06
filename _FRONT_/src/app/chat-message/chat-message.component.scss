@@ -125,6 +125,7 @@ textarea {
   overflow-y: scroll;
   flex-direction: column;
   z-index: 400;
+  word-break: break-word;
 
   .name {
     font-weight: bold;

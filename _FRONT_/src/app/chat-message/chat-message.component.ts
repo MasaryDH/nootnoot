@@ -34,8 +34,6 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
    
   }
 
- 
-
   ngOnInit() {
     this.chat.messages.subscribe(msg => {
       //get info loggedin user
@@ -47,20 +45,26 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
       delete msg["message"];
 
       //send message to sockets
-      this.messages.push("<p>" +usernameMe+ ": " + msg[usernameMe]+"</p>");
+      this.messages.push("<p><span>" +usernameMe+ ":</span><br>" + msg[usernameMe]+"</p>");
       //this.messages.push(msg[usernameMe]);
       console.log("Response from websocket: " + msg);
     });
   }
 
-  sendMessage(message: string){
+  sendMessage(message, event){
+    //get value of textarea input
+    let elem = document.querySelector("#chatMessage") as HTMLInputElement;
+
+    event.preventDefault();
     
-    console.log('new message to websocket: '+ message);
-    this.chat.sendMsg(message);
+    //check if textarea is empty
+    if(elem.value != "" && elem.value != null){
+      console.log('new message to websocket: '+ message);
+      this.chat.sendMsg(message);
+    }
 
     //clearing textarea after message sent
-    let elem = document.querySelector("#chatMessage") as HTMLInputElement;
-    elem.value = "";
+    elem.value = null;
   }
 
   ngOnDestroy() {
