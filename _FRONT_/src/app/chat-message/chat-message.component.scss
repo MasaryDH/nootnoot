@@ -2,22 +2,33 @@
 
 .sendContainer {
   position: relative;
+
+  #textContainer {
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    border: 1px solid black;
+    border-top: 0px;
+    background: #fff;
+  }
 }
 
 textarea {
     font-size: 1rem;
     text-align: left;
     height: 10vh;
-    width: 100%;
+    width: 85%;
     display: flex;
-    padding: 0;
+    padding: 10px 0 0 10px;
     border-radius: 0 0 10px 10px;
-    border: 1px solid black;
-    border-top: 0px;
+    border: none;
     resize: none;
   
     @media screen and (min-width: $sm_landscape){
       height: 15vh;
+    }
+
+    &:focus {
+      outline: none;
     }
   }
 
