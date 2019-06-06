@@ -28,7 +28,7 @@
         <span class="close" (click)="closeModalSmiley()">&times;</span>
         <h3 style="text-align: center;">Smileys</h3>
         <div class="modal-content" style="display: flex; flex-wrap: wrap; width: 89%; padding: 30px; border: none;">
-          <ng-container *ngFor="let emoji of emojis" >
+          <ng-container *ngFor="let emoji of emojis | orderBy: order">
             <div *ngIf="emoji.category === 'p' " style="text-align: center;">
             <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
             <p></p>
@@ -43,7 +43,7 @@
         <span class="close" (click)="closeModalNature()">&times;</span>
         <h3 style="text-align: center;">Dieren en natuur</h3>
         <div class="modal-content" style="display: flex; flex-wrap: wrap; width: 89%; padding: 30px; border: none;">
-          <ng-container *ngFor="let emoji of emojis" >
+          <ng-container *ngFor="let emoji of emojis | orderBy: order" >
             <div *ngIf="emoji.category === 'n'" style="text-align: center;">
             <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
             <p></p>
@@ -58,7 +58,7 @@
         <span class="close" (click)="closeModalFood()">&times;</span>
         <h3 style="text-align: center;">Eten en drinken</h3>
         <div class="modal-content" style="display: flex; flex-wrap: wrap; width: 89%; padding: 30px; border: none;">
-          <ng-container *ngFor="let emoji of emojis" >
+          <ng-container *ngFor="let emoji of emojis | orderBy: order" >
             <div *ngIf="emoji.category === 'd'" style="text-align: center;">
             <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
             <p></p>

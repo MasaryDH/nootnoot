@@ -17,6 +17,7 @@ import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { ChatService } from './services/chat.service';
 import { SocketService } from './services/socket.service';
 import { EmojifyModule } from 'angular-emojify';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { EmojifyModule } from 'angular-emojify';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    EmojifyModule
+    EmojifyModule,
+    OrderModule
   ],
   providers: [AuthGuard, ChatService, SocketService],
   bootstrap: [AppComponent]

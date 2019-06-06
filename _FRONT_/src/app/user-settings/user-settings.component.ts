@@ -51,6 +51,8 @@ export class UserSettingsComponent {
   constructor(private http: HttpClient, private authService: AuthService, private fb: FormBuilder){
     // get data when refreshed
     this.getRequest();
+
+    console.log(this.pingu_profile_pic);
   }
 
   // ----- GET -----

@@ -21,6 +21,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
   idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
   messages = [];
   emojis = emoji;
+  order: string = "order";
   // emoji = this.emojis;
 
   constructor(private chat: ChatService, private http: HttpClient, private authService: AuthService) {
