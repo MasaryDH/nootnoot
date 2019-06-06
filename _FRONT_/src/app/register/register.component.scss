@@ -31,6 +31,7 @@ form {
 
     @media screen and (min-width: $tablet_portrait) and (max-width: 1367px) and (orientation: landscape) {
         flex-direction: row;
+        margin-top: -70px;
     }
 
 
@@ -52,8 +53,15 @@ form {
             margin: 0;
         }
 
-        @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
-            
+        //tablet
+        @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) {
+            width: 35vw;
+            margin: 2rem 0 2rem 0;
+        }
+
+        @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape){
+            width: 24vw;
+            margin-right: 5rem;
         }
 
     }
@@ -68,8 +76,16 @@ form {
             width: 80vw;
         }
 
+        @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) {
+            width: 80vw;
+        }
+
         @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
-            
+            width: 50vw;
+        }
+
+        @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
+            width: 50vw;
         }
     }
 
@@ -177,6 +193,8 @@ form {
 
     //tablet
     @media screen and (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
-        
+        position: absolute;
+        bottom: 15px;
+        right: 25px;
     }
 }

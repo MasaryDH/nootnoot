@@ -64,7 +64,23 @@ register {
     @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
         position: relative;
         height: 100%;
+        padding-top: 2rem;
+        padding-bottom: 4rem;
     }
+
+    @media screen and (min-width: 481px) and (max-width: 767px) {
+        position: relative;
+        height: 100%;
+        padding-top: 2rem;
+        padding-bottom: 4rem;
+    }
+
+    @media screen and (min-width: $tablet_portrait) and (max-width: 812px) and (orientation: landscape) {
+        position: relative;
+        height: 100%;
+        padding: 4rem 0 4rem 0;
+    }
+
 }
 
 app-chat { 

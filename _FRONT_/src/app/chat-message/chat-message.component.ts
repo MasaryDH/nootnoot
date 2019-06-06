@@ -45,7 +45,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
       delete msg["message"];
 
       //send message to sockets
-      this.messages.push("<p>" +usernameMe+ ": " + msg[usernameMe]+"</p>");
+      this.messages.push("<p><span>" +usernameMe+ ":</span><br>" + msg[usernameMe]+"</p>");
       //this.messages.push(msg[usernameMe]);
       console.log("Response from websocket: " + msg);
     });
