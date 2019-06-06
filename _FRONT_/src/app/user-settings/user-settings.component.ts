@@ -67,7 +67,6 @@ export class UserSettingsComponent {
 
   // ----- DELETE -----
   deleteUser(id){
-    let auth = this.authService.isAuthenticated();
     // delete call + responseType = give response as text
     this.http.delete(this.DELETE_SERVER_URL+id, {responseType: 'text'})
     .subscribe((resultDelete) => {
