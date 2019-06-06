@@ -77,6 +77,12 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     elem.value = null;
   }
 
+   //append clicked smileys to textarea
+   appendEmoji(emoji){
+    let elem = document.querySelector("#chatMessage") as HTMLInputElement;
+    elem.value += emoji;
+  }
+
   //open smiley emotions
   openModalSmiley(){
     let modal = document.getElementById("modalSmiley");
@@ -97,9 +103,14 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     modal.style.display = "none";
   }
 
-  appendEmoji(emoji){
-    let elem = document.querySelector("#chatMessage") as HTMLInputElement;
-    elem.value += emoji;
+  //open food and drinks emotions
+  openModalFood(){
+    let modal = document.getElementById("modalFood");
+    modal.style.display = "block";
+  }
+  closeModalFood(){
+    let modal = document.getElementById("modalFood");
+    modal.style.display = "none";
   }
 
   ngOnDestroy() {
