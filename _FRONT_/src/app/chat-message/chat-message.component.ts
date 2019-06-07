@@ -22,6 +22,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
   messages = [];
   emojis = emoji;
   order: string = "order";
+  audio;
   constructor(private chat: ChatService, private http: HttpClient, private authService: AuthService) {
     // get data when refreshed
     this.getRequest();
@@ -43,6 +44,13 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
       //send message to sockets
       this.messages.push(`${msg.name}: ${msg.message}`);
       console.log("Response from websocket: " + msg);
+      let usernameSearch = this.users.find(x=>x.iduser == this.idtoken);
+      let username = usernameSearch.username;
+
+      if (username != msg["name"]){
+        this.playAudio();
+      }
+      
     });
   }
 
@@ -75,6 +83,13 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
   appendEmoji(emoji){
     let elem = document.querySelector("#chatMessage") as HTMLInputElement;
     elem.value += emoji;
+  }
+
+  playAudio(){
+    this.audio = new Audio();
+    this.audio.src = "../../assets/sounds/msn-sound.mp3";
+    this.audio.load();
+    this.audio.play();
   }
 
   //* M O D A L S
@@ -157,13 +172,6 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     let modal = document.getElementById("modalFlag");
     modal.style.display = "none";
   }
-
-  // playAudio(){
-  //   this.audio = new Audio();
-  //   this.audio.src = "../../assets/sounds/msn-sound.mp3";
-  //   this.audio.load();
-  //   this.audio.play();
-  // }
 
 }
 
