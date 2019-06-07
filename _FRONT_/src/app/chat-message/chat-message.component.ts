@@ -64,6 +64,9 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     });
   }
 
+  ngOnDestroy() {
+  }
+
   sendMessage(message, event){
     //get value of textarea input
     let elem = document.querySelector("#chatMessage") as HTMLInputElement;
@@ -86,7 +89,8 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     elem.value += emoji;
   }
 
-  //open smiley emotions
+  //* M O D A L S
+  //open Smiley emotions
   openModalSmiley(){
     let modal = document.getElementById("modalSmiley");
     modal.style.display = "block";
@@ -96,7 +100,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     modal.style.display = "none";
   }
 
-  //open smiley emotions
+  //open Nature emotions
   openModalNature(){
     let modal = document.getElementById("modalNature");
     modal.style.display = "block";
@@ -106,7 +110,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     modal.style.display = "none";
   }
 
-  //open food and drinks emotions
+  //open Food and Drinks emotions
   openModalFood(){
     let modal = document.getElementById("modalFood");
     modal.style.display = "block";
@@ -116,7 +120,55 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     modal.style.display = "none";
   }
 
-  ngOnDestroy() {
+  //open Activity emotions
+  openModalActivity(){
+    let modal = document.getElementById("modalActivity");
+    modal.style.display = "block";
   }
+  closeModalActivity(){
+    let modal = document.getElementById("modalActivity");
+    modal.style.display = "none";
+  }
+
+  //open Places emotions
+  openModalPlaces(){
+    let modal = document.getElementById("modalPlaces");
+    modal.style.display = "block";
+  }
+  closeModalPlaces(){
+    let modal = document.getElementById("modalPlaces");
+    modal.style.display = "none";
+  }
+
+  //open Object emotions
+  openModalObject(){
+    let modal = document.getElementById("modalObject");
+    modal.style.display = "block";
+  }
+  closeModalObject(){
+    let modal = document.getElementById("modalObject");
+    modal.style.display = "none";
+  }
+
+  //open Symbol emotions
+  openModalSymbol(){
+    let modal = document.getElementById("modalSymbol");
+    modal.style.display = "block";
+  }
+  closeModalSymbol(){
+    let modal = document.getElementById("modalSymbol");
+    modal.style.display = "none";
+  }
+
+  //open Flag emotions
+  openModalFlag(){
+    let modal = document.getElementById("modalFlag");
+    modal.style.display = "block";
+  }
+  closeModalFlag(){
+    let modal = document.getElementById("modalFlag");
+    modal.style.display = "none";
+  }
+
 }
 

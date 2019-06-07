@@ -22,7 +22,7 @@
   <button id="mobileSend" (click)="sendMessage(chatMessage.value, $event)"><span class="fas fa-paper-plane"></span></button>
 </div>
 
-
+<!-- MODALS -->
 <div id="modalSmiley" class="modalSmiley" style="display: none">
     <div class="modal-content" style="overflow: auto;max-height: 630px;">
         <span class="close" (click)="closeModalSmiley()">&times;</span>
@@ -66,47 +66,79 @@
           </ng-container>
         </div>
     </div>
-</div>  
+</div> 
 
-    <!-- <h3>Eten en drinken</h3>
-    <ng-container *ngFor="let emoji of emojis" >
-      <div *ngIf="emoji.category === 'd' ">
-      <p >{{ emoji.emoji }}</p>
-      <p>{{ emoji.shortname }}</p>
-      </div>
-    </ng-container>
-    <h3>Activiteit</h3>
-    <ng-container *ngFor="let emoji of emojis" >
-      <div *ngIf="emoji.category === 'a' ">
-      <p >{{ emoji.emoji }}</p>
-      <p>{{ emoji.shortname }}</p>
-      </div>
-    </ng-container>
-    <h3>Reizen en plaatsen</h3>
-    <ng-container *ngFor="let emoji of emojis" >
-      <div *ngIf="emoji.category === 't' ">
-      <p >{{ emoji.emoji }}</p>
-      <p>{{ emoji.shortname }}</p>
-      </div>
-    </ng-container>
-    <h3>Objecten</h3>
-    <ng-container *ngFor="let emoji of emojis" >
-      <div *ngIf="emoji.category === 'o' ">
-      <p >{{ emoji.emoji }}</p>
-      <p>{{ emoji.shortname }}</p>
-      </div>
-    </ng-container>
-    <h3>Symbolen</h3>
-    <ng-container *ngFor="let emoji of emojis" >
-      <div *ngIf="emoji.category === 's' ">
-      <p >{{ emoji.emoji }}</p>
-      <p>{{ emoji.shortname }}</p>
-      </div>
-    </ng-container>
-    <h3>Vlaggen</h3>
-    <ng-container *ngFor="let emoji of emojis" >
-      <div *ngIf="emoji.category === 'f' ">
-      <p >{{ emoji.emoji }}</p>
-      <p>{{ emoji.shortname }}</p>
-      </div>
-    </ng-container> -->
+<div id="modalActivity" class="modalSmiley" style="display: none">
+    <div class="modal-content" style="overflow: auto;max-height: 630px;">
+        <span class="close" (click)="closeModalActivity()">&times;</span>
+        <h3 style="text-align: center;">Activiteit</h3>
+        <div class="modal-content" style="display: flex; flex-wrap: wrap; width: 89%; padding: 30px; border: none;">
+          <ng-container *ngFor="let emoji of emojis | orderBy: order" >
+            <div *ngIf="emoji.category === 'a'" style="text-align: center;">
+            <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
+            <p></p>
+            </div>
+          </ng-container>
+        </div>
+    </div>
+</div> 
+
+<div id="modalPlaces" class="modalSmiley" style="display: none">
+    <div class="modal-content" style="overflow: auto;max-height: 630px;">
+        <span class="close" (click)="closeModalPlaces()">&times;</span>
+        <h3 style="text-align: center;">Reizen en plaatsen</h3>
+        <div class="modal-content" style="display: flex; flex-wrap: wrap; width: 89%; padding: 30px; border: none;">
+          <ng-container *ngFor="let emoji of emojis | orderBy: order" >
+            <div *ngIf="emoji.category === 't'" style="text-align: center;">
+            <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
+            <p></p>
+            </div>
+          </ng-container>
+        </div>
+    </div>
+</div> 
+
+<div id="modalObject" class="modalSmiley" style="display: none">
+    <div class="modal-content" style="overflow: auto;max-height: 630px;">
+        <span class="close" (click)="closeModalObject()">&times;</span>
+        <h3 style="text-align: center;">Objecten</h3>
+        <div class="modal-content" style="display: flex; flex-wrap: wrap; width: 89%; padding: 30px; border: none;">
+          <ng-container *ngFor="let emoji of emojis | orderBy: order" >
+            <div *ngIf="emoji.category === 'o'" style="text-align: center;">
+            <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
+            <p></p>
+            </div>
+          </ng-container>
+        </div>
+    </div>
+</div>
+
+<div id="modalSymbol" class="modalSmiley" style="display: none">
+    <div class="modal-content" style="overflow: auto;max-height: 630px;">
+        <span class="close" (click)="closeModalSymbol()">&times;</span>
+        <h3 style="text-align: center;">Symbolen</h3>
+        <div class="modal-content" style="display: flex; flex-wrap: wrap; width: 89%; padding: 30px; border: none;">
+          <ng-container *ngFor="let emoji of emojis | orderBy: order" >
+            <div *ngIf="emoji.category === 's'" style="text-align: center;">
+            <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
+            <p></p>
+            </div>
+          </ng-container>
+        </div>
+    </div>
+</div>
+
+<div id="modalFlag" class="modalSmiley" style="display: none">
+    <div class="modal-content" style="overflow: auto;max-height: 630px;">
+        <span class="close" (click)="closeModalFlag()">&times;</span>
+        <h3 style="text-align: center;">Vlaggen</h3>
+        <div class="modal-content" style="display: flex; flex-wrap: wrap; width: 89%; padding: 30px; border: none;">
+          <ng-container *ngFor="let emoji of emojis | orderBy: order" >
+            <div *ngIf="emoji.category === 'f'" style="text-align: center;">
+            <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
+            <p></p>
+            </div>
+          </ng-container>
+        </div>
+    </div>
+</div>
