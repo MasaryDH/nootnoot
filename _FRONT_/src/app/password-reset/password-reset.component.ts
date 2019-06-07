@@ -12,9 +12,10 @@ export class PasswordResetComponent{
 
   RESET_SERVER_URL = "http://localhost/nootnoot/resetuser";
 
-  constructor(private http: HttpClient, private router: Router) { 
+  //error build
+  user_email: string;
 
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   // ----- POST -----
   onSubmitReset(reset){

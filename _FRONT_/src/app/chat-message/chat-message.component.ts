@@ -22,17 +22,10 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
   messages = [];
   emojis = emoji;
   order: string = "order";
-  // emoji = this.emojis;
 
   constructor(private chat: ChatService, private http: HttpClient, private authService: AuthService) {
     // get data when refreshed
     this.getRequest();
-
-    console.log(this.emojis);
-    // let test = this.emoji.filter(item => item.name)[0];
-    // console.log(test.emoji);
-    // console.log(test.shortname);
-    
   }
 
   // ----- GET -----

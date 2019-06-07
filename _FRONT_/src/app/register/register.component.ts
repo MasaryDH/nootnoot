@@ -13,7 +13,15 @@ export class RegisterComponent {
 
   POST_SERVER_URL = "http://localhost/nootnoot/users";
 
-  constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
+  //error build
+  user_firstname: string;
+  user_lastname: string;
+  username: string;
+  user_email: string;
+  user_password: string;
+  user_passwordCheck: string;
+
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {}
 
   // ----- POST -----
   onSubmit(person){
