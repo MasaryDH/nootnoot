@@ -30,7 +30,7 @@ nav {
                 margin: 5% 3% 3% 0;
             }
 
-            @media screen and (min-width: 481px) and (max-width: 767px) {
+            @media screen and (min-width: 481px) and (max-width: $tablet_portrait) {
                 margin: 3% 3% 3% 0;
             }
 
