@@ -22,7 +22,6 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
   messages = [];
   emojis = emoji;
   order: string = "order";
-
   constructor(private chat: ChatService, private http: HttpClient, private authService: AuthService) {
     // get data when refreshed
     this.getRequest();
@@ -33,7 +32,6 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     // get call + responseType = give response as text
     this.http.get(this.GET_SERVER_URL, {responseType: 'json'})
     .subscribe((result) => {
-      //console.log(JSON.stringify(result))
       // put data in to variable for html-usage
       this.users = result;
     });
@@ -42,17 +40,8 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.chat.messages.subscribe(msg => {
-      //get info loggedin user
-      let usernameSearch = this.users.find(x=>x.iduser == this.idtoken);
-      let usernameMe = usernameSearch.username;
-
-      //edit message
-      msg[usernameMe] = msg["message"];
-      delete msg["message"];
-
       //send message to sockets
-      this.messages.push("<p><span>" +usernameMe+ ":</span><br>" + msg[usernameMe]+"</p>");
-      //this.messages.push(msg[usernameMe]);
+      this.messages.push(`${msg.name}: ${msg.message}`);
       console.log("Response from websocket: " + msg);
     });
   }
@@ -68,16 +57,22 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     
     //check if textarea is empty
     if(elem.value != "" && elem.value != null){
-      console.log('new message to websocket: '+ message);
-      this.chat.sendMsg(message);
+
+      //get info loggedin user
+      let usernameSearch = this.users.find(x=>x.iduser == this.idtoken);
+      let username = usernameSearch.username;
+
+      // Send Logged-in user + Message 
+      // console.log('new message to websocket: '+ message);
+      this.chat.sendMsg(JSON.stringify({'message':message,'user':username}));
     }
 
     //clearing textarea after message sent
     elem.value = null;
   }
 
-   //append clicked smileys to textarea
-   appendEmoji(emoji){
+  //append clicked smileys to textarea
+  appendEmoji(emoji){
     let elem = document.querySelector("#chatMessage") as HTMLInputElement;
     elem.value += emoji;
   }
@@ -162,6 +157,13 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     let modal = document.getElementById("modalFlag");
     modal.style.display = "none";
   }
+
+  // playAudio(){
+  //   this.audio = new Audio();
+  //   this.audio.src = "../../assets/sounds/msn-sound.mp3";
+  //   this.audio.load();
+  //   this.audio.play();
+  // }
 
 }
 

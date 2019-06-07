@@ -11,26 +11,29 @@ class Chat implements MessageComponentInterface {
 
     public function __construct() {
         $this->clients = new \SplObjectStorage;
+        echo "<< Server has started >>\n";
     }
 
     public function onOpen(ConnectionInterface $conn) {
         //store the new connection
         $this->clients->attach($conn);
-        echo "someone connected\n";
+        echo "<< Someone connected to the server >>\n";
     }
 
 
     public function onMessage(ConnectionInterface $from, $msg) {
-        echo $msg;
+        $test = array();
+        $test = json_decode($msg);
+        echo "--New Message|| ".json_decode($test)->user.": ".json_decode($test)->message."\n\n";
         //send the message to all the other clients except the one who sent.
         foreach ($this->clients as $client) {
-                $client->send(json_decode($msg));
+                $client->send($test);
         }
     }
 
     public function onClose(ConnectionInterface $conn) {
         $this->clients->detach($conn);
-        echo "someone has disconnected";
+        echo "<< Someone has disconnected >>\n";
     }
 
 
