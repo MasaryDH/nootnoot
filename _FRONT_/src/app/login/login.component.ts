@@ -8,9 +8,15 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent {
 
   LOGIN_SERVER_URL = "http://localhost/nootnoot/loginuser";
+
+  //error build
+  user_email: string;
+  user_password: string;
+  iduser;
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) { 
     //if user is logged in, redirect to chat

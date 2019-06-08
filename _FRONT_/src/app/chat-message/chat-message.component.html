@@ -1,13 +1,153 @@
-<div id="chatScreen">
-    <!-- <li class="bericht" *ngFor = "let msg of messages">{{msg|json}}</li> -->
+<div id="chatScreen"  #list [scrollTop]="list.scrollHeight">
+    <div id="oldMessages" style="display: none;">
+      <div class="bericht" *ngFor = "let text of texts">
+          <p class="oldText" title="{{text.datesent}}">{{text.username | emojify}}: {{text.content | emojify}}</p>
+      </div>
+    </div>
+
+    <hr>
+    <a class="hrInfo" (click)="showOldMessages()">Oudere berichten <i id="arrowOldMessage">&#9656;</i></a>
+    <br>
+    
     <div class="bericht" *ngFor = "let msg of messages" [innerHtml]="msg | emojify"></div>
 </div>
 
 <div class="sendContainer">
-  <div id="emoticonBar"></div>
+  <div id="emoticonBar">
+    <a (click)="openModalSmiley()"><span class="fa fa-smile" title="Smileys"></span></a>
+    <a (click)="openModalNature()"><span class="fa fa-paw" title="Dieren en natuur"></span></a>
+    <a (click)="openModalFood()"><span class="fa fa-beer" title="Eten en drinken"></span></a>
+    <a (click)="openModalActivity()"><span class="fas fa-futbol" title="Activiteiten"></span></a>
+    <a (click)="openModalPlaces()"><span class="fas fa-plane" title="Reizen en plaatsen"></span></a>
+    <a (click)="openModalObject()"><span class="far fa-lightbulb" title="Objecten"></span></a>
+    <a (click)="openModalSymbol()"><span class="fa fa-heart" title="Symbolen"></span></a>
+    <a (click)="openModalFlag()"><span class="far fa-flag" title="Vlaggen"></span></a>
+  </div>
+ 
   <div id="textContainer">
     <textarea #chatMessage (keydown.enter)="sendMessage(chatMessage.value, $event)" id="chatMessage" [ngModel]="chatMessage.value | emojify" (ngModelChange)="chatMessage.value = $event"></textarea>
   </div>
   <button id="verzendChat" (click)="sendMessage(chatMessage.value, $event)">Verzenden</button>
   <button id="mobileSend" (click)="sendMessage(chatMessage.value, $event)"><span class="fas fa-paper-plane"></span></button>
+</div>
+
+<!-- MODALS -->
+<div id="modalSmiley" class="modalSmiley" style="display: none">
+    <div class="modal-content">
+        <span class="close" (click)="closeModalSmiley()">&times;</span>
+        <h3 style="text-align: center;">Smileys</h3>
+        <div class="modal-emoji">
+          <ng-container *ngFor="let emoji of emojis | orderBy: order">
+            <div *ngIf="emoji.category === 'p' " style="text-align: center;">
+            <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
+            <p></p>
+            </div>
+          </ng-container>
+        </div>
+    </div>
+</div>  
+
+<div id="modalNature" class="modalSmiley" style="display: none">
+    <div class="modal-content">
+        <span class="close" (click)="closeModalNature()">&times;</span>
+        <h3 style="text-align: center;">Dieren en natuur</h3>
+        <div class="modal-emoji">
+          <ng-container *ngFor="let emoji of emojis | orderBy: order" >
+            <div *ngIf="emoji.category === 'n'" style="text-align: center;">
+            <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
+            <p></p>
+            </div>
+          </ng-container>
+        </div>
+    </div>
+</div>  
+
+<div id="modalFood" class="modalSmiley" style="display: none">
+    <div class="modal-content">
+        <span class="close" (click)="closeModalFood()">&times;</span>
+        <h3 style="text-align: center;">Eten en drinken</h3>
+        <div class="modal-emoji">
+          <ng-container *ngFor="let emoji of emojis | orderBy: order" >
+            <div *ngIf="emoji.category === 'd'" style="text-align: center;">
+            <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
+            <p></p>
+            </div>
+          </ng-container>
+        </div>
+    </div>
+</div> 
+
+<div id="modalActivity" class="modalSmiley" style="display: none">
+    <div class="modal-content">
+        <span class="close" (click)="closeModalActivity()">&times;</span>
+        <h3 style="text-align: center;">Activiteiten</h3>
+        <div class="modal-emoji">
+          <ng-container *ngFor="let emoji of emojis | orderBy: order" >
+            <div *ngIf="emoji.category === 'a'" style="text-align: center;">
+            <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
+            <p></p>
+            </div>
+          </ng-container>
+        </div>
+    </div>
+</div> 
+
+<div id="modalPlaces" class="modalSmiley" style="display: none">
+    <div class="modal-content">
+        <span class="close" (click)="closeModalPlaces()">&times;</span>
+        <h3 style="text-align: center;">Reizen en plaatsen</h3>
+        <div class="modal-emoji">
+          <ng-container *ngFor="let emoji of emojis | orderBy: order" >
+            <div *ngIf="emoji.category === 't'" style="text-align: center;">
+            <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
+            <p></p>
+            </div>
+          </ng-container>
+        </div>
+    </div>
+</div> 
+
+<div id="modalObject" class="modalSmiley" style="display: none">
+    <div class="modal-content">
+        <span class="close" (click)="closeModalObject()">&times;</span>
+        <h3 style="text-align: center;">Objecten</h3>
+        <div class="modal-emoji">
+          <ng-container *ngFor="let emoji of emojis | orderBy: order" >
+            <div *ngIf="emoji.category === 'o'" style="text-align: center;">
+            <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
+            <p></p>
+            </div>
+          </ng-container>
+        </div>
+    </div>
+</div>
+
+<div id="modalSymbol" class="modalSmiley" style="display: none">
+    <div class="modal-content">
+        <span class="close" (click)="closeModalSymbol()">&times;</span>
+        <h3 style="text-align: center;">Symbolen</h3>
+        <div class="modal-emoji">
+          <ng-container *ngFor="let emoji of emojis | orderBy: order" >
+            <div *ngIf="emoji.category === 's'" style="text-align: center;">
+            <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
+            <p></p>
+            </div>
+          </ng-container>
+        </div>
+    </div>
+</div>
+
+<div id="modalFlag" class="modalSmiley" style="display: none">
+    <div class="modal-content">
+        <span class="close" (click)="closeModalFlag()">&times;</span>
+        <h3 style="text-align: center;">Vlaggen</h3>
+        <div class="modal-emoji">
+          <ng-container *ngFor="let emoji of emojis | orderBy: order" >
+            <div *ngIf="emoji.category === 'f'" style="text-align: center;">
+            <button title="{{emoji.name}} | {{emoji.shortname}}" value="{{emoji.shortname}}" #sendemoji (click)="appendEmoji(sendemoji.value)" style="border: none; width: 35px;height: 35px;padding: 5px;">{{ emoji.emoji }}</button>
+            <p></p>
+            </div>
+          </ng-container>
+        </div>
+    </div>
 </div>
