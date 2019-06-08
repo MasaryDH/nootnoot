@@ -37,14 +37,36 @@ export class UsersComponent {
     });
   }
 
-  // ----- DELETE -----
+  // // ----- DELETE -----
+  // deleteRequest(id){
+  //   // delete call + responseType = give response as text
+  //   this.http.delete(this.DELETE_SERVER_URL+id, {responseType: 'text'})
+  //   .subscribe((resultDelete) => {
+  //     console.log(JSON.stringify(resultDelete));
+
+  //     alert('Gebruiker '+id+' verijwdert');
+
+  //     // remove deleted user from table
+  //     document.getElementById("tr"+id).remove();
+  //   });
+  // }
+
+  //token
+  token = localStorage.getItem('token');
+  //token id
+  idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
+  //token email
+  emailtoken = (JSON.parse(localStorage.getItem('token')))['user_email'];
+
+// ----- DELETE -----
   deleteRequest(id){
-    // delete call + responseType = give response as text
-    this.http.delete(this.DELETE_SERVER_URL+id, {responseType: 'text'})
+    let data = {iduser:id, user_email:this.emailtoken};
+    // delete call 
+    this.http.post(this.DELETE_SERVER_URL+id, data)
     .subscribe((resultDelete) => {
       console.log(JSON.stringify(resultDelete));
 
-      alert('Gebruiker '+id+' verijwdert');
+      alert('Gebruiker '+ id +' verwijdert');
 
       // remove deleted user from table
       document.getElementById("tr"+id).remove();

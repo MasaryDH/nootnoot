@@ -141,6 +141,23 @@ textarea {
     padding-left: 10px;
   }
 
+  .oldText{
+    color:rgb(177, 177, 177);
+  }
+
+  .hrInfo{
+    text-align: center;
+    color: rgb(177, 177, 177);
+  }
+
+  hr{
+    clear:both;
+    display:block;
+    width: 100%;               
+    background-color: lightgray;
+    height: 1px;
+  }
+
 }
 
 // The Modal Settings

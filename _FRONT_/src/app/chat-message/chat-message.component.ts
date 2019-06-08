@@ -17,7 +17,10 @@ import { EmojifyModule } from 'angular-emojify';
 export class ChatMessageComponent  implements OnInit, OnDestroy {
 
   GET_SERVER_URL = "http://localhost/nootnoot/users";
+  GETMESSAGE_SERVER_URL = "http://localhost/nootnoot/messages";
+  POSTMESSAGE_SERVER_URL = "http://localhost/nootnoot/message";
   users: any;
+  texts: any;
   idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
   messages = [];
   emojis = emoji;
@@ -36,21 +39,45 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
       // put data in to variable for html-usage
       this.users = result;
     });
-   
+
+    // get messages call + responseType = give response as text
+    this.http.get(this.GETMESSAGE_SERVER_URL, {responseType: 'json'})
+    .subscribe((resultmsg) => {
+      // put data in to variable for html-usage
+      this.texts = resultmsg;
+    });
   }
 
   ngOnInit() {
     this.chat.messages.subscribe(msg => {
+     
+      //get date now when message is send
+      var today = new Date();
+      var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      var dateTime = date+' '+time;
+
       //send message to sockets
-      this.messages.push(`${msg.name}: ${msg.message}`);
+      this.messages.push(`<p title="`+dateTime+`">${msg.name}: ${msg.message}</p>`);
       console.log("Response from websocket: " + msg);
       let usernameSearch = this.users.find(x=>x.iduser == this.idtoken);
       let username = usernameSearch.username;
 
+      // play sound if there is e new message
       if (username != msg["name"]){
         this.playAudio();
+
+        // creating message data to send with post
+        let useridSearch = this.users.find(x=>x.username == msg["name"]);
+        let userid = useridSearch.iduser;
+        let data = {content: msg["message"], username: msg["name"], user_iduser: userid};
+
+        // POST call
+        this.http.post(this.POSTMESSAGE_SERVER_URL, data)
+        .subscribe((resultPut) => {
+        console.log(resultPut)
+        });
       }
-      
     });
   }
 
@@ -58,9 +85,9 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
   }
 
   sendMessage(message, event){
+
     //get value of textarea input
     let elem = document.querySelector("#chatMessage") as HTMLInputElement;
-
     event.preventDefault();
     
     //check if textarea is empty
@@ -79,12 +106,30 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     elem.value = null;
   }
 
+  showOldMessages(){
+    let elem = document.getElementById("oldMessages");
+    let hide = elem.style.display =="none";
+
+    // change arrow
+    let arrow = document.getElementById('arrowOldMessage');
+    arrow.innerHTML = '&#9656;';
+    if (hide) {
+        elem.style.display="block";
+        arrow.innerHTML = '&#9662;';
+   } 
+   else {
+      elem.style.display="none";
+      arrow.innerHTML = '&#9656;';
+   }
+}
+
   //append clicked smileys to textarea
   appendEmoji(emoji){
     let elem = document.querySelector("#chatMessage") as HTMLInputElement;
     elem.value += emoji;
   }
 
+  //sound to play
   playAudio(){
     this.audio = new Audio();
     this.audio.src = "../../assets/sounds/msn-sound.mp3";

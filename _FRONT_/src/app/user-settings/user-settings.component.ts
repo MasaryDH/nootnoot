@@ -29,10 +29,6 @@ export class UserSettingsComponent {
   name;
   selectedFile = null;
   pingu_profile_picture;
-
-  // token id
-  idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
-
   pingu_profile_pic = [
     { key: "pingu", value:"Pingu" }, { key: "bril", value:"Nerdy-pingu" },
     { key: "strikje", value:"Fancy-pingu" }, { key: "clown", value:"Clown-pingu" },
@@ -65,10 +61,42 @@ export class UserSettingsComponent {
     });
   }
 
-  // ----- DELETE -----
+  // // ----- DELETE -----
+  // deleteUser(id){
+  //   // delete call + responseType = give response as text
+  //   this.http.delete(this.DELETE_SERVER_URL+id, {responseType: 'text'})
+  //   .subscribe((resultDelete) => {
+  //     console.log(JSON.stringify(resultDelete));
+
+  //     // remove deleted user from table
+  //     document.getElementById("tr"+id).remove();
+
+  //     // remove user
+  //     let token = localStorage.getItem('token');
+  //     this.http.post(this.LOGOUT_SERVER_URL, token)
+  //     .subscribe((status)=> {
+  //       if(status == true) {
+  //         this.authService.logout();
+  //       } else {
+  //         alert("Uitloggen mislukt");
+  //       }
+  //     });
+
+  //   });
+  // }
+
+  //token
+  token = localStorage.getItem('token');
+  //token id
+  idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
+  //token email
+  emailtoken = (JSON.parse(localStorage.getItem('token')))['user_email'];
+
+// ----- DELETE -----
   deleteUser(id){
-    // delete call + responseType = give response as text
-    this.http.delete(this.DELETE_SERVER_URL+id, {responseType: 'text'})
+    let data = {iduser:this.idtoken, user_email:this.emailtoken};
+    // delete call 
+    this.http.post(this.DELETE_SERVER_URL+id, data)
     .subscribe((resultDelete) => {
       console.log(JSON.stringify(resultDelete));
 
@@ -76,10 +104,10 @@ export class UserSettingsComponent {
       document.getElementById("tr"+id).remove();
 
       // remove user
-      let token = localStorage.getItem('token');
-      this.http.post(this.LOGOUT_SERVER_URL, token)
+      this.http.post(this.LOGOUT_SERVER_URL, this.token)
       .subscribe((status)=> {
         if(status == true) {
+          //remove token & logout user
           this.authService.logout();
         } else {
           alert("Uitloggen mislukt");
