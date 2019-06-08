@@ -67,7 +67,10 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
       // play sound if there is e new message
       if (username != msg["name"]){
         this.playAudio();
+      }
 
+      //send only your new written text message
+      if (username == msg["name"]){
         // creating message data to send with post
         let useridSearch = this.users.find(x=>x.username == msg["name"]);
         let userid = useridSearch.iduser;
@@ -79,6 +82,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
         console.log(resultPut)
         });
       }
+      
     });
   }
 
