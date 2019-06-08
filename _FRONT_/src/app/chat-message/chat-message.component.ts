@@ -30,6 +30,8 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
   constructor(private chat: ChatService, private http: HttpClient, private authService: AuthService) {
     // get data when refreshed
     this.getRequest();
+
+    this.audio = new Audio("../../assets/sounds/msn-sound.mp3");
   }
 
   // ----- GET -----
@@ -66,7 +68,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
 
       // play sound if there is e new message
       if (username != msg["name"]){
-        this.playAudio();
+        this.audio.play();
       }
 
       //send only your new written text message
@@ -127,14 +129,6 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
   appendEmoji(emoji){
     let elem = document.querySelector("#chatMessage") as HTMLInputElement;
     elem.value += emoji;
-  }
-
-  //sound to play
-  playAudio(){
-    this.audio = new Audio();
-    this.audio.src = "../../assets/sounds/msn-sound.mp3";
-    this.audio.load();
-    this.audio.play();
   }
 
   ngOnDestroy() {
