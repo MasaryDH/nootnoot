@@ -105,7 +105,7 @@ textarea {
   border-top-left-radius: 5px;
   border: 1px solid black;
   background: #f3f3f3;
-  height: 3vh;
+  height: 4vh;
   margin-top: 1rem;
   width: 100%;
   padding: 0;
@@ -114,7 +114,7 @@ textarea {
     height: 5vh;
   }
 
-  a{
+  a {
     margin: 10px 15px;
   }
 
@@ -137,12 +137,13 @@ textarea {
     font-weight: bold;
   }
 
-  .bericht{
+  .bericht {
     padding-left: 10px;
   }
 
-  .oldText{
+  .oldText {
     color:rgb(177, 177, 177);
+    animation: animateOldMsg .5s;
   }
 
   .hrInfo{
@@ -150,7 +151,7 @@ textarea {
     color: rgb(177, 177, 177);
   }
 
-  hr{
+  hr {
     clear:both;
     display:block;
     width: 100%;               
@@ -198,18 +199,55 @@ textarea {
     .modal-content {
       background-color: #fefefe;
       margin: auto;
-      padding: 30px;
-      border: 1px solid #888;
-      width: 70%;
-  
+      width: 89%; 
+      padding: 30px; 
+      border: none;
+
       @media screen and (max-width: 767px) {
         padding: 0;
         width: 100vw;
-        height: auto;
+        min-height: 100vh;
       }
   
       @media (min-width: $tablet_portrait) and (max-width: $tablet_landscape) {
         width: 75vw;
+      }
+
+      .modal-emoji {
+        display: flex; 
+        flex-wrap: wrap;
+
+        //mobile
+        @media screen and (max-width: 767px) {
+          margin: auto;
+          width: 94vw;
+        }
+
+        @media screen and (max-width: 767px) and (orientation: landscape) {
+          width: 92vw;
+        }
+    
+        //tablet
+        @media (min-width: $tablet_portrait) and (max-width: $tablet_landscape) {
+          margin-left: 10px;
+          width: 77vw;
+        }
+
+        @media (min-width: $tablet_portrait) and (max-width: $tablet_landscape) and (orientation: landscape) {
+          margin-left: 0;
+          width: 77vw;
+        }
+
+        @media (min-width: $tablet_landscape) and (max-width: 1366px) {
+          margin-left: 0;
+          width: 77vw;
+        }
+
+        @media (min-width: $tablet_landscape) and (max-width: 1366px) and (orientation: landscape) {
+          margin-left: 10px;
+          width: 89vw;
+        }
+
       }
       
       // The Close Button
@@ -232,6 +270,10 @@ textarea {
         text-decoration: none;
         cursor: pointer;
       }
+
+      h3 {
+        padding: 1.5rem 0;
+      }
     }
   }
   
@@ -240,4 +282,10 @@ textarea {
   @keyframes animateModal {
     from {top: -300px; opacity: 0}
     to {top: 0; opacity: 1}
+  }
+
+  /* Old messages animation */
+  @keyframes animateOldMsg {
+    from {opacity: 0}
+    to {opacity: 1}
   }

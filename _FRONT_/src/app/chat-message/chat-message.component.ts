@@ -26,12 +26,16 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
   emojis = emoji;
   order: string = "order";
   audio;
+  interval;
+  count = 0;
 
   constructor(private chat: ChatService, private http: HttpClient, private authService: AuthService) {
     // get data when refreshed
     this.getRequest();
-
+    //load notification sound
     this.audio = new Audio("../../assets/sounds/msn-sound.mp3");
+
+    this.checkIsActive();
   }
 
   // ----- GET -----
@@ -66,9 +70,11 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
       let usernameSearch = this.users.find(x=>x.iduser == this.idtoken);
       let username = usernameSearch.username;
 
-      // play sound if there is e new message
+      // play sound if there is a new message
       if (username != msg["name"]){
         this.audio.play();
+        this.setTitle();
+        navigator.vibrate([1000, 500, 1000]);
       }
 
       //send only your new written text message
@@ -104,7 +110,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
       // console.log('new message to websocket: '+ message);
       this.chat.sendMsg(JSON.stringify({'message':message,'user':username}));
     }
-    //clearing textarea after message sent
+    //clearing textarea after message send
     elem.value = null;
   }
 
@@ -129,6 +135,26 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
   appendEmoji(emoji){
     let elem = document.querySelector("#chatMessage") as HTMLInputElement;
     elem.value += emoji;
+  }
+
+  //change title browser tab on incoming message only if browser tab is inactive
+  setTitle() {
+    this.count++;
+    if(document.hidden){
+      document.title = "("+ this.count +") | NootNoot";
+    } else {
+      document.title = "NootNoot";
+    }
+  }
+
+  //check if browser tab is active
+  checkIsActive() {
+    this.interval = setInterval(() => {
+      if(!document.hidden){
+        document.title = "NootNoot";
+        this.count = 0;
+      }
+    }, 1000);
   }
 
   ngOnDestroy() {

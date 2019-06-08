@@ -449,6 +449,7 @@
 	{"emoji": "🚩", "name": "triangular_flag_on_post", "shortname": ":triangular_flag_on_post:", "unicode": "1f6a9", "html": "&#128681;", "category": "o", "order": "2182"},
 	{"emoji": "🔄", "name": "arrows_counterclockwise", "shortname": ":arrows_counterclockwise:", "unicode": "1f504", "html": "&#128260;", "category": "s", "order": "2017"},
 	{"emoji": "🐎", "name": "racehorse", "shortname": ":racehorse:", "unicode": "1f40e", "html": "&#128014;", "category": "n", "order": "1357"},
+	{"emoji": "🦄", "name": "unicorn_face", "shortname": ":unicorn_face:", "unicode": "1f984", "html": "&#129412;", "category": "n", "order": "1358"},
 	{"emoji": "🍤", "name": "fried_shrimp", "shortname": ":fried_shrimp:", "unicode": "1f364", "html": "&#127844;", "category": "d", "order": "1505"},
 	{"emoji": "🌄", "name": "sunrise_over_mountains", "shortname": ":sunrise_over_mountains:", "unicode": "1f304", "html": "&#127748;", "category": "t", "order": "1586"},
 	{"emoji": "🌋", "name": "volcano", "shortname": ":volcano:", "unicode": "1f30b", "html": "&#127755;", "category": "t", "order": "1546"},

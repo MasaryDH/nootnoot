@@ -4,7 +4,7 @@
   padding: 2rem 2rem 0 2rem;
   width: 100%;
 
-  @media screen and(max-width: $tablet_portrait){
+  @media screen and (max-width: $tablet_portrait){
     padding: 4rem 1rem 1rem 1rem;
   }
 
@@ -20,6 +20,7 @@
   flex-direction: column;
   border: 1px solid white;
   border-radius: 10px;
+  background: $c_status;
 
   //mobile
   @media screen and (max-width: $sm_landscape) {
@@ -45,6 +46,7 @@
 
 #hamburgermenu {
   position: relative;
+  animation-direction: alternate;
 
   span {
     position: absolute;
@@ -105,8 +107,10 @@
   padding: 10px 30px;
   width: 25vw;
   min-height: 95vh;
-  background: #202020;
+  background: $c_status;
   z-index: 501;  
+  animation: animateStatus .5s;
+  animation-direction: normal, reverse;
 
   //mobile
   @media screen and (max-width: $sm_landscape) {
@@ -123,13 +127,6 @@
     padding-top: 40px;
   }
 
-  //tablet portrait
-  // @media (min-width: $tablet_portrait) and (max-width: $tablet_landscape) {
-  //   display: none;
-  //   width: 45vw;
-  //   position: absolute;
-  //   padding-top: 40px;
-  // }
 
   .statusTitel{
     display: flex;
@@ -139,12 +136,12 @@
     color: #999999;
   }
 
-  table{
+  table {
   
-    td{
+    td {
         display: flex;
 
-        p{
+        p {
           color: #626262;
         }
     }
@@ -174,7 +171,7 @@
         box-shadow: 0px 0px 4px 2px #666;
       }
 
-    a{
+    a {
       padding-left: 7px;
 
       span[class="fa fa-edit"], span[class="fa fa-cog"]{
@@ -327,4 +324,10 @@
 @keyframes animateModal {
   from {top: -300px; opacity: 0}
   to {top: 0; opacity: 1}
+}
+
+/* Status animation */
+@keyframes animateStatus {
+  from {left: -300px; opacity: 0}
+  to {left: 0; opacity: 1}
 }
