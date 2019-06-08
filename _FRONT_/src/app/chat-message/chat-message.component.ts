@@ -26,6 +26,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
   emojis = emoji;
   order: string = "order";
   audio;
+
   constructor(private chat: ChatService, private http: HttpClient, private authService: AuthService) {
     // get data when refreshed
     this.getRequest();
@@ -81,11 +82,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-  }
-
   sendMessage(message, event){
-
     //get value of textarea input
     let elem = document.querySelector("#chatMessage") as HTMLInputElement;
     event.preventDefault();
@@ -101,7 +98,6 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
       // console.log('new message to websocket: '+ message);
       this.chat.sendMsg(JSON.stringify({'message':message,'user':username}));
     }
-
     //clearing textarea after message sent
     elem.value = null;
   }
@@ -116,12 +112,12 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     if (hide) {
         elem.style.display="block";
         arrow.innerHTML = '&#9662;';
-   } 
-   else {
+    } 
+    else {
       elem.style.display="none";
       arrow.innerHTML = '&#9656;';
-   }
-}
+    }
+  }
 
   //append clicked smileys to textarea
   appendEmoji(emoji){
@@ -135,6 +131,9 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     this.audio.src = "../../assets/sounds/msn-sound.mp3";
     this.audio.load();
     this.audio.play();
+  }
+
+  ngOnDestroy() {
   }
 
   //* M O D A L S

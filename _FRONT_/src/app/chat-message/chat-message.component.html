@@ -1,13 +1,14 @@
 <div id="chatScreen"  #list [scrollTop]="list.scrollHeight">
-    <!-- <li class="bericht" *ngFor = "let msg of messages">{{msg|json}}</li> -->
     <div id="oldMessages" style="display: none;">
       <div class="bericht" *ngFor = "let text of texts">
           <p class="oldText" title="{{text.datesent}}">{{text.username | emojify}}: {{text.content | emojify}}</p>
       </div>
     </div>
+
     <hr>
     <a class="hrInfo" (click)="showOldMessages()">Oudere berichten <i id="arrowOldMessage">&#9656;</i></a>
     <br>
+    
     <div class="bericht" *ngFor = "let msg of messages" [innerHtml]="msg | emojify"></div>
 </div>
 
