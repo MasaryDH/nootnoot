@@ -47,6 +47,20 @@ switch($request_method){
             $json_response = json_encode($response);
             echo $json_response;
             break;
+        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/messages') {
+            $sql = "SELECT message.user_iduser, message.datesent, message.content, user.iduser, user.username 
+                    FROM message
+                    INNER JOIN user
+                    ON message.user_iduser = user.iduser ";
+
+            $result = $conn->query($sql);
+            $response = array();
+            while($row = $result->fetch_assoc()){
+                $response[] = $row;
+            }
+            $json_response = json_encode($response);
+            echo $json_response;
+            break;
         }else {
             echo 'ERROR';
             break;
@@ -131,6 +145,10 @@ switch($request_method){
                 $sqlLoginTime = "INSERT INTO status_logging (user_iduser, loginTime)
                                VALUES ((SELECT iduser FROM user WHERE user_email = '".$_POST->user_email."'), NOW())";
                 $conn->query($sqlLoginTime);
+
+                //delete messages older than 5 days
+                $sqlDeleteOldMessage= "DELETE FROM message WHERE datesent < now() - interval 5 day";
+                $conn->query($sqlDeleteOldMessage);
 
                 //add status to object
                 $response->status = true;
@@ -232,21 +250,52 @@ switch($request_method){
             echo json_encode($response);
             break;
 
+        //------ OPSLAAN MESSAGES ------
+        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/message'){
+            $_POST = json_decode(file_get_contents('php://input'));
+            
+            // insert messages in database
+            $sqlMessage = "INSERT INTO message 
+                           SET content = '".$_POST->content."',
+                               datesent = NOW(),
+                               user_iduser = (SELECT iduser FROM user WHERE username = '".$_POST->username."' AND iduser = '".$_POST->user_iduser."' )";
+            $result = $conn->query($sqlMessage);
+
+        //------ DELETE ------
+        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/delete-user/'. $id){
+            // convert JSON to object
+            $_DELETE = json_decode(file_get_contents('php://input'));
+    
+            if($_DELETE->user_email != "" && $_DELETE->iduser != "") {
+                $sql = "DELETE FROM user WHERE iduser = $id";
+                $result = $conn->query($sql);
+
+                if($result->num_rows == 1){
+                    $response = json_encode(true);
+                } else {
+                    $response = json_encode(false);
+                }
+                // Send data to front
+                echo json_encode($response);
+                break;
+            } else {
+                echo 'Kan gebruiker niet verwijderen';
+            }
         } else {
             echo 'Mislukt';
             break;
         }
 
-    case "DELETE":
-        if($_SERVER["REQUEST_URI"] == '/nootnoot/user/'. $id){
-            $sql = "DELETE FROM user WHERE iduser = $id";
-            $result = $conn->query($sql);
-            echo 'Speler is verwijderd';
-            break;
-        } else {
-            echo 'Kan speler niet verwijderen';
-            break;
-        }
+    // case "DELETE":
+    //     if($_SERVER["REQUEST_URI"] == '/nootnoot/user/'. $id){
+    //         $sql = "DELETE FROM user WHERE iduser = $id";
+    //         $result = $conn->query($sql);
+    //         echo 'Speler is verwijderd';
+    //         break;
+    //     } else {
+    //         echo 'Kan speler niet verwijderen';
+    //         break;
+    //     }
 
     case "PUT":
         if($_SERVER["REQUEST_URI"] == '/nootnoot/user/'. $id){
