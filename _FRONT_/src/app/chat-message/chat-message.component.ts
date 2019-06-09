@@ -92,6 +92,9 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
           let buzzer = document.getElementsByTagName('html')[0];
           buzzer.classList.remove("buzzer");
         }, 2000);
+
+        this.setTitle();
+        navigator.vibrate([1000, 500, 1000]);
       }
 
       //check if message is a buzzer or message
