@@ -11,6 +11,7 @@ export class ChatComponent{
 
   GET_SERVER_URL = "http://localhost/nootnoot/users";
   LOGOUT_SERVER_URL = "http://localhost/nootnoot/logoutuser";
+  PUTSTATUS_SERVER_URL = "http://localhost/nootnoot/userstatus/";
   users: any;
   // token id
   idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
@@ -109,6 +110,42 @@ export class ChatComponent{
         this.authService.logout();
       } else {
         alert("uitloggen mislukt");
+      }
+    });
+  }
+
+  //put yourself on Idle
+  statusIdle(id){
+    let status = { status_idstatus:2 };
+    this.http.put(this.PUTSTATUS_SERVER_URL+id, status)
+    .subscribe((result) => {
+      if(result == true){
+        alert("U bent nu Afwezig");
+        //change icon to idle
+        let statusOnline = document.getElementById("Online"+id);
+        statusOnline.style.display = "none";
+        let statusIdle = document.getElementById("Idle"+id);
+        statusIdle.style.display = "block";
+      }else{
+        alert("Er is iets misgelopen bij het afwezig zetten");
+      }
+    });
+  }
+
+  //put yourself back to Online
+  statusOnline(id){
+    let status = { status_idstatus:1 };
+    this.http.put(this.PUTSTATUS_SERVER_URL+id, status)
+    .subscribe((result) => {
+      if(result == true){
+        alert("U bent nu Online");
+        //change icon to online
+        let statusOnline = document.getElementById("Online"+id);
+        statusOnline.style.display = "block";
+        let statusIdle = document.getElementById("Idle"+id);
+        statusIdle.style.display = "none";
+      }else{
+        alert("Er is iets misgelopen bij het online zetten");
       }
     });
   }

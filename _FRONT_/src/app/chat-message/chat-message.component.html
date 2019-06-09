@@ -22,12 +22,12 @@
     <a (click)="openModalObject()"><span class="far fa-lightbulb" title="Objecten"></span></a>
     <a (click)="openModalSymbol()"><span class="fa fa-heart" title="Symbolen"></span></a>
     <a (click)="openModalFlag()"><span class="far fa-flag" title="Vlaggen"></span></a>
-    <button id="buzzer" (click)="buzzer()" >((😵))</button>
   </div>
  
   <div id="textContainer">
     <textarea #chatMessage (keydown.enter)="sendMessage(chatMessage.value, $event)" id="chatMessage" [ngModel]="chatMessage.value | emojify" (ngModelChange)="chatMessage.value = $event"></textarea>
   </div>
+  <button id="buzzer" (click)="buzzer()" >((😵))</button>
   <button id="verzendChat" (click)="sendMessage(chatMessage.value, $event)">Verzenden</button>
   <button id="mobileSend" (click)="sendMessage(chatMessage.value, $event)"><span class="fas fa-paper-plane"></span></button>
 </div>

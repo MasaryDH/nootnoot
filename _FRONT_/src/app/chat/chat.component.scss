@@ -165,6 +165,11 @@
       background-color: $c_itsmeblue;
       box-shadow: 0px 0px 4px 1px $c_itsmeblue;
     }
+
+    #onlineOrange{
+      background-color: #ffa043;
+      box-shadow: 0px 0px 4px 1px #f9610d;
+    }
     
     #offline{
         background-color: gray;
@@ -174,7 +179,7 @@
     a {
       padding-left: 7px;
 
-      span[class="fa fa-edit"], span[class="fa fa-cog"]{
+      span[class="fa fa-edit"], span[class="fa fa-cog"], span[class="fas fa-toggle-off"], span[class="fas fa-toggle-on"]{
         color: gray;
         font-size: 12px;
         cursor: pointer;
