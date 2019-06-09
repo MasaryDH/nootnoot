@@ -14,9 +14,22 @@
               <td *ngIf="user.status_idstatus == 1" id="user{{user.iduser}}">
                   <span *ngIf="user.iduser ==  idtoken" class="dot"  id="onlineBlue"></span>
                   <span *ngIf="user.iduser !=  idtoken" class="dot"  id="online"></span>
-                  <p class="{{user.username}}">{{ user.username }}</p>
-                  <a (click)="openModalUserSettings()"><span *ngIf="user.iduser ==  idtoken" class="fa fa-edit"></span></a>
-                  <a (click)="openModalUsers()"><span *ngIf="user.iduser ==  idtoken && user.admin_idadminRights == 1" class="fa fa-cog"></span></a>
+                  <p title="{{user.user_description}}" class="{{user.username}}">{{ user.username }}</p>
+                  <a (click)="openModalUserSettings()" title="Edit"><span *ngIf="user.iduser ==  idtoken" class="fa fa-edit"></span></a>
+                  <a (click)="statusIdle(user.iduser)" id="Online{{user.iduser}}"  title="Online"><span *ngIf="user.iduser ==  idtoken" class="fas fa-toggle-off"></span></a>
+                  <a (click)="statusOnline(user.iduser)" id="Idle{{user.iduser}}"  title="Afwezig" style="display: none"><span *ngIf="user.iduser ==  idtoken" id="Online{{user.iduser}}" class="fas fa-toggle-on"></span></a>
+                  <a (click)="openModalUsers()" title="Admin Rights"><span *ngIf="user.iduser ==  idtoken && user.admin_idadminRights == 1" class="fa fa-cog"></span></a>
+              </td>
+            </tr>
+            <tr *ngIf="user.status_idstatus == 2">
+              <td *ngIf="user.status_idstatus == 2" id="user{{user.iduser}}">
+                  <span *ngIf="user.iduser ==  idtoken" class="dot"  id="onlineBlue"></span>
+                  <span *ngIf="user.iduser !=  idtoken" class="dot"  id="onlineOrange"></span>
+                  <p title="{{user.user_description}}" class="{{user.username}}">{{ user.username }}</p>
+                  <a (click)="openModalUserSettings()" title="Edit"><span *ngIf="user.iduser ==  idtoken" class="fa fa-edit"></span></a>
+                  <a (click)="statusIdle(user.iduser)" id="Online{{user.iduser}}"  title="Online" style="display: none"><span *ngIf="user.iduser ==  idtoken" class="fas fa-toggle-off"></span></a>
+                  <a (click)="statusOnline(user.iduser)" id="Idle{{user.iduser}}"  title="Afwezig"><span *ngIf="user.iduser ==  idtoken" id="Online{{user.iduser}}" class="fas fa-toggle-on"></span></a>
+                  <a (click)="openModalUsers()" title="Admin Rights"><span *ngIf="user.iduser ==  idtoken && user.admin_idadminRights == 1" class="fa fa-cog"></span></a>
               </td>
             </tr>
           </ng-container>

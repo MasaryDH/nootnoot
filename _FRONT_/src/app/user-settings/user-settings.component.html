@@ -34,6 +34,9 @@
                 <li>
                   <p>E-mailadres</p><input type="email" class="emailUser{{user.iduser}}" [value]="user.user_email" readonly="true">
                 </li>
+                <li>
+                  <p>Status Beschrijving</p><input type="text" class="descriptionUser{{user.iduser}}" [value]="user.user_description" readonly="true">
+                </li>
                 <li id="flex_row">
                   <div class="two_column">
                     <p>Voornaam</p><input type="text" class="firstnameUser{{user.iduser}}" [value]="user.user_firstname" readonly="true">

@@ -130,6 +130,7 @@ export class UserSettingsComponent {
     // make it possible to edit inputfields
     (document.querySelector(".usernameUser"+id) as HTMLInputElement).readOnly = false;
     (document.querySelector(".emailUser"+id) as HTMLInputElement).readOnly = false;
+    (document.querySelector(".descriptionUser"+id) as HTMLInputElement).readOnly = false;
     (document.querySelector(".firstnameUser"+id) as HTMLInputElement).readOnly = false;
     (document.querySelector(".lastnameUser"+id) as HTMLInputElement).readOnly = false;
     (document.querySelector(".passwordUser"+id) as HTMLInputElement).readOnly = false;
@@ -144,6 +145,9 @@ export class UserSettingsComponent {
     // get email+id
     let myContainerEmail = <HTMLInputElement> document.querySelector(".emailUser"+id);
     let email = myContainerEmail.value;
+    //get description+id
+    let myContainerDescription = <HTMLInputElement> document.querySelector(".descriptionUser"+id);
+    let description = myContainerDescription.value;
     // get firstname+id
     let myContainerFirstname = <HTMLInputElement> document.querySelector(".firstnameUser"+id);
     let firstname = myContainerFirstname.value;
@@ -166,7 +170,7 @@ export class UserSettingsComponent {
       myContainerSave.style.display = 'none';
 
       // create json
-      let data = { username:username, user_email:email, user_firstname:firstname, user_lastname:lastname, user_password:password };
+      let data = { username:username, user_email:email, user_firstname:firstname, user_lastname:lastname, user_password:password, user_description:description };
 
       // put call (headers = send as json, responseType = give response as text)
       this.http.put(this.PUT_SERVER_URL+id, data)
@@ -177,6 +181,7 @@ export class UserSettingsComponent {
           //make it possible to readonly inputfields
           (document.querySelector(".usernameUser"+id) as HTMLInputElement).readOnly = true;
           (document.querySelector(".emailUser"+id) as HTMLInputElement).readOnly = true;
+          (document.querySelector(".descriptionUser"+id) as HTMLInputElement).readOnly = true;
           (document.querySelector(".firstnameUser"+id) as HTMLInputElement).readOnly = true;
           (document.querySelector(".lastnameUser"+id) as HTMLInputElement).readOnly = true;
           (document.querySelector(".passwordUser"+id) as HTMLInputElement).readOnly = true;
