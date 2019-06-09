@@ -303,9 +303,13 @@ switch($request_method){
             $_PUT = json_decode(file_get_contents('php://input'));
             $hash = hash("md5", $_PUT->user_password); //encode password
 
-            $sql = "UPDATE user SET username= '".$_PUT->username."', user_email= '".$_PUT->user_email."', 
-                                    user_firstname= '".$_PUT->user_firstname."', user_lastname= '".$_PUT->user_lastname."', 
-                                    user_password= IF('".$_PUT->user_password."' = '', user_password, '".$hash."') WHERE iduser = $id";
+            $sql = "UPDATE user SET username= '".$_PUT->username."', 
+                                    user_email= '".$_PUT->user_email."',
+                                    user_description = '".$_PUT->user_description."',
+                                    user_firstname= '".$_PUT->user_firstname."', 
+                                    user_lastname= '".$_PUT->user_lastname."', 
+                                    user_password= IF('".$_PUT->user_password."' = '', user_password, '".$hash."') 
+                                WHERE iduser = $id";
             
             if($conn->query($sql)){
                 $response = json_encode(true);
@@ -343,6 +347,20 @@ switch($request_method){
             echo $response;
             break;
 
+        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/userstatus/'. $id){
+            // convert JSON to object
+            $_PUT = json_decode(file_get_contents('php://input'));
+
+            $sqlStatusUpdate = "UPDATE user SET status_idstatus= '".$_PUT->status_idstatus."' 
+                                WHERE iduser = $id";
+            
+            if($conn->query($sqlStatusUpdate)){
+                $response = json_encode(true);
+            } else {
+                $response = json_encode(false);
+            }
+            echo $response;
+            break; 
         } else {
             echo 'Kan niet updaten';
             break;
