@@ -26,6 +26,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
   emojis = emoji;
   order: string = "order";
   audio;
+  audioBuzzer;
   interval;
   count = 0;
 
@@ -34,6 +35,8 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     this.getRequest();
     //load notification sound
     this.audio = new Audio("../../assets/sounds/msn-sound.mp3");
+    this.audioBuzzer = new Audio("../../assets/sounds/nudge.mp3");
+    // this.audioBuzzer = new Audio("../../assets/sounds/NootNoot.mp3");
 
     this.checkIsActive();
   }
@@ -64,33 +67,64 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
       var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
       var dateTime = date+' '+time;
 
-      //send message to sockets
-      this.messages.push(`<p title="`+dateTime+`">${msg.name}: ${msg.message}</p>`);
-      console.log("Response from websocket: " + msg);
       let usernameSearch = this.users.find(x=>x.iduser == this.idtoken);
       let username = usernameSearch.username;
 
-      // play sound if there is a new message
-      if (username != msg["name"]){
-        this.audio.play();
+      //check if you have send a buzzer
+      if(msg["message"] == ":buzzer:" && username == msg["name"]){
+        this.messages.push(`<p title="`+dateTime+`"> Buzzer is verzonden </p>`);
+        console.log("Response from websocket: A buzzer has been send");
+      }
+
+      //check if message is a buzzer and not your buzzer
+      if(msg["message"] == ":buzzer:" && username!= msg["name"]){
+        //send message to sockets
+        this.messages.push(`<p title="`+dateTime+`">${msg.name} heeft je een buzzer gestuurd</p>`);
+        console.log("Response from websocket: You got buzzed");
+
+        //add class buzzer to html tagg
+        let buzzer = document.getElementsByTagName('html')[0];
+        buzzer.classList.add("buzzer");
+        //play buzzer sound
+        this.audioBuzzer.play();
+
+        //remove class buzzer from html tagg after 2 sec
+        setTimeout(function(){
+          let buzzer = document.getElementsByTagName('html')[0];
+          buzzer.classList.remove("buzzer");
+        }, 2000);
+
         this.setTitle();
         navigator.vibrate([1000, 500, 1000]);
       }
 
-      //send only your new written text message
-      if (username == msg["name"]){
-        // creating message data to send with post
-        let useridSearch = this.users.find(x=>x.username == msg["name"]);
-        let userid = useridSearch.iduser;
-        let data = {content: msg["message"], username: msg["name"], user_iduser: userid};
+      //check if message is a buzzer or message
+      if (msg["message"] != ":buzzer:"){
+        //send message to sockets
+        this.messages.push(`<p title="`+dateTime+`">${msg.name}: ${msg.message}</p>`);
+        console.log("Response from websocket: " + msg);
 
-        // POST call
-        this.http.post(this.POSTMESSAGE_SERVER_URL, data)
-        .subscribe((resultPut) => {
-        console.log(resultPut)
-        });
+        // play sound if there is a new message
+        if (username != msg["name"]){
+          this.audio.play();
+          this.setTitle();
+          navigator.vibrate([1000, 500, 1000]);
+        }
+
+        //send only your new written text message
+        if (username == msg["name"]){
+          // creating message data to send with post
+          let useridSearch = this.users.find(x=>x.username == msg["name"]);
+          let userid = useridSearch.iduser;
+          let data = {content: msg["message"], username: msg["name"], user_iduser: userid};
+
+          // POST call
+          this.http.post(this.POSTMESSAGE_SERVER_URL, data)
+          .subscribe((resultPut) => {
+          console.log(resultPut)
+          });
+        }
       }
-      
     });
   }
 
@@ -114,6 +148,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     elem.value = null;
   }
 
+  //show old messages from database
   showOldMessages(){
     let elem = document.getElementById("oldMessages");
     let hide = elem.style.display =="none";
@@ -155,6 +190,16 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
         this.count = 0;
       }
     }, 1000);
+  }
+
+  //send a buzzer with websockets
+  buzzer(){
+    //get username of person who send buzzer
+    let usernameSearch = this.users.find(x=>x.iduser == this.idtoken);
+    let username = usernameSearch.username;
+
+    // Send Buzzer 
+    this.chat.sendMsg(JSON.stringify({'message':":buzzer:",'user':username}));
   }
 
   ngOnDestroy() {
