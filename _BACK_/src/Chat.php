@@ -25,7 +25,7 @@ class Chat implements MessageComponentInterface {
         $test = array();
         $test = json_decode($msg);
         echo "--New Message|| ".json_decode($test)->user.": ".json_decode($test)->message."\n\n";
-        //send the message to all the other clients except the one who sent.
+        //send the message to all the other clients 
         foreach ($this->clients as $client) {
                 $client->send($test);
         }

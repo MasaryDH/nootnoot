@@ -6,6 +6,7 @@
     },
     "require": {
         "cboden/ratchet": "^0.4.1",
-        "faapz/pdo": "^1.11"
+        "faapz/pdo": "^1.11",
+        "react/zmq": "0.2.*|0.3.*"
     }
 }
