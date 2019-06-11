@@ -102,7 +102,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
       if (msg["message"] != ":buzzer:"){
         //send message to sockets
         this.messages.push(`<p title="`+dateTime+`">${msg.name}: ${msg.message}</p>`);
-        console.log("Response from websocket: " + msg);
+        //console.log("Response from websocket: " + msg);
 
         // play sound if there is a new message
         if (username != msg["name"]){
