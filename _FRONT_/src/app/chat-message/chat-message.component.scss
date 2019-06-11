@@ -7,8 +7,13 @@
     width: 100%;
     border-radius: 0 0 10px 10px;
     border: 1px solid black;
-    border-top: 0px;
     background: #fff;
+
+    
+    //tablet portrait
+    @media screen and (min-width: $desktop) {
+      border-top: 0px;
+    }
   }
 }
 
@@ -261,8 +266,8 @@ textarea {
         }
 
         @media (min-width: $tablet_landscape) and (max-width: 1366px) and (orientation: landscape) {
-          margin-left: 10px;
-          width: 89vw;
+          margin-left: 15px;
+          width: 75vw;
         }
 
       }

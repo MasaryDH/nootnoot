@@ -103,10 +103,13 @@ register {
 }
 
 app-chat { 
-    display: flex; 
-    min-height: 100vh;
+  display: flex; 
+   min-height: 100vh;
 
-   
+  //mobile
+  @media screen and (max-width: $sm_landscape) {
+    min-height: auto;
+  }
 }
 
 
