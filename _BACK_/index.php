@@ -261,6 +261,15 @@ switch($request_method){
                                user_iduser = (SELECT iduser FROM user WHERE username = '".$_POST->username."' AND iduser = '".$_POST->user_iduser."' )";
             $result = $conn->query($sqlMessage);
 
+            if($result){
+                $response = json_encode(true);
+            } else {
+                $response = json_encode(false);
+            }
+            // Send data to front
+            echo json_encode($response);
+            break;
+
         //------ DELETE ------
         } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/delete-user/'. $id){
             // convert JSON to object
