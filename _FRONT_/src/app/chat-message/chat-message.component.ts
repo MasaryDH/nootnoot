@@ -121,7 +121,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
           // POST call
           this.http.post(this.POSTMESSAGE_SERVER_URL, data)
           .subscribe((resultPut) => {
-          console.log(resultPut)
+          //console.log(resultPut)
           });
         }
       }
