@@ -23,7 +23,7 @@ $randomProfilePicture = $profilePicture[array_rand($profilePicture)];
 
 switch($request_method){
     case "GET":
-        if($_SERVER["REQUEST_URI"] == '/nootnoot/users'){
+        if($request_uri  == '/nootnoot/users'){
             $sql = "SELECT * FROM user";
             $result = $conn->query($sql);
             $response = array();
@@ -37,7 +37,7 @@ switch($request_method){
             echo $json_response;
             break;
 
-        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/user/' . $id) {
+        } elseif($request_uri  == '/nootnoot/user/' . $id) {
             $sql = "SELECT * FROM user WHERE iduser = $id";
             $result = $conn->query($sql);
             $response = array();
@@ -47,7 +47,7 @@ switch($request_method){
             $json_response = json_encode($response);
             echo $json_response;
             break;
-        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/messages') {
+        } elseif($request_uri  == '/nootnoot/messages') {
             $sql = "SELECT message.user_iduser, message.datesent, message.content, user.iduser, user.username 
                     FROM message
                     INNER JOIN user
@@ -69,7 +69,7 @@ switch($request_method){
 
     case "POST":
         //------ REGISTER ------
-        if($_SERVER["REQUEST_URI"] == '/nootnoot/users'){
+        if($request_uri  == '/nootnoot/users'){
 
             // convert JSON to object
             $_POST = json_decode(file_get_contents('php://input'));
@@ -118,7 +118,7 @@ switch($request_method){
             break;
 
         //------ LOGIN ------
-        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/loginuser'){
+        } elseif($request_uri  == '/nootnoot/loginuser'){
             // convert JSON to object
             $_POST = json_decode(file_get_contents('php://input'));
             $hash = hash("md5", $_POST->user_password); //encode password
@@ -161,7 +161,7 @@ switch($request_method){
             break;
 
         //------ LOGUIT ------
-        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/logoutuser'){
+        } elseif($request_uri  == '/nootnoot/logoutuser'){
             // convert JSON to object
             $_POST = json_decode(file_get_contents('php://input'));
 
@@ -188,7 +188,7 @@ switch($request_method){
             break;
 
         //------ RESET PASWOORD ------
-        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/resetuser'){
+        } elseif($request_uri  == '/nootnoot/resetuser'){
             // convert JSON to object
             $_POST = json_decode(file_get_contents('php://input'));
             $POSTemail = json_encode($_POST->user_email);
@@ -251,7 +251,7 @@ switch($request_method){
             break;
 
         //------ OPSLAAN MESSAGES ------
-        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/message'){
+        } elseif($request_uri  == '/nootnoot/message'){
             $_POST = json_decode(file_get_contents('php://input'));
             
             // insert messages in database
@@ -271,7 +271,7 @@ switch($request_method){
             break;
 
         //------ DELETE ------
-        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/delete-user/'. $id){
+        } elseif($request_uri  == '/nootnoot/delete-user/'. $id){
             // convert JSON to object
             $_DELETE = json_decode(file_get_contents('php://input'));
     
@@ -296,7 +296,7 @@ switch($request_method){
         }
 
     // case "DELETE":
-    //     if($_SERVER["REQUEST_URI"] == '/nootnoot/user/'. $id){
+    //     if($request_uri  == '/nootnoot/user/'. $id){
     //         $sql = "DELETE FROM user WHERE iduser = $id";
     //         $result = $conn->query($sql);
     //         echo 'Speler is verwijderd';
@@ -307,7 +307,7 @@ switch($request_method){
     //     }
 
     case "PUT":
-        if($_SERVER["REQUEST_URI"] == '/nootnoot/user/'. $id){
+        if($request_uri  == '/nootnoot/user/'. $id){
             // convert JSON to object
             $_PUT = json_decode(file_get_contents('php://input'));
             $hash = hash("md5", $_PUT->user_password); //encode password
@@ -328,7 +328,7 @@ switch($request_method){
             echo $response;
             break;
             
-        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/imgchange/'. $id) {
+        } elseif($request_uri  == '/nootnoot/imgchange/'. $id) {
             // convert JSON to object
             $_PUT = json_decode(file_get_contents('php://input'));
 
@@ -342,7 +342,7 @@ switch($request_method){
             echo $response;
             break;
 
-        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/colorchange/'. $id) {
+        } elseif($request_uri  == '/nootnoot/colorchange/'. $id) {
             // convert JSON to object
             $_PUT = json_decode(file_get_contents('php://input'));
 
@@ -356,7 +356,7 @@ switch($request_method){
             echo $response;
             break;
 
-        } elseif($_SERVER["REQUEST_URI"] == '/nootnoot/userstatus/'. $id){
+        } elseif($request_uri  == '/nootnoot/userstatus/'. $id){
             // convert JSON to object
             $_PUT = json_decode(file_get_contents('php://input'));
 
