@@ -34,8 +34,8 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     // get data when refreshed
     this.getRequest();
     //load notification sound
-    this.audio = new Audio("../../assets/sounds/msn-sound.mp3");
-    this.audioBuzzer = new Audio("../../assets/sounds/nudge.mp3");
+    this.audio = new Audio("assets/sounds/msn-sound.mp3");
+    this.audioBuzzer = new Audio("assets/sounds/nudge.mp3");
     // this.audioBuzzer = new Audio("../../assets/sounds/NootNoot.mp3");
 
     this.checkIsActive();

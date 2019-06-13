@@ -110,7 +110,6 @@
   background: $c_status;
   z-index: 501;  
   animation: animateStatus .5s;
-  animation-direction: normal, reverse;
 
   //mobile
   @media screen and (max-width: $sm_landscape) {
