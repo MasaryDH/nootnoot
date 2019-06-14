@@ -157,7 +157,7 @@ form {
 
 .links {
     text-align: right;
-    position: fixed;
+    position: absolute;
     bottom: 32px;
     right: 60px;
     display: flex;
@@ -186,7 +186,7 @@ form {
     //mobile
     @media screen and (max-width: $sm_landscape) {
         position: absolute;
-        bottom: 38px;
+        bottom: 10px;
         right: 25px;
     }
 

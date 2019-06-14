@@ -3,7 +3,7 @@ namespace ChatApp;
 
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-require "db/users.php";
+//require "db/users.php";
 
 
 class Chat implements MessageComponentInterface {

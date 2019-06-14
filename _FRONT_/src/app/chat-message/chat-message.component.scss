@@ -115,6 +115,15 @@ textarea {
   border-radius: 10px;
   padding: 3px 9px;
   cursor: pointer;
+
+  //mobile
+  @media screen and (max-width: $sm_landscape) {
+    bottom: 40px;
+  }
+
+  @media screen and (min-width: 481px) and (max-width: $tablet_portrait) {
+    bottom: 40px;
+  }
 }
 
 #emoticonBar{
@@ -240,9 +249,9 @@ textarea {
         flex-wrap: wrap;
 
         //mobile
-        @media screen and (max-width: 767px) {
-          margin: auto;
-          width: 94vw;
+        @media screen and (max-width: 640px) {
+          width: 100%;
+          margin-left: 5px;
         }
 
         @media screen and (max-width: 767px) and (orientation: landscape) {
@@ -265,9 +274,9 @@ textarea {
           width: 77vw;
         }
 
-        @media (min-width: $tablet_landscape) and (max-width: 1366px) and (orientation: landscape) {
-          margin-left: 15px;
-          width: 75vw;
+        @media (min-width: 1025px) and (max-width: 1366px) and (orientation: landscape) {
+          margin-left: 10px;
+          width: 90vw;
         }
 
       }

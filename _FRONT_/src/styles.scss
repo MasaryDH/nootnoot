@@ -15,12 +15,8 @@
 
 html, body {
     background: #eee;
+    width: 100%;
     height: 100%;
-
-    //tablet
-    @media screen and (min-width: $tablet_landscape) {
-        overflow-y: hidden;
-    }
 }
 
 //add buzzer animation
@@ -78,6 +74,7 @@ register {
         position: relative;
         padding-top: 2rem;
         padding-bottom: 4rem;
+        height: 90%;
     }
 
     @media screen and (min-width: $sm_portrait) and (max-width: $tablet_portrait) and (orientation: landscape) {
@@ -109,6 +106,11 @@ app-chat {
   //mobile
   @media screen and (max-width: $sm_landscape) {
     min-height: auto;
+  }
+
+  //tablet
+  @media screen and (min-width: $tablet_landscape) {
+    overflow-y: hidden;
   }
 }
 

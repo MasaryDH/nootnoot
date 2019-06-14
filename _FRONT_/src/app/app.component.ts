@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -21,7 +21,16 @@ export class AppComponent {
       // console.log(JSON.stringify(result));
       this.users = result;
     });
-    
   }
 
+  //mobile keyboard fix
+  ngOnInit(){
+    setTimeout(function () {
+      let viewheight = window.innerHeight;
+      let viewwidth = window.innerWidth;
+      let viewport = document.querySelector("meta[name=viewport]");
+      viewport.setAttribute("content", "height=" + viewheight + "px, width=" + viewwidth + "px, initial-scale=1.0");
+    }, 300);
+  }
+    
 }

@@ -213,7 +213,7 @@ export class UserSettingsComponent {
     this.http.put(this.IMAGE_SERVER_URL+id, data)
     .subscribe((result) => {
       if(result == true){
-        alert('Profielfoto aangepast');
+        //alert('Profielfoto aangepast');
       } else {
         alert('Kan profielfoto niet aanpassen');
       }

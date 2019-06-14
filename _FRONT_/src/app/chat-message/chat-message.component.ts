@@ -1,4 +1,4 @@
-import { Component, OnInit,OnDestroy  } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { SocketService } from '../services/socket.service'
 import { ChatService } from '../services/chat.service'
@@ -38,6 +38,7 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     this.audioBuzzer = new Audio("assets/sounds/nudge.mp3");
     // this.audioBuzzer = new Audio("../../assets/sounds/NootNoot.mp3");
 
+    //check browser tab is active -> notification unread messages
     this.checkIsActive();
   }
 

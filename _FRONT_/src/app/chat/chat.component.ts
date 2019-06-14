@@ -21,10 +21,14 @@ export class ChatComponent{
   constructor(private http: HttpClient, private authService: AuthService){
     // get data when refreshed
     this.getRequest();
+
     // if loggin in auto reload status-list
     if (this.test == 'true'){
     this.routerOnActivate();
     };
+
+    //check browser tab is active -> status absent
+    this.checkIsActive();
   }
 
   // ----- GET -----
@@ -81,7 +85,7 @@ export class ChatComponent{
       }
   }
 
-  //mobile
+  //Mobile status table
   openStatusTable(){
     let elem = document.getElementById("status");
     let icon = document.getElementById("icon");
@@ -109,18 +113,18 @@ export class ChatComponent{
         
         this.authService.logout();
       } else {
-        alert("uitloggen mislukt");
+        alert("Uitloggen mislukt");
       }
     });
   }
 
-  //put yourself on Idle
+  //Put yourself on absent
   statusIdle(id){
     let status = { status_idstatus:2 };
     this.http.put(this.PUTSTATUS_SERVER_URL+id, status)
     .subscribe((result) => {
       if(result == true){
-        alert("U bent nu Afwezig");
+        alert("Je bent nu afwezig");
         //change icon to idle
         let statusOnline = document.getElementById("Online"+id);
         statusOnline.style.display = "none";
@@ -132,13 +136,13 @@ export class ChatComponent{
     });
   }
 
-  //put yourself back to Online
+  //Put yourself back to online
   statusOnline(id){
     let status = { status_idstatus:1 };
     this.http.put(this.PUTSTATUS_SERVER_URL+id, status)
     .subscribe((result) => {
       if(result == true){
-        alert("U bent nu Online");
+        alert("Je bent nu online");
         //change icon to online
         let statusOnline = document.getElementById("Online"+id);
         statusOnline.style.display = "block";
@@ -150,6 +154,22 @@ export class ChatComponent{
     });
   }
 
+  //Status absent if browser tab is inactive
+  checkIsActive() {
+    this.interval = setInterval(() => {
+      if(!document.hidden){
+        let status = { status_idstatus: 1 };
+        this.http.put(this.PUTSTATUS_SERVER_URL+this.idtoken, status)
+        .subscribe();
+      } else {
+        let status = { status_idstatus: 2 };
+        this.http.put(this.PUTSTATUS_SERVER_URL+this.idtoken, status)
+        .subscribe();
+      }
+    }, 1000);
+  }
+
+  //Modals
   openModalUsers(){
     let modal = document.getElementById("modalUsers");
     modal.style.display = "block";
