@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 
@@ -7,7 +7,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent{
+export class ChatComponent implements OnInit{
 
   GET_SERVER_URL = "http://localhost/nootnoot/users";
   LOGOUT_SERVER_URL = "http://localhost/nootnoot/logoutuser";
@@ -16,14 +16,14 @@ export class ChatComponent{
   // token id
   idtoken = (JSON.parse(localStorage.getItem('token')))['iduser'];
   interval;
-  test = 'true';
+  autoReload = 'true';
 
   constructor(private http: HttpClient, private authService: AuthService){
     // get data when refreshed
     this.getRequest();
 
     // if loggin in auto reload status-list
-    if (this.test == 'true'){
+    if (this.autoReload == 'true'){
     this.routerOnActivate();
     };
 
@@ -108,7 +108,7 @@ export class ChatComponent{
     .subscribe((status)=> {
       if(status == true) {
          // set auto reload status-list off
-        this.test = 'false';
+        this.autoReload = 'false';
         clearInterval(this.interval);
         
         this.authService.logout();
@@ -167,6 +167,22 @@ export class ChatComponent{
         .subscribe();
       }
     }, 1000);
+  }
+
+  ngOnInit() {
+    //put on idle on broswer close
+    window.addEventListener('beforeunload', (event) => {
+      let status = { status_idstatus: 2 };
+      this.http.put(this.PUTSTATUS_SERVER_URL+this.idtoken, status)
+      .subscribe();
+    });
+
+    //put on online on browser open
+    window.addEventListener('load', (event) => {
+      let status = { status_idstatus: 1 };
+      this.http.put(this.PUTSTATUS_SERVER_URL+this.idtoken, status)
+      .subscribe();
+    });
   }
 
   //Modals

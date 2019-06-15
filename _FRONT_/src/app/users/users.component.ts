@@ -91,6 +91,13 @@ export class UsersComponent {
     (document.querySelector(".password"+id) as HTMLInputElement).readOnly = false;
     (document.querySelector(".passwordCheck"+id) as HTMLInputElement).readOnly = false;
 
+    //make edit inputfields glowup
+    (document.querySelector(".username"+id) as HTMLInputElement).classList.add("editInput");
+    (document.querySelector(".email"+id) as HTMLInputElement).classList.add("editInput");
+    (document.querySelector(".firstname"+id) as HTMLInputElement).classList.add("editInput");
+    (document.querySelector(".lastname"+id) as HTMLInputElement).classList.add("editInput");
+    (document.querySelector(".password"+id) as HTMLInputElement).classList.add("editInput");
+    (document.querySelector(".passwordCheck"+id) as HTMLInputElement).classList.add("editInput");
   }
 
   updateSave(id){
@@ -140,6 +147,14 @@ export class UsersComponent {
         (document.querySelector(".lastname"+id) as HTMLInputElement).readOnly = true;
         (document.querySelector(".password"+id) as HTMLInputElement).readOnly = true;
         (document.querySelector(".passwordCheck"+id) as HTMLInputElement).readOnly = true;
+
+        //make edit inputfields not glowup anymore
+        (document.querySelector(".username"+id) as HTMLInputElement).classList.remove("editInput");
+        (document.querySelector(".email"+id) as HTMLInputElement).classList.remove("editInput");
+        (document.querySelector(".firstname"+id) as HTMLInputElement).classList.remove("editInput");
+        (document.querySelector(".lastname"+id) as HTMLInputElement).classList.remove("editInput");
+        (document.querySelector(".password"+id) as HTMLInputElement).classList.remove("editInput");
+        (document.querySelector(".passwordCheck"+id) as HTMLInputElement).classList.remove("editInput");
       });
     } else {
       alert("Paswoord komt niet overeen");

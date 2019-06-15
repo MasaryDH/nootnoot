@@ -136,6 +136,14 @@ export class UserSettingsComponent {
     (document.querySelector(".passwordUser"+id) as HTMLInputElement).readOnly = false;
     (document.querySelector(".passwordCheckUser"+id) as HTMLInputElement).readOnly = false;
 
+    //make edit inputfields glowup
+    (document.querySelector(".usernameUser"+id) as HTMLInputElement).classList.add("editInput");
+    (document.querySelector(".emailUser"+id) as HTMLInputElement).classList.add("editInput");
+    (document.querySelector(".descriptionUser"+id) as HTMLInputElement).classList.add("editInput");
+    (document.querySelector(".firstnameUser"+id) as HTMLInputElement).classList.add("editInput");
+    (document.querySelector(".lastnameUser"+id) as HTMLInputElement).classList.add("editInput");
+    (document.querySelector(".passwordUser"+id) as HTMLInputElement).classList.add("editInput");
+    (document.querySelector(".passwordCheckUser"+id) as HTMLInputElement).classList.add("editInput");
   }
 
   updateSaveUser(id){
@@ -186,6 +194,15 @@ export class UserSettingsComponent {
           (document.querySelector(".lastnameUser"+id) as HTMLInputElement).readOnly = true;
           (document.querySelector(".passwordUser"+id) as HTMLInputElement).readOnly = true;
           (document.querySelector(".passwordCheckUser"+id) as HTMLInputElement).readOnly = true;
+
+          //make edit inputfields not glowup anymore
+          (document.querySelector(".usernameUser"+id) as HTMLInputElement).classList.remove("editInput");
+          (document.querySelector(".emailUser"+id) as HTMLInputElement).classList.remove("editInput");
+          (document.querySelector(".descriptionUser"+id) as HTMLInputElement).classList.remove("editInput");
+          (document.querySelector(".firstnameUser"+id) as HTMLInputElement).classList.remove("editInput");
+          (document.querySelector(".lastnameUser"+id) as HTMLInputElement).classList.remove("editInput");
+          (document.querySelector(".passwordUser"+id) as HTMLInputElement).classList.remove("editInput");
+          (document.querySelector(".passwordCheckUser"+id) as HTMLInputElement).classList.remove("editInput");
 
           //clear password fields
           (document.querySelector(".passwordUser"+id) as HTMLInputElement).value = '';
