@@ -35,8 +35,8 @@ export class ChatMessageComponent  implements OnInit, OnDestroy {
     this.getRequest();
     //load notification sound
     this.audio = new Audio("assets/sounds/msn-sound.mp3");
-    this.audioBuzzer = new Audio("assets/sounds/nudge.mp3");
-    // this.audioBuzzer = new Audio("../../assets/sounds/NootNoot.mp3");
+    //this.audioBuzzer = new Audio("assets/sounds/nudge.mp3");
+    this.audioBuzzer = new Audio("assets/sounds/NootNoot.mp3");
 
     //check browser tab is active -> notification unread messages
     this.checkIsActive();

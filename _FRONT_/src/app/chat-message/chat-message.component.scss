@@ -145,6 +145,10 @@ textarea {
     height: 5vh;
   }
 
+  a {
+    cursor: pointer;
+  }
+
   span {
     margin: 0px 10px;
   }
@@ -180,6 +184,7 @@ textarea {
   .hrInfo{
     text-align: center;
     color: rgb(177, 177, 177);
+    cursor: pointer;
   }
 
   hr {
