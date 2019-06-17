@@ -7,7 +7,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit{
+export class ChatComponent {
 
   GET_SERVER_URL = "http://localhost/nootnoot/users";
   LOGOUT_SERVER_URL = "http://localhost/nootnoot/logoutuser";
@@ -28,7 +28,7 @@ export class ChatComponent implements OnInit{
     };
 
     //check browser tab is active -> status absent
-    this.checkIsActive();
+    // this.checkIsActive();
   }
 
   // ----- GET -----
@@ -155,35 +155,24 @@ export class ChatComponent implements OnInit{
   }
 
   //Status absent if browser tab is inactive
-  checkIsActive() {
-    this.interval = setInterval(() => {
-      if(!document.hidden){
-        let status = { status_idstatus: 1 };
-        this.http.put(this.PUTSTATUS_SERVER_URL+this.idtoken, status)
-        .subscribe();
-      } else {
-        let status = { status_idstatus: 2 };
-        this.http.put(this.PUTSTATUS_SERVER_URL+this.idtoken, status)
-        .subscribe();
-      }
-    }, 1000);
-  }
+  // checkIsActive() {
+  //   this.interval = setInterval(() => {
+  //     if(document.hidden){
+  //       let status = { status_idstatus: 2 };
+  //       this.http.put(this.PUTSTATUS_SERVER_URL+this.idtoken, status)
+  //       .subscribe();
+  //     }
+  //   }, 1000);
+  // }
 
-  ngOnInit() {
-    //put on idle on broswer close
-    window.addEventListener('beforeunload', (event) => {
-      let status = { status_idstatus: 2 };
-      this.http.put(this.PUTSTATUS_SERVER_URL+this.idtoken, status)
-      .subscribe();
-    });
-
-    //put on online on browser open
-    window.addEventListener('load', (event) => {
-      let status = { status_idstatus: 1 };
-      this.http.put(this.PUTSTATUS_SERVER_URL+this.idtoken, status)
-      .subscribe();
-    });
-  }
+  // ngOnInit() {
+  //   //put on idle on broswer close
+  //   window.addEventListener('beforeunload', (event) => {
+  //     let status = { status_idstatus: 2 };
+  //     this.http.put(this.PUTSTATUS_SERVER_URL+this.idtoken, status)
+  //     .subscribe();
+  //   });
+  // }
 
   //Modals
   openModalUsers(){

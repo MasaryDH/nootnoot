@@ -47,6 +47,7 @@ switch($request_method){
             $json_response = json_encode($response);
             echo $json_response;
             break;
+
         } elseif($request_uri  == '/nootnoot/messages') {
             $sql = "SELECT message.user_iduser, message.datesent, message.content, user.iduser, user.username 
                     FROM message
@@ -61,11 +62,10 @@ switch($request_method){
             $json_response = json_encode($response);
             echo $json_response;
             break;
-        }else {
+        } else {
             echo 'ERROR';
             break;
         }
-
 
     case "POST":
         //------ REGISTER ------
@@ -207,7 +207,7 @@ switch($request_method){
                 $email = $row['user_email'];
 
                 // create randomized hash password
-                $n=15;
+                $n = 15;
                 function getRandomPass($n) {
                     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                     $randomString = '';

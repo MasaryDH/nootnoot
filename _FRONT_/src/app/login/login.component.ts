@@ -17,6 +17,7 @@ export class LoginComponent {
   user_email: string;
   user_password: string;
   iduser;
+  
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) { 
     //if user is logged in, redirect to chat
